@@ -134,7 +134,7 @@ export default function PaymentsPage() {
       Status: p.status,
       TransactionNumber: p.referenceNumber,
     }));
-    downloadCSV(data, 'AnoimQI_Payments');
+    downloadCSV(data, 'AxoimIQQI_Payments');
     toast.success('Payments exported to CSV');
   };
 
@@ -207,9 +207,8 @@ export default function PaymentsPage() {
       sortable: true,
       render: (val, row) => (
         <span
-          className={`font-bold ${
-            row.status === 'failed' ? 'text-danger line-through' : 'text-success'
-          }`}
+          className={`font-bold ${row.status === 'failed' ? 'text-danger line-through' : 'text-success'
+            }`}
         >
           {formatCurrency(val)}
         </span>

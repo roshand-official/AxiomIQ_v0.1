@@ -53,12 +53,12 @@ export default function AdminDashboard() {
   const metrics = useMemo(() => {
     // 1. Active Subscriptions
     const activeSubs = subscriptions.filter((s) => s.status === 'active');
-    
+
     // 2. MRR (Monthly Recurring Revenue)
     // Monthly subscriptions = recurringAmount; Yearly subscriptions = recurringAmount / 12
     const mrr = activeSubs.reduce((acc, sub) => {
       // If plan is yearly or amount > 20000, normalize if needed or use recurringAmount based on plan
-      // For AnoimQI: Monthly plans recurringAmount is monthly; Annual plans are annualized / 12
+      // For AxoimIQQI: Monthly plans recurringAmount is monthly; Annual plans are annualized / 12
       const isAnnual = sub.planId === 'PLAN-002' || sub.planId === 'PLAN-005';
       const monthlyVal = isAnnual ? sub.recurringAmount / 12 : sub.recurringAmount;
       return acc + monthlyVal;
@@ -179,11 +179,10 @@ export default function AdminDashboard() {
                 key={period}
                 type="button"
                 onClick={() => setTimeRange(period)}
-                className={`px-2.5 py-1 rounded font-medium transition-colors cursor-pointer ${
-                  timeRange === period
+                className={`px-2.5 py-1 rounded font-medium transition-colors cursor-pointer ${timeRange === period
                     ? 'bg-action text-white shadow-xs'
                     : 'text-text-secondary hover:text-text-primary'
-                }`}
+                  }`}
               >
                 {period.toUpperCase()}
               </button>
@@ -305,33 +304,30 @@ export default function AdminDashboard() {
               <button
                 type="button"
                 onClick={() => setActiveChartTab('revenue')}
-                className={`px-3 py-1 rounded font-medium transition-colors cursor-pointer ${
-                  activeChartTab === 'revenue'
+                className={`px-3 py-1 rounded font-medium transition-colors cursor-pointer ${activeChartTab === 'revenue'
                     ? 'bg-white text-navy shadow-xs'
                     : 'text-text-secondary hover:text-text-primary'
-                }`}
+                  }`}
               >
                 Revenue
               </button>
               <button
                 type="button"
                 onClick={() => setActiveChartTab('subscriptions')}
-                className={`px-3 py-1 rounded font-medium transition-colors cursor-pointer ${
-                  activeChartTab === 'subscriptions'
+                className={`px-3 py-1 rounded font-medium transition-colors cursor-pointer ${activeChartTab === 'subscriptions'
                     ? 'bg-white text-navy shadow-xs'
                     : 'text-text-secondary hover:text-text-primary'
-                }`}
+                  }`}
               >
                 Subscriptions
               </button>
               <button
                 type="button"
                 onClick={() => setActiveChartTab('payments')}
-                className={`px-3 py-1 rounded font-medium transition-colors cursor-pointer ${
-                  activeChartTab === 'payments'
+                className={`px-3 py-1 rounded font-medium transition-colors cursor-pointer ${activeChartTab === 'payments'
                     ? 'bg-white text-navy shadow-xs'
                     : 'text-text-secondary hover:text-text-primary'
-                }`}
+                  }`}
               >
                 Collections
               </button>

@@ -112,10 +112,10 @@ export default function PortalInvoiceDetailPage() {
         <div className="flex flex-col sm:flex-row justify-between gap-6 pb-6 border-b border-border">
           <div>
             <div className="flex items-center gap-2 text-action font-bold text-xl">
-              <span>AnoimQI</span>
+              <span>AxoimIQQI</span>
             </div>
             <p className="text-xs text-text-secondary mt-1">
-              AnoimQI Technologies India Pvt. Ltd.
+              AxoimIQQI Technologies India Pvt. Ltd.
             </p>
             <p className="text-xs text-text-secondary">
               GSTIN: 29AABCU9603R1ZM • Koramangala, Bengaluru

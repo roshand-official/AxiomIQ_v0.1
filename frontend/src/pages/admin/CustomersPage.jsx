@@ -154,7 +154,7 @@ export default function CustomersPage() {
       Outstanding: c.outstandingAmount,
       CreatedDate: formatDate(c.createdAt),
     }));
-    downloadCSV(exportData, 'AnoimQI_Customers');
+    downloadCSV(exportData, 'AxoimIQQI_Customers');
     toast.success('Customers exported to CSV');
   };
 
@@ -230,9 +230,8 @@ export default function CustomersPage() {
       sortable: true,
       render: (val) => (
         <span
-          className={`font-semibold ${
-            val > 0 ? 'text-danger' : 'text-text-muted'
-          }`}
+          className={`font-semibold ${val > 0 ? 'text-danger' : 'text-text-muted'
+            }`}
         >
           {formatCurrency(val)}
         </span>

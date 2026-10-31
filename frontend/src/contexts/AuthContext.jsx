@@ -5,8 +5,8 @@ import api from '../services/api';
 const AuthContext = createContext(null);
 
 const DEMO_CREDENTIALS = {
-  admin: { email: 'admin@anoimqi.io', password: 'Password@123' },
-  staff: { email: 'rahul.verma@anoimqi.io', password: 'Password@123' },
+  admin: { email: 'admin@AxoimIQqi.io', password: 'Password@123' },
+  staff: { email: 'rahul.verma@AxoimIQqi.io', password: 'Password@123' },
   customer: { email: 'rajesh@apexsolutions.in', password: 'Password@123' },
 };
 
@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
   // Check existing token on initial load
   useEffect(() => {
     const initAuth = async () => {
-      const token = localStorage.getItem('anoimqi_token');
+      const token = localStorage.getItem('AxoimIQqi_token');
       if (!token) {
         setIsLoading(false);
         return;
@@ -34,7 +34,7 @@ export function AuthProvider({ children }) {
         }
       } catch (err) {
         console.warn('Session expired or backend unavailable:', err.message);
-        localStorage.removeItem('anoimqi_token');
+        localStorage.removeItem('AxoimIQqi_token');
       } finally {
         setIsLoading(false);
       }
@@ -48,7 +48,7 @@ export function AuthProvider({ children }) {
     try {
       const res = await api.auth.login(email, password);
       if (res?.data?.token) {
-        localStorage.setItem('anoimqi_token', res.data.token);
+        localStorage.setItem('AxoimIQqi_token', res.data.token);
         const profile = {
           ...res.data.user,
           name: `${res.data.user.firstName || ''} ${res.data.user.lastName || ''}`.trim() || res.data.user.email,
@@ -79,7 +79,7 @@ export function AuthProvider({ children }) {
   }, [login]);
 
   const logout = useCallback(() => {
-    localStorage.removeItem('anoimqi_token');
+    localStorage.removeItem('AxoimIQqi_token');
     setUser(null);
   }, []);
 

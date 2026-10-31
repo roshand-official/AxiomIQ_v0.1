@@ -130,14 +130,13 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
     role === 'staff'
       ? staffNavGroups
       : role === 'customer'
-      ? portalNavGroups
-      : adminNavGroups;
+        ? portalNavGroups
+        : adminNavGroups;
 
   return (
     <aside
-      className={`fixed top-0 left-0 z-40 h-screen transition-all duration-300 bg-navy text-white flex flex-col border-r border-navy-light ${
-        collapsed ? 'w-18' : 'w-64'
-      }`}
+      className={`fixed top-0 left-0 z-40 h-screen transition-all duration-300 bg-navy text-white flex flex-col border-r border-navy-light ${collapsed ? 'w-18' : 'w-64'
+        }`}
     >
       {/* Brand Header */}
       <div className="h-16 flex items-center justify-between px-4 border-b border-navy-light flex-shrink-0">
@@ -148,7 +147,7 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
           {!collapsed && (
             <div className="leading-tight">
               <span className="font-bold text-base tracking-tight text-white">
-                AnoimQI
+                AxoimIQQI
               </span>
               <span className="block text-[10px] text-gray-300 tracking-wider uppercase font-semibold">
                 {role === 'customer' ? 'Customer Portal' : 'Subscription OS'}
@@ -176,10 +175,9 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
                   to={item.path}
                   end={item.path.endsWith('/dashboard')}
                   className={({ isActive }) =>
-                    `flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium transition-colors ${
-                      isActive
-                        ? 'bg-action text-white shadow-sm font-semibold'
-                        : 'text-gray-300 hover:bg-navy-light hover:text-white'
+                    `flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium transition-colors ${isActive
+                      ? 'bg-action text-white shadow-sm font-semibold'
+                      : 'text-gray-300 hover:bg-navy-light hover:text-white'
                     } ${collapsed ? 'justify-center' : ''}`
                   }
                 >
@@ -189,11 +187,10 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
                       <span className="flex-1 truncate">{item.label}</span>
                       {item.badge != null && (
                         <span
-                          className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${
-                            item.badgeVariant === 'danger'
+                          className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${item.badgeVariant === 'danger'
                               ? 'bg-danger text-white'
                               : 'bg-navy-dark text-white'
-                          }`}
+                            }`}
                         >
                           {item.badge}
                         </span>
@@ -219,7 +216,7 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
       <div className="p-3 border-t border-navy-light flex items-center justify-between flex-shrink-0">
         {!collapsed && (
           <div className="text-[11px] text-gray-400">
-            <span>v1.0.0</span> • <span className="text-gray-400">AnoimQI</span>
+            <span>v1.0.0</span> • <span className="text-gray-400">AxoimIQQI</span>
           </div>
         )}
         <button

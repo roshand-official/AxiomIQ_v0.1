@@ -111,7 +111,7 @@ export default function FinancialReportsPage() {
       { Metric: 'Total Cash Collected', Value: totalCollected },
       { Metric: 'Outstanding Receivables', Value: totalOutstanding },
     ];
-    downloadCSV(data, 'AnoimQI_Financial_Summary');
+    downloadCSV(data, 'AxoimIQQI_Financial_Summary');
     toast.success('Financial report exported to CSV');
   };
 
@@ -167,7 +167,7 @@ export default function FinancialReportsPage() {
         <div>
           <span className="font-bold">Accounting Note on Revenue Segregation:</span>
           <p className="text-text-secondary mt-0.5 leading-relaxed">
-            AnoimQI strictly separates <span className="font-semibold text-text-primary">Contracted Recurring Value</span> (forward commitments),{' '}
+            AxoimIQQI strictly separates <span className="font-semibold text-text-primary">Contracted Recurring Value</span> (forward commitments),{' '}
             <span className="font-semibold text-text-primary">Invoiced Revenue</span> (tax invoices issued per GST rules), and{' '}
             <span className="font-semibold text-text-primary">Collected Cash</span> (realized bank receipts). These metrics are non-interchangeable.
           </p>
@@ -273,9 +273,8 @@ export default function FinancialReportsPage() {
                   </td>
                   <td className="px-4 py-3 text-center font-semibold">
                     <span
-                      className={`px-2 py-0.5 rounded-full ${
-                        item.growth >= 0 ? 'bg-emerald-50 text-success' : 'bg-rose-50 text-danger'
-                      }`}
+                      className={`px-2 py-0.5 rounded-full ${item.growth >= 0 ? 'bg-emerald-50 text-success' : 'bg-rose-50 text-danger'
+                        }`}
                     >
                       {item.growth >= 0 ? `+${item.growth}%` : `${item.growth}%`}
                     </span>

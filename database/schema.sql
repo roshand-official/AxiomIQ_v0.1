@@ -1,6 +1,6 @@
 -- ==============================================================================
--- ANOIMQI SUBSCRIPTION MANAGEMENT SYSTEM - COMPLETE POSTGRESQL SCHEMA DDL
--- Database Name: anoimqi_db
+-- AxoimIQQI SUBSCRIPTION MANAGEMENT SYSTEM - COMPLETE POSTGRESQL SCHEMA DDL
+-- Database Name: AxoimIQqi_db
 -- Target Engine: PostgreSQL 14+ / 16+
 -- ==============================================================================
 

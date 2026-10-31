@@ -97,7 +97,7 @@ export default function InvoicesPage() {
       Outstanding: inv.outstandingAmount,
       Status: inv.status,
     }));
-    downloadCSV(data, 'AnoimQI_Invoices');
+    downloadCSV(data, 'AxoimIQQI_Invoices');
     toast.success('Invoices exported to CSV');
   };
 
@@ -151,9 +151,8 @@ export default function InvoicesPage() {
         const isOverdue = row.outstandingAmount > 0 && new Date(val) < new Date();
         return (
           <span
-            className={`text-xs font-medium ${
-              isOverdue ? 'text-danger font-bold' : 'text-text-primary'
-            }`}
+            className={`text-xs font-medium ${isOverdue ? 'text-danger font-bold' : 'text-text-primary'
+              }`}
           >
             {formatDate(val)}
           </span>
@@ -185,9 +184,8 @@ export default function InvoicesPage() {
       sortable: true,
       render: (val) => (
         <span
-          className={`font-bold ${
-            val > 0 ? 'text-danger' : 'text-text-muted'
-          }`}
+          className={`font-bold ${val > 0 ? 'text-danger' : 'text-text-muted'
+            }`}
         >
           {formatCurrency(val)}
         </span>

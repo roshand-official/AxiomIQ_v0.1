@@ -1,5 +1,5 @@
 // src/contexts/AppContext.jsx
-// Production Application State & PostgreSQL Backend Connector for AnoimQI
+// Production Application State & PostgreSQL Backend Connector for AxoimIQQI
 import { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { toast } from 'sonner';
 import { api } from '../services/api';
@@ -84,7 +84,7 @@ export function AppProvider({ children }) {
         setBillingCycles(Array.isArray(billRes.value.data) ? billRes.value.data : []);
       }
     } catch (err) {
-      console.warn('AnoimQI API fetch notice:', err.message);
+      console.warn('AxoimIQQI API fetch notice:', err.message);
     } finally {
       setLoading(false);
     }
@@ -515,7 +515,7 @@ export function AppProvider({ children }) {
   const executeBillingRun = useCallback(async (billingDate, eligibleSubIds = []) => {
     try {
       const res = await api.billing.execute(billingDate);
-      toast.success('Automated billing run completed successfully via AnoimQI Engine');
+      toast.success('Automated billing run completed successfully via AxoimIQQI Engine');
       await fetchLiveData();
       return res.data;
     } catch (err) {

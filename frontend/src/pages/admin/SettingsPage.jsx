@@ -15,7 +15,7 @@ export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState('general');
 
   const [companySettings, setCompanySettings] = useState({
-    companyName: 'AnoimQI Technologies India Pvt. Ltd.',
+    companyName: 'AxoimIQQI Technologies India Pvt. Ltd.',
     legalEntity: 'Private Limited Company',
     gstin: '29AABCU9603R1ZM',
     pan: 'AABCU9603R',
@@ -75,11 +75,10 @@ export default function SettingsPage() {
           <button
             type="button"
             onClick={() => setActiveTab('general')}
-            className={`py-3 border-b-2 flex items-center gap-2 cursor-pointer ${
-              activeTab === 'general'
+            className={`py-3 border-b-2 flex items-center gap-2 cursor-pointer ${activeTab === 'general'
                 ? 'border-action text-action font-semibold'
                 : 'border-transparent text-text-secondary hover:text-text-primary'
-            }`}
+              }`}
           >
             <Building className="w-4 h-4" />
             <span>Corporate Identity & GST</span>
@@ -87,11 +86,10 @@ export default function SettingsPage() {
           <button
             type="button"
             onClick={() => setActiveTab('billing')}
-            className={`py-3 border-b-2 flex items-center gap-2 cursor-pointer ${
-              activeTab === 'billing'
+            className={`py-3 border-b-2 flex items-center gap-2 cursor-pointer ${activeTab === 'billing'
                 ? 'border-action text-action font-semibold'
                 : 'border-transparent text-text-secondary hover:text-text-primary'
-            }`}
+              }`}
           >
             <CreditCard className="w-4 h-4" />
             <span>Billing Governance & Dunning</span>
@@ -99,11 +97,10 @@ export default function SettingsPage() {
           <button
             type="button"
             onClick={() => setActiveTab('notifications')}
-            className={`py-3 border-b-2 flex items-center gap-2 cursor-pointer ${
-              activeTab === 'notifications'
+            className={`py-3 border-b-2 flex items-center gap-2 cursor-pointer ${activeTab === 'notifications'
                 ? 'border-action text-action font-semibold'
                 : 'border-transparent text-text-secondary hover:text-text-primary'
-            }`}
+              }`}
           >
             <Bell className="w-4 h-4" />
             <span>Communication & Alerts</span>

@@ -137,7 +137,7 @@ export default function PlansPage() {
       ActiveSubscriptions: p.activeSubscriptionsCount,
       Status: p.status,
     }));
-    downloadCSV(data, 'AnoimQI_Subscription_Plans');
+    downloadCSV(data, 'AxoimIQQI_Subscription_Plans');
     toast.success('Plans exported to CSV');
   };
 
@@ -160,10 +160,10 @@ export default function PlansPage() {
               {row.billingFrequency === 'daily'
                 ? 'day'
                 : row.billingFrequency === 'weekly'
-                ? 'wk'
-                : row.billingFrequency === 'yearly'
-                ? 'yr'
-                : 'mo'})
+                  ? 'wk'
+                  : row.billingFrequency === 'yearly'
+                    ? 'yr'
+                    : 'mo'})
             </span>
             {row.description && (
               <span className="text-[11px] text-text-muted truncate max-w-xs">

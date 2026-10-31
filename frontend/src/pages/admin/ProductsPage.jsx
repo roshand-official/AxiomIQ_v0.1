@@ -174,7 +174,7 @@ export default function ProductsPage() {
       Status: p.status,
       CreatedDate: formatDate(p.createdAt),
     }));
-    downloadCSV(data, 'AnoimQI_Products');
+    downloadCSV(data, 'AxoimIQQI_Products');
     toast.success('Products exported to CSV');
   };
 
@@ -386,7 +386,7 @@ export default function ProductsPage() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="input-field"
-                placeholder="e.g. AnoimQI Analytics Suite"
+                placeholder="e.g. AxoimIQQI Analytics Suite"
               />
             </div>
             <div>

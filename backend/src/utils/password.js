@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const SALT_ROUNDS = 10;
 
 /**
- * Validates password meets AnoimQI business rules:
+ * Validates password meets AxoimIQQI business rules:
  * - More than 8 characters (> 8)
  * - Contains at least one uppercase letter
  * - Contains at least one lowercase letter
