@@ -1,4 +1,4 @@
-# AxoimIQQI Subscription Management System — Production Backend
+# AxiomIQ Subscription Management System — Production Backend
 
 A production-grade, enterprise subscription management and recurring billing platform backend built with **Node.js, Express.js, PostgreSQL, and Prisma ORM**.
 
@@ -120,9 +120,9 @@ cp .env.example .env
 ```
 Update `DATABASE_URL` in `.env`:
 ```env
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/AxoimIQqi_db?schema=public"
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/axiomiq_db?schema=public"
 PORT=5000
-JWT_SECRET="AxoimIQqi_super_secure_jwt_secret_key_2026_xyz"
+JWT_SECRET="AxiomIQqi_super_secure_jwt_secret_key_2026_xyz"
 ```
 
 ### 4. Database Migration & Client Generation
@@ -140,8 +140,8 @@ npm run prisma:seed
 #### Seed Demo Credentials:
 | Role | Email | Password | Access Level |
 |---|---|---|---|
-| **Administrator** | `admin@AxoimIQqi.io` | `Password@123` | Full administrative & financial management |
-| **Internal Staff** | `rahul.verma@AxoimIQqi.io` | `Password@123` | Operational management (customers, quotes, subs, billing) |
+| **Administrator** | `admin@axiomiq.io` | `Password@123` | Full administrative & financial management |
+| **Internal Staff** | `rahul.verma@axiomiq.io` | `Password@123` | Operational management (customers, quotes, subs, billing) |
 | **Customer User** | `rajesh@apexsolutions.in` | `Password@123` | Customer Self-Service Portal (Apex Solutions) |
 
 ### 6. Start the Server

@@ -4,7 +4,7 @@ const prisma = require('./config/prisma');
 
 const server = app.listen(config.port, () => {
   console.log(`=======================================================`);
-  console.log(`🚀 AxoimIQQI Backend Server Running`);
+  console.log(`🚀 AxiomIQ Backend Server Running`);
   console.log(`📡 Port: ${config.port} | Mode: ${config.nodeEnv}`);
   console.log(`🔗 Health Check: http://localhost:${config.port}/api/v1/health`);
   console.log(`=======================================================`);

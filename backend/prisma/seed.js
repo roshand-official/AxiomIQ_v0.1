@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Starting AxoimIQQI Database Seeding...');
+  console.log('🌱 Starting AxiomIQ Database Seeding...');
 
   // Clean existing records in reverse dependency order
   await prisma.notification.deleteMany();
@@ -33,7 +33,7 @@ async function main() {
   console.log('👤 Seeding Users & Staff Profiles...');
   const adminUser = await prisma.user.create({
     data: {
-      email: 'admin@AxoimIQqi.io',
+      email: 'admin@axiomiq.io',
       passwordHash,
       role: 'ADMIN',
       firstName: 'Vikram',
@@ -44,7 +44,7 @@ async function main() {
 
   const staffUser1 = await prisma.user.create({
     data: {
-      email: 'rahul.verma@AxoimIQqi.io',
+      email: 'rahul.verma@axiomiq.io',
       passwordHash,
       role: 'STAFF',
       firstName: 'Rahul',
@@ -55,7 +55,7 @@ async function main() {
 
   const staffUser2 = await prisma.user.create({
     data: {
-      email: 'priya.sharma@AxoimIQqi.io',
+      email: 'priya.sharma@axiomiq.io',
       passwordHash,
       role: 'STAFF',
       firstName: 'Priya',
@@ -185,7 +185,7 @@ async function main() {
   const prodBusinessSuite = await prisma.product.create({
     data: {
       internalRef: 'PROD-BS-01',
-      name: 'AxoimIQQI Business Suite Pro',
+      name: 'AxiomIQ Business Suite Pro',
       type: 'SOFTWARE_SUBSCRIPTION',
       salesPrice: 12000.00,
       costPrice: 4500.00,
@@ -248,7 +248,7 @@ async function main() {
       type: 'ONE_TIME',
       salesPrice: 25000.00,
       costPrice: 8000.00,
-      description: 'Full white-glove ETL ingestion from spreadsheets or legacy CRM into AxoimIQQI.',
+      description: 'Full white-glove ETL ingestion from spreadsheets or legacy CRM into AxiomIQ.',
       isSubscriptionAvailable: false,
     },
   });
@@ -460,7 +460,7 @@ async function main() {
         create: [
           {
             productId: prodBusinessSuite.id,
-            description: 'AxoimIQQI Business Suite Pro (Odoo Brand Edition)',
+            description: 'AxiomIQ Business Suite Pro (Odoo Brand Edition)',
             quantity: 1,
             unitPrice: 12560.00,
             taxRate: 18.00,
@@ -515,7 +515,7 @@ async function main() {
         create: [
           {
             productId: prodBusinessSuite.id,
-            description: 'AxoimIQQI Business Suite Pro',
+            description: 'AxiomIQ Business Suite Pro',
             quantity: 1,
             unitPrice: 12000.00,
             taxRate: 18.00,
@@ -570,7 +570,7 @@ async function main() {
         create: [
           {
             productId: prodBusinessSuite.id,
-            description: 'AxoimIQQI Business Suite Pro',
+            description: 'AxiomIQ Business Suite Pro',
             quantity: 1,
             unitPrice: 12000.00,
             taxRate: 18.00,
@@ -618,10 +618,10 @@ async function main() {
     },
   });
 
-  console.log('✅ AxoimIQQI Database Seeding Finished Successfully!');
+  console.log('✅ AxiomIQ Database Seeding Finished Successfully!');
   console.log('🔑 Credentials Seeded:');
-  console.log('   - Admin:    admin@AxoimIQqi.io       | Password@123');
-  console.log('   - Staff:    rahul.verma@AxoimIQqi.io | Password@123');
+  console.log('   - Admin:    admin@axiomiq.io       | Password@123');
+  console.log('   - Staff:    rahul.verma@axiomiq.io | Password@123');
   console.log('   - Customer: rajesh@apexsolutions.in   | Password@123');
 }
 

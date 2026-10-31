@@ -97,7 +97,7 @@ export default function InvoicesPage() {
       Outstanding: inv.outstandingAmount,
       Status: inv.status,
     }));
-    downloadCSV(data, 'AxoimIQQI_Invoices');
+    downloadCSV(data, 'AxiomIQ_Invoices');
     toast.success('Invoices exported to CSV');
   };
 

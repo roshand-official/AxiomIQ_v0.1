@@ -15,7 +15,7 @@ export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState('general');
 
   const [companySettings, setCompanySettings] = useState({
-    companyName: 'AxoimIQQI Technologies India Pvt. Ltd.',
+    companyName: 'AxiomIQ Technologies India Pvt. Ltd.',
     legalEntity: 'Private Limited Company',
     gstin: '29AABCU9603R1ZM',
     pan: 'AABCU9603R',

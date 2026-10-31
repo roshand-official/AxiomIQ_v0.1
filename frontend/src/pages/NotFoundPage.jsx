@@ -11,7 +11,7 @@ export default function NotFoundPage() {
       <h1 className="text-4xl font-extrabold text-navy tracking-tight">404</h1>
       <h2 className="text-lg font-bold text-navy mt-1">Page Not Found</h2>
       <p className="text-xs text-text-secondary mt-2 max-w-sm leading-relaxed">
-        The requested URL path does not exist in the AxoimIQQI Subscription Management routing registry.
+        The requested URL path does not exist in the AxiomIQ Subscription Management routing registry.
       </p>
       <div className="mt-6 flex items-center gap-3">
         <Link to="/admin/dashboard" className="btn btn-primary btn-sm flex items-center gap-1.5">

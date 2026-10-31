@@ -147,7 +147,7 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
           {!collapsed && (
             <div className="leading-tight">
               <span className="font-bold text-base tracking-tight text-white">
-                AxoimIQQI
+                AxiomIQ
               </span>
               <span className="block text-[10px] text-gray-300 tracking-wider uppercase font-semibold">
                 {role === 'customer' ? 'Customer Portal' : 'Subscription OS'}
@@ -216,7 +216,7 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
       <div className="p-3 border-t border-navy-light flex items-center justify-between flex-shrink-0">
         {!collapsed && (
           <div className="text-[11px] text-gray-400">
-            <span>v1.0.0</span> • <span className="text-gray-400">AxoimIQQI</span>
+            <span>v1.0.0</span> • <span className="text-gray-400">AxiomIQ</span>
           </div>
         )}
         <button

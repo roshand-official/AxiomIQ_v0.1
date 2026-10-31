@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('admin@AxoimIQqi.io');
+  const [email, setEmail] = useState('admin@axiomiq.io');
   const [password, setPassword] = useState('Password@123');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
@@ -63,7 +63,7 @@ export default function LoginPage() {
           <Zap className="w-7 h-7 text-white fill-white" />
         </div>
         <h2 className="text-2xl font-bold tracking-tight text-navy">
-          AxoimIQQI
+          AxiomIQ
         </h2>
         <p className="mt-1 text-sm text-text-secondary">
           Subscription Management & Recurring Revenue OS
@@ -225,7 +225,7 @@ export default function LoginPage() {
 
         {/* Demo credentials hint */}
         <p className="text-center text-[11px] text-text-secondary mt-6">
-          Connected to <span className="font-mono text-navy font-medium">AxoimIQQI PostgreSQL & Prisma Engine</span>.
+          Connected to <span className="font-mono text-navy font-medium">AxiomIQ PostgreSQL & Prisma Engine</span>.
         </p>
       </div>
     </div>

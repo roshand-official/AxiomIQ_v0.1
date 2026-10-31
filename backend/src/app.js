@@ -30,7 +30,7 @@ app.use('/api/v1', apiRoutes);
 // Root Welcome Route
 app.get('/', (req, res) => {
   res.status(200).json({
-    message: 'Welcome to AxoimQI Subscription Management System API',
+    message: 'Welcome to AxiomIQ Subscription Management System API',
     docs: '/api/v1/health',
     version: '1.0.0',
   });

@@ -195,7 +195,7 @@ export default function QuotationsPage() {
       Total: q.totalAmount,
       Status: q.status,
     }));
-    downloadCSV(data, 'AxoimIQQI_Quotations');
+    downloadCSV(data, 'AxiomIQ_Quotations');
     toast.success('Quotations exported to CSV');
   };
 

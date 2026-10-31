@@ -1,4 +1,4 @@
-// AxoimIQQI Subscription Management System
+// AxiomIQ Subscription Management System
 // Database Schema with Prisma ORM & PostgreSQL
 
 generator client {

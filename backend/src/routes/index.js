@@ -19,7 +19,7 @@ const router = express.Router();
 router.get('/health', (req, res) => {
   res.status(200).json({
     status: 'healthy',
-    system: 'AxoimIQQI Subscription Management API',
+    system: 'AxiomIQ Subscription Management API',
     version: '1.0.0',
     timestamp: new Date().toISOString(),
   });

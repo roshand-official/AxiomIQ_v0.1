@@ -107,7 +107,7 @@ export default function StaffManagementPage() {
       Status: s.status,
       LastActivity: s.lastActivity,
     }));
-    downloadCSV(data, 'AxoimIQIQ_Staff');
+    downloadCSV(data, 'AxiomIQ_Staff');
     toast.success('Staff list exported to CSV');
   };
 
@@ -274,7 +274,7 @@ export default function StaffManagementPage() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="input-field"
-                placeholder="priya@AxoimIQqi.io"
+                placeholder="priya@axiomiq.io"
               />
             </div>
           </div>

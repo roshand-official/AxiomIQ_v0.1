@@ -1,5 +1,5 @@
 // src/data/mockData.js
-// AxoimIQQI SUBSCRIPTION MANAGEMENT SYSTEM
+// AxiomIQ SUBSCRIPTION MANAGEMENT SYSTEM
 // ALL MOCK DATA HAS BEEN PURGED.
 // The application is fully end-to-end connected to the PostgreSQL database via Prisma ORM & REST API.
 

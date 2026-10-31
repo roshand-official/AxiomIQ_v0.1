@@ -1,10 +1,10 @@
 // src/services/api.js
-// Production REST API client for AxoimIQQI Subscription Management Backend
+// Production REST API client for AxiomIQ Subscription Management Backend
 
 const API_BASE = '/api/v1';
 
 async function request(endpoint, options = {}) {
-  const token = localStorage.getItem('AxoimIQqi_token');
+  const token = localStorage.getItem('axiomiq_token');
 
   const headers = {
     'Content-Type': 'application/json',

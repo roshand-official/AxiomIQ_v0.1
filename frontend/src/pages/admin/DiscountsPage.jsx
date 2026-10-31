@@ -119,7 +119,7 @@ export default function DiscountsPage() {
       MaxUsage: d.maxUsage,
       Status: d.status,
     }));
-    downloadCSV(data, 'AxoimIQQI_Discounts');
+    downloadCSV(data, 'AxiomIQ_Discounts');
     toast.success('Discounts exported to CSV');
   };
 

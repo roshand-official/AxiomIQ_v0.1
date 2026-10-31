@@ -134,7 +134,7 @@ export default function PaymentsPage() {
       Status: p.status,
       TransactionNumber: p.referenceNumber,
     }));
-    downloadCSV(data, 'AxoimIQQI_Payments');
+    downloadCSV(data, 'AxiomIQ_Payments');
     toast.success('Payments exported to CSV');
   };
 

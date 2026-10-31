@@ -58,7 +58,7 @@ export default function AdminDashboard() {
     // Monthly subscriptions = recurringAmount; Yearly subscriptions = recurringAmount / 12
     const mrr = activeSubs.reduce((acc, sub) => {
       // If plan is yearly or amount > 20000, normalize if needed or use recurringAmount based on plan
-      // For AxoimIQQI: Monthly plans recurringAmount is monthly; Annual plans are annualized / 12
+      // For AxiomIQ: Monthly plans recurringAmount is monthly; Annual plans are annualized / 12
       const isAnnual = sub.planId === 'PLAN-002' || sub.planId === 'PLAN-005';
       const monthlyVal = isAnnual ? sub.recurringAmount / 12 : sub.recurringAmount;
       return acc + monthlyVal;

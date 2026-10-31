@@ -154,7 +154,7 @@ export default function CustomersPage() {
       Outstanding: c.outstandingAmount,
       CreatedDate: formatDate(c.createdAt),
     }));
-    downloadCSV(exportData, 'AxoimIQQI_Customers');
+    downloadCSV(exportData, 'AxiomIQ_Customers');
     toast.success('Customers exported to CSV');
   };
 

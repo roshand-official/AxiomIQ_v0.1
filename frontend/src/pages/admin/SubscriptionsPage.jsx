@@ -80,7 +80,7 @@ export default function SubscriptionsPage() {
       Amount: s.recurringAmount,
       Status: s.status,
     }));
-    downloadCSV(data, 'AxoimIQQI_Subscriptions');
+    downloadCSV(data, 'AxiomIQ_Subscriptions');
     toast.success('Subscriptions exported to CSV');
   };
 

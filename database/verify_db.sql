@@ -1,5 +1,5 @@
 -- ==============================================================================
--- AxoimIQQI SUBSCRIPTION MANAGEMENT SYSTEM - DATABASE VERIFICATION SCRIPT
+-- AxiomIQ SUBSCRIPTION MANAGEMENT SYSTEM - DATABASE VERIFICATION SCRIPT
 -- ==============================================================================
 
 \echo '----------------------------------------------------------------------'

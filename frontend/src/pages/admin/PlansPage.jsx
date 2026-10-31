@@ -137,7 +137,7 @@ export default function PlansPage() {
       ActiveSubscriptions: p.activeSubscriptionsCount,
       Status: p.status,
     }));
-    downloadCSV(data, 'AxoimIQQI_Subscription_Plans');
+    downloadCSV(data, 'AxiomIQ_Subscription_Plans');
     toast.success('Plans exported to CSV');
   };
 

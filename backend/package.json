@@ -1,7 +1,7 @@
 {
-  "name": "AxoimIQqi-backend",
+  "name": "AxiomIQqi-backend",
   "version": "1.0.0",
-  "description": "AxoimIQQI Subscription Management System - Production-Grade N-Layered Express.js & PostgreSQL Backend",
+  "description": "AxiomIQ Subscription Management System - Production-Grade N-Layered Express.js & PostgreSQL Backend",
   "main": "src/server.js",
   "type": "commonjs",
   "scripts": {
@@ -21,7 +21,7 @@
     "n-tier",
     "billing-engine"
   ],
-  "author": "AxoimIQQI Software Engineering",
+  "author": "AxiomIQ Software Engineering",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.22.0",
