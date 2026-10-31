@@ -14,6 +14,10 @@ jobs:
   backend-validation:
     name: Backend CI (Node ${{ matrix.node-version }})
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/axiomiq_db?schema=public"
+      JWT_SECRET: "ci_jwt_secret_key_for_testing_2026"
+      PORT: "5000"
     strategy:
       matrix:
         node-version: [18.x, 20.x]
@@ -31,6 +35,10 @@ jobs:
       - name: Install Backend Dependencies
         working-directory: ./backend
         run: npm ci
+
+      - name: Setup CI Environment File
+        working-directory: ./backend
+        run: cp .env.example .env
 
       - name: Validate Prisma Schema
         working-directory: ./backend
