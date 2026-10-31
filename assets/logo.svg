@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" width="100%" height="120" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Left Logo Icon Badge -->
+  <g filter="url(#dropShadow)" transform="translate(10, 10)">
+    <rect width="100" height="100" rx="24" fill="url(#bgGrad)" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Angled Robot Emblem -->
+    <g transform="rotate(-6 50 50) translate(0, 1)">
+      <!-- Antenna Stem & Ball -->
+      <line x1="52" y1="20" x2="59" y2="7" stroke="#F8FAFC" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="62" cy="5" r="5.5" fill="url(#brandGrad)"/>
+
+      <!-- Left Ear Disc -->
+      <ellipse cx="22" cy="46" rx="6" ry="10" stroke="#F8FAFC" stroke-width="5" fill="#334155"/>
+
+      <!-- Right Ear Disc -->
+      <ellipse cx="78" cy="52" rx="9.5" ry="12" stroke="#F8FAFC" stroke-width="5" fill="#334155"/>
+      <ellipse cx="78" cy="52" rx="4.5" ry="6" fill="url(#brandGrad)"/>
+
+      <!-- Head Bucket Shell -->
+      <path d="M 27 35 C 27 28, 37 20, 52 20 C 67 20, 77 28, 77 35 L 73 66 C 73 79, 63 85, 50 85 C 37 85, 28 77, 27 66 Z" fill="#1E293B" stroke="#F8FAFC" stroke-width="5" stroke-linejoin="round"/>
+
+      <!-- Top Rim Curve -->
+      <path d="M 27 35 C 35 43, 67 43, 77 35" stroke="#F8FAFC" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+      <!-- Visor Area -->
+      <path d="M 33 47 C 33 42, 39 39, 50 39 C 61 39, 68 42, 68 47 C 68 53, 61 57, 50 57 C 39 57, 33 53, 33 47 Z" fill="#FFFFFF"/>
+
+      <!-- Happy Curved Eyes -->
+      <path d="M 38 47 C 39 42, 43 42, 44 47" stroke="#0F172A" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M 56 47 C 57 42, 61 42, 62 47" stroke="#0F172A" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+      <!-- Collar / Neck Base -->
+      <path d="M 42 73 L 44 64 L 56 64 L 58 73 Z" fill="url(#brandGrad)"/>
+    </g>
+  </g>
+
+  <!-- Wordmark Text -->
+  <g transform="translate(130, 20)">
+    <!-- AXIOM -->
+    <text x="0" y="52" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Inter', sans-serif" font-weight="900" font-size="46" letter-spacing="-1.5" fill="#0F172A">
+      AXIOM<tspan fill="url(#brandGrad)">IQ</tspan>
+    </text>
+
+    <!-- Subtitle Pill -->
+    <rect x="0" y="66" width="370" height="24" rx="6" fill="#F1F5F9"/>
+    <text x="12" y="82" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Inter', sans-serif" font-weight="700" font-size="11" letter-spacing="1.2" fill="#475569">
+      SUBSCRIPTION &amp; RECURRING REVENUE OPERATIONS
+    </text>
+  </g>
+</svg>

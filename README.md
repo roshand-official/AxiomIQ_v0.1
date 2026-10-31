@@ -1,8 +1,12 @@
 <div align="center">
 
-# ⚡ AxiomIQ
+  <a href="https://github.com/roshand-official/AxiomIQ_v0.1">
+    <img src="./assets/logo.svg" alt="AxiomIQ Logo" width="480" />
+  </a>
 
-### Enterprise B2B SaaS Subscription Management & Recurring Revenue Engine
+  <p align="center">
+    <b>Enterprise B2B SaaS Subscription Management &amp; Recurring Revenue Engine</b>
+  </p>
 
 [![CI/CD Pipeline](https://github.com/roshand-official/AxiomIQ_v0.1/actions/workflows/ci.yml/badge.svg)](https://github.com/roshand-official/AxiomIQ_v0.1/actions/workflows/ci.yml)
 [![Security & CodeQL](https://github.com/roshand-official/AxiomIQ_v0.1/actions/workflows/security.yml/badge.svg)](https://github.com/roshand-official/AxiomIQ_v0.1/actions/workflows/security.yml)
