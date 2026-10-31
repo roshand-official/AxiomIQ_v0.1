@@ -95,7 +95,7 @@ stateDiagram-v2
 ##  Quick Start
 
 ### Prerequisites
-- **Node.js**: `v18.x` or `v20.x` LTS
+- **Node.js**: `v20.x` or `v22.x` LTS (Required for Prisma 7 & Vite 8)
 - **PostgreSQL**: `v15+` or `v16+` running on `localhost:5432`
 - **Git**: `v2.30+`
 
