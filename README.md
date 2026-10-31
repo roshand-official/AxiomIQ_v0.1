@@ -35,11 +35,11 @@
 
 ##  Executive Highlights
 
-- ** End-to-End Enterprise Architecture**: Modern React 19 SPA powered by an N-Tier Express.js backend and normalized PostgreSQL database with Prisma ORM.
-- ** Subscription Lifecycle Engine**: Rigid state machine governance (`draft` → `confirmed` → `active` → `paused` → `closed` / `expired`) preventing illegal contract state transitions.
-- ** Batch Billing & Invoicing Engine**: Automated billing run orchestration, invoice calculation with dual-tax rules (CGST, SGST, IGST), and credit adjustments.
-- ** Revenue Risk & Churn Monitor**: Real-time risk detection analyzing overdue dunning invoices, expiring contracts, and failed billing events.
-- ** Role-Segregated Portals**: Purpose-built workspaces for **Administrators**, **Internal Account Managers (Staff)**, and **Customers (Self-Service)**.
+-  End-to-End Enterprise Architecture**: Modern React 19 SPA powered by an N-Tier Express.js backend and normalized PostgreSQL database with Prisma ORM.
+-  Subscription Lifecycle Engine**: Rigid state machine governance (`draft` → `confirmed` → `active` → `paused` → `closed` / `expired`) preventing illegal contract state transitions.
+-  Batch Billing & Invoicing Engine**: Automated billing run orchestration, invoice calculation with dual-tax rules (CGST, SGST, IGST), and credit adjustments.
+-  Revenue Risk & Churn Monitor**: Real-time risk detection analyzing overdue dunning invoices, expiring contracts, and failed billing events.
+-  Role-Segregated Portals**: Purpose-built workspaces for **Administrators**, **Internal Account Managers (Staff)**, and **Customers (Self-Service)**.
 
 ---
 
