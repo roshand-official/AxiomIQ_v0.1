@@ -198,7 +198,7 @@ export default function PlansPage() {
       align: 'center',
       sortable: true,
       render: (val) => (
-        <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-success">
+        <span className="px-1.5 py-0.5 rounded text-[11px] font-semibold bg-success-light text-success border border-success/20 font-mono tabular-nums">
           {val} active
         </span>
       ),
@@ -218,7 +218,7 @@ export default function PlansPage() {
         <div className="flex items-center justify-end gap-1.5">
           <Link
             to={`/admin/plans/${row.id}`}
-            className="p-1.5 rounded-lg text-text-secondary hover:text-action hover:bg-blue-50 transition-colors"
+            className="p-1.5 rounded-lg text-text-secondary hover:text-action hover:bg-surface-subtle transition-colors"
             title="View Details"
           >
             <Eye className="w-4 h-4" />
@@ -226,7 +226,7 @@ export default function PlansPage() {
           <button
             type="button"
             onClick={() => handleOpenEdit(row)}
-            className="p-1.5 rounded-lg text-text-secondary hover:text-warning hover:bg-amber-50 transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg text-text-secondary hover:text-warning hover:bg-surface-subtle transition-colors cursor-pointer"
             title="Edit Plan"
           >
             <Edit2 className="w-4 h-4" />
@@ -239,12 +239,12 @@ export default function PlansPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1 border-b border-border">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-navy">
+          <h1 className="text-xl font-bold tracking-tight text-navy">
             Subscription Plans & Cadence
           </h1>
-          <p className="text-sm text-text-secondary mt-0.5">
+          <p className="text-xs text-text-secondary mt-0.5">
             Define recurring billing cycles, interval rules, pause permissions, and auto-close governance.
           </p>
         </div>

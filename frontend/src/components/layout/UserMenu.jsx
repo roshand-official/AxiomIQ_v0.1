@@ -49,68 +49,68 @@ export default function UserMenu() {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2.5 p-1 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+        className="flex items-center gap-2 p-1 rounded-md hover:bg-surface-subtle transition-colors cursor-pointer border border-transparent hover:border-border"
       >
-        <div className="w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center font-bold text-xs ring-2 ring-white">
+        <div className="w-7 h-7 rounded-md bg-[#172B4D] text-white flex items-center justify-center font-bold text-[11px] font-mono select-none">
           {getInitials(user.name)}
         </div>
-        <div className="hidden md:block text-left">
+        <div className="hidden md:block text-left pr-0.5">
           <p className="text-xs font-semibold text-text-primary leading-tight">
             {user.name}
           </p>
-          <p className="text-[10px] text-text-secondary capitalize">
+          <p className="text-[10px] text-text-secondary capitalize leading-none mt-0.5">
             {user.role}
           </p>
         </div>
-        <ChevronDown className="w-3.5 h-3.5 text-text-secondary hidden md:block" />
+        <ChevronDown className="w-3.5 h-3.5 text-text-muted hidden md:block" />
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-56 rounded-xl bg-white shadow-xl border border-border py-1.5 z-50 text-xs">
+        <div className="absolute right-0 mt-1.5 w-60 rounded-md bg-white shadow-lg border border-border py-1 z-50 text-xs">
           {/* User info banner */}
-          <div className="px-3.5 py-2.5 border-b border-border bg-gray-50/50">
-            <p className="font-semibold text-navy text-sm">{user.name}</p>
-            <p className="text-text-secondary truncate mt-0.5">{user.email}</p>
-            <span className="inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider bg-blue-50 text-action">
+          <div className="px-3.5 py-2.5 border-b border-border bg-surface-subtle">
+            <p className="font-semibold text-text-primary text-xs">{user.name}</p>
+            <p className="text-text-secondary text-[11px] truncate mt-0.5 font-mono">{user.email}</p>
+            <span className="inline-block mt-1.5 px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider bg-action-light text-action border border-action/20">
               {user.role} role
             </span>
           </div>
 
           {/* Role switcher simulation */}
           <div className="py-1">
-            <div className="px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-text-secondary">
+            <div className="px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-text-muted">
               Demo Role Switcher
             </div>
             <button
               type="button"
               onClick={() => handleRoleSwitch('admin')}
-              className="w-full flex items-center justify-between px-3.5 py-1.5 hover:bg-gray-50 text-left cursor-pointer"
+              className="w-full flex items-center justify-between px-3.5 py-1.5 hover:bg-surface-subtle text-left cursor-pointer"
             >
               <div className="flex items-center gap-2 text-text-primary">
                 <Shield className="w-3.5 h-3.5 text-action" />
-                <span>Administrator</span>
+                <span className="font-medium">Administrator</span>
               </div>
               {user.role === 'admin' && <Check className="w-3.5 h-3.5 text-action" />}
             </button>
             <button
               type="button"
               onClick={() => handleRoleSwitch('staff')}
-              className="w-full flex items-center justify-between px-3.5 py-1.5 hover:bg-gray-50 text-left cursor-pointer"
+              className="w-full flex items-center justify-between px-3.5 py-1.5 hover:bg-surface-subtle text-left cursor-pointer"
             >
               <div className="flex items-center gap-2 text-text-primary">
                 <Briefcase className="w-3.5 h-3.5 text-warning" />
-                <span>Internal Staff</span>
+                <span className="font-medium">Internal Staff</span>
               </div>
               {user.role === 'staff' && <Check className="w-3.5 h-3.5 text-warning" />}
             </button>
             <button
               type="button"
               onClick={() => handleRoleSwitch('customer')}
-              className="w-full flex items-center justify-between px-3.5 py-1.5 hover:bg-gray-50 text-left cursor-pointer"
+              className="w-full flex items-center justify-between px-3.5 py-1.5 hover:bg-surface-subtle text-left cursor-pointer"
             >
               <div className="flex items-center gap-2 text-text-primary">
                 <Users className="w-3.5 h-3.5 text-success" />
-                <span>Customer Portal</span>
+                <span className="font-medium">Customer Portal</span>
               </div>
               {user.role === 'customer' && <Check className="w-3.5 h-3.5 text-success" />}
             </button>
@@ -125,16 +125,16 @@ export default function UserMenu() {
               setOpen(false);
               navigate(user.role === 'customer' ? '/portal/profile' : '/admin/settings');
             }}
-            className="w-full flex items-center gap-2 px-3.5 py-1.5 text-text-primary hover:bg-gray-50 text-left cursor-pointer"
+            className="w-full flex items-center gap-2 px-3.5 py-1.5 text-text-primary hover:bg-surface-subtle text-left cursor-pointer font-medium"
           >
-            <User className="w-3.5 h-3.5 text-text-secondary" />
-            <span>Profile & Account</span>
+            <User className="w-3.5 h-3.5 text-text-muted" />
+            <span>Profile & Settings</span>
           </button>
 
           <button
             type="button"
             onClick={handleLogout}
-            className="w-full flex items-center gap-2 px-3.5 py-1.5 text-danger hover:bg-danger/10 text-left cursor-pointer"
+            className="w-full flex items-center gap-2 px-3.5 py-1.5 text-danger hover:bg-danger-light text-left cursor-pointer font-medium"
           >
             <LogOut className="w-3.5 h-3.5 text-danger" />
             <span>Sign Out</span>

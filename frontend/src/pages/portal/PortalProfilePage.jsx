@@ -53,19 +53,19 @@ export default function PortalProfilePage() {
   };
 
   return (
-    <div className="space-y-6 max-w-3xl">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-navy">
+    <div className="space-y-4 max-w-3xl">
+      <div className="pb-1 border-b border-border">
+        <h1 className="text-xl font-bold tracking-tight text-navy">
           Corporate Profile & Contact Details
         </h1>
-        <p className="text-sm text-text-secondary mt-0.5">
+        <p className="text-xs text-text-secondary mt-0.5">
           Manage corporate billing address, authorized contact representative, and credentials.
         </p>
       </div>
 
       {/* Profile Form */}
-      <form onSubmit={handleSaveProfile} className="card p-6 space-y-4 text-xs">
-        <h3 className="font-semibold text-sm text-navy pb-2 border-b border-border">
+      <form onSubmit={handleSaveProfile} className="card p-5 space-y-4 text-xs">
+        <h3 className="font-semibold text-xs text-navy uppercase tracking-wider pb-2 border-b border-border">
           Company & Contact Information
         </h3>
 
@@ -162,9 +162,9 @@ export default function PortalProfilePage() {
       </form>
 
       {/* Password Change Simulation */}
-      <form onSubmit={handleChangePassword} className="card p-6 space-y-4 text-xs">
-        <h3 className="font-semibold text-sm text-navy pb-2 border-b border-border flex items-center gap-2">
-          <Lock className="w-4 h-4 text-action" />
+      <form onSubmit={handleChangePassword} className="card p-5 space-y-4 text-xs">
+        <h3 className="font-semibold text-xs text-navy uppercase tracking-wider pb-2 border-b border-border flex items-center gap-2">
+          <Lock className="w-3.5 h-3.5 text-action" />
           <span>Security Credentials Simulation</span>
         </h3>
 

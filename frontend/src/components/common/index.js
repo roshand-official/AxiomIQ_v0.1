@@ -15,3 +15,4 @@ export { default as DropdownMenu } from './DropdownMenu';
 export { default as ActivityTimeline } from './ActivityTimeline';
 export { default as Tabs } from './Tabs';
 export { default as Alert } from './Alert';
+export { default as AxiomLogo } from './AxiomLogo';

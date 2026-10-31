@@ -167,20 +167,20 @@ export default function SubscriptionDetailPage() {
       </div>
 
       {/* Main Subscription Summary Card */}
-      <div className="card p-6">
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-action/10 text-action flex items-center justify-center font-bold text-xl flex-shrink-0">
-              <RefreshCw className="w-7 h-7" />
+      <div className="card p-5">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-lg bg-action-subtle text-action border border-action/20 flex items-center justify-center font-bold text-base flex-shrink-0">
+              <RefreshCw className="w-5 h-5" />
             </div>
             <div>
-              <div className="flex items-center gap-3">
-                <h1 className="text-xl font-bold font-mono text-navy">
+              <div className="flex items-center gap-2.5">
+                <h1 className="text-lg font-bold font-mono text-navy">
                   {subscription.subscriptionNumber}
                 </h1>
                 <StatusBadge status={subscription.status} />
               </div>
-              <p className="text-sm text-text-secondary mt-0.5">
+              <p className="text-xs text-text-secondary mt-0.5">
                 Client:{' '}
                 <Link
                   to={`/admin/customers/${customer?.id}`}
@@ -189,38 +189,38 @@ export default function SubscriptionDetailPage() {
                   {customer?.company || customer?.name}
                 </Link>
               </p>
-              <div className="flex flex-wrap items-center gap-4 mt-3 text-xs text-text-secondary">
+              <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-text-secondary">
                 <div className="flex items-center gap-1.5">
-                  <Layers className="w-3.5 h-3.5 text-gray-400" />
+                  <Layers className="w-3.5 h-3.5 text-text-muted" />
                   <span>Plan: {plan?.name}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-gray-400" />
-                  <span>Started {formatDate(subscription.startDate)}</span>
+                  <Calendar className="w-3.5 h-3.5 text-text-muted" />
+                  <span>Started <span className="font-mono">{formatDate(subscription.startDate)}</span></span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <CreditCard className="w-3.5 h-3.5 text-gray-400" />
+                  <CreditCard className="w-3.5 h-3.5 text-text-muted" />
                   <span>{subscription.paymentTerms}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-6 bg-gray-50 p-4 rounded-xl border border-border">
+          <div className="flex items-center gap-6 bg-surface-subtle p-3 rounded-lg border border-border">
             <div>
-              <p className="text-[11px] text-text-secondary font-medium uppercase tracking-wider">
+              <p className="text-[11px] text-text-muted font-medium uppercase tracking-wider">
                 Recurring Value
               </p>
-              <p className="text-lg font-bold text-navy mt-0.5">
+              <p className="text-base font-bold text-navy mt-0.5 font-mono tabular-nums">
                 {formatCurrency(subscription.recurringAmount)}
               </p>
             </div>
-            <div className="w-px h-8 bg-border" />
+            <div className="w-px h-7 bg-border" />
             <div>
-              <p className="text-[11px] text-text-secondary font-medium uppercase tracking-wider">
+              <p className="text-[11px] text-text-muted font-medium uppercase tracking-wider">
                 Next Billing Date
               </p>
-              <p className="text-lg font-bold text-action mt-0.5">
+              <p className="text-base font-bold text-action mt-0.5 font-mono">
                 {subscription.nextBillingDate ? formatDate(subscription.nextBillingDate) : 'Paused / None'}
               </p>
             </div>
@@ -233,24 +233,24 @@ export default function SubscriptionDetailPage() {
 
       {/* Tab Content */}
       {activeTab === 'overview' && (
-        <div className="space-y-6">
+        <div className="space-y-4">
           {/* Subscribed Product Lines Table */}
           <div className="card overflow-hidden">
-            <div className="p-4 border-b border-border bg-gray-50/75">
-              <h3 className="font-semibold text-sm text-navy">
+            <div className="p-3 border-b border-border bg-surface-subtle">
+              <h3 className="font-semibold text-xs text-navy uppercase tracking-wider">
                 Contracted Products & Services ({subscription.lines.length})
               </h3>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse text-xs">
                 <thead>
-                  <tr className="bg-gray-50/50 border-b border-border text-text-secondary uppercase font-semibold">
-                    <th className="py-2.5 px-4">Item Description</th>
-                    <th className="py-2.5 px-4">Variant Edition</th>
-                    <th className="py-2.5 px-4 text-center">Seats / Qty</th>
-                    <th className="py-2.5 px-4 text-right">Unit Price</th>
-                    <th className="py-2.5 px-4 text-right">Tax Rate</th>
-                    <th className="py-2.5 px-4 text-right">Subtotal</th>
+                  <tr className="bg-surface-subtle border-b border-border text-text-secondary uppercase font-semibold text-[11px]">
+                    <th className="py-2.5 px-3">Item Description</th>
+                    <th className="py-2.5 px-3">Variant Edition</th>
+                    <th className="py-2.5 px-3 text-center">Seats / Qty</th>
+                    <th className="py-2.5 px-3 text-right">Unit Price</th>
+                    <th className="py-2.5 px-3 text-right">Tax Rate</th>
+                    <th className="py-2.5 px-3 text-right">Subtotal</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
@@ -258,24 +258,24 @@ export default function SubscriptionDetailPage() {
                     const prod = products.find((p) => p.id === l.productId);
                     const variant = productVariants.find((v) => v.id === l.variantId);
                     return (
-                      <tr key={idx} className="hover:bg-gray-50/50">
-                        <td className="py-3 px-4">
+                      <tr key={idx} className="hover:bg-surface-subtle/50 transition-colors">
+                        <td className="py-2.5 px-3">
                           <span className="font-medium text-navy block">{prod?.name || l.productId}</span>
-                          <span className="text-[11px] text-text-secondary">{prod?.internalRef}</span>
+                          <span className="text-[11px] text-text-muted font-mono">{prod?.internalRef}</span>
                         </td>
-                        <td className="py-3 px-4 text-text-secondary">
+                        <td className="py-2.5 px-3 text-text-secondary">
                           {variant?.name || 'Standard Edition'}
                         </td>
-                        <td className="py-3 px-4 text-center font-bold text-navy">
+                        <td className="py-2.5 px-3 text-center font-bold text-navy font-mono tabular-nums">
                           {l.quantity}
                         </td>
-                        <td className="py-3 px-4 text-right text-text-secondary">
+                        <td className="py-2.5 px-3 text-right text-text-secondary font-mono tabular-nums">
                           {formatCurrency(l.unitPrice)}
                         </td>
-                        <td className="py-3 px-4 text-right text-text-secondary">
+                        <td className="py-2.5 px-3 text-right text-text-secondary font-mono">
                           {l.taxRate || 18}% GST
                         </td>
-                        <td className="py-3 px-4 text-right font-bold text-navy">
+                        <td className="py-2.5 px-3 text-right font-bold text-navy font-mono tabular-nums">
                           {formatCurrency(l.subtotal)}
                         </td>
                       </tr>
@@ -293,32 +293,32 @@ export default function SubscriptionDetailPage() {
         <div className="card overflow-hidden">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-gray-50 border-b border-border text-text-secondary uppercase font-semibold">
-                <th className="px-4 py-3">Invoice #</th>
-                <th className="px-4 py-3">Invoice Date</th>
-                <th className="px-4 py-3">Due Date</th>
-                <th className="px-4 py-3 text-right">Total</th>
-                <th className="px-4 py-3 text-right">Paid</th>
-                <th className="px-4 py-3 text-right">Outstanding</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3 text-right">Action</th>
+              <tr className="bg-surface-subtle border-b border-border text-text-secondary uppercase font-semibold text-[11px]">
+                <th className="px-3 py-2.5">Invoice #</th>
+                <th className="px-3 py-2.5">Invoice Date</th>
+                <th className="px-3 py-2.5">Due Date</th>
+                <th className="px-3 py-2.5 text-right">Total</th>
+                <th className="px-3 py-2.5 text-right">Paid</th>
+                <th className="px-3 py-2.5 text-right">Outstanding</th>
+                <th className="px-3 py-2.5">Status</th>
+                <th className="px-3 py-2.5 text-right">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
               {relatedInvoices.map((inv) => (
-                <tr key={inv.id} className="hover:bg-gray-50/50">
-                  <td className="px-4 py-3 font-mono font-medium text-navy">
+                <tr key={inv.id} className="hover:bg-surface-subtle/50 transition-colors">
+                  <td className="px-3 py-2.5 font-mono font-medium text-navy">
                     <Link to={`/admin/invoices/${inv.id}`} className="hover:underline">
                       {inv.invoiceNumber}
                     </Link>
                   </td>
-                  <td className="px-4 py-3 text-text-secondary">{formatDate(inv.invoiceDate)}</td>
-                  <td className="px-4 py-3 text-text-secondary">{formatDate(inv.dueDate)}</td>
-                  <td className="px-4 py-3 text-right font-semibold text-navy">{formatCurrency(inv.totalAmount)}</td>
-                  <td className="px-4 py-3 text-right text-success font-medium">{formatCurrency(inv.amountPaid)}</td>
-                  <td className="px-4 py-3 text-right text-danger font-semibold">{formatCurrency(inv.outstandingAmount)}</td>
-                  <td className="px-4 py-3"><StatusBadge status={inv.status} /></td>
-                  <td className="px-4 py-3 text-right">
+                  <td className="px-3 py-2.5 text-text-secondary font-mono">{formatDate(inv.invoiceDate)}</td>
+                  <td className="px-3 py-2.5 text-text-secondary font-mono">{formatDate(inv.dueDate)}</td>
+                  <td className="px-3 py-2.5 text-right font-bold text-navy font-mono tabular-nums">{formatCurrency(inv.totalAmount)}</td>
+                  <td className="px-3 py-2.5 text-right text-success font-semibold font-mono tabular-nums">{formatCurrency(inv.amountPaid)}</td>
+                  <td className="px-3 py-2.5 text-right text-danger font-semibold font-mono tabular-nums">{formatCurrency(inv.outstandingAmount)}</td>
+                  <td className="px-3 py-2.5"><StatusBadge status={inv.status} /></td>
+                  <td className="px-3 py-2.5 text-right">
                     <Link to={`/admin/invoices/${inv.id}`} className="btn btn-secondary btn-sm py-1 px-2 text-[11px]">
                       View
                     </Link>
@@ -335,26 +335,26 @@ export default function SubscriptionDetailPage() {
         <div className="card overflow-hidden">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-gray-50 border-b border-border text-text-secondary uppercase font-semibold">
-                <th className="px-4 py-3">Cycle ID</th>
-                <th className="px-4 py-3">Period Start</th>
-                <th className="px-4 py-3">Period End</th>
-                <th className="px-4 py-3">Billing Date</th>
-                <th className="px-4 py-3 text-right">Cycle Amount</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3">Generated Invoice</th>
+              <tr className="bg-surface-subtle border-b border-border text-text-secondary uppercase font-semibold text-[11px]">
+                <th className="px-3 py-2.5">Cycle ID</th>
+                <th className="px-3 py-2.5">Period Start</th>
+                <th className="px-3 py-2.5">Period End</th>
+                <th className="px-3 py-2.5">Billing Date</th>
+                <th className="px-3 py-2.5 text-right">Cycle Amount</th>
+                <th className="px-3 py-2.5">Status</th>
+                <th className="px-3 py-2.5">Generated Invoice</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
               {relatedBillingCycles.map((bc) => (
-                <tr key={bc.id} className="hover:bg-gray-50/50">
-                  <td className="px-4 py-3 font-mono text-navy">{bc.id}</td>
-                  <td className="px-4 py-3 text-text-secondary">{formatDate(bc.periodStart)}</td>
-                  <td className="px-4 py-3 text-text-secondary">{formatDate(bc.periodEnd)}</td>
-                  <td className="px-4 py-3 text-text-secondary">{formatDate(bc.billingDate)}</td>
-                  <td className="px-4 py-3 text-right font-semibold text-navy">{formatCurrency(bc.amount)}</td>
-                  <td className="px-4 py-3"><StatusBadge status={bc.status} /></td>
-                  <td className="px-4 py-3 font-mono text-action">
+                <tr key={bc.id} className="hover:bg-surface-subtle/50 transition-colors">
+                  <td className="px-3 py-2.5 font-mono text-navy">{bc.id}</td>
+                  <td className="px-3 py-2.5 text-text-secondary font-mono">{formatDate(bc.periodStart)}</td>
+                  <td className="px-3 py-2.5 text-text-secondary font-mono">{formatDate(bc.periodEnd)}</td>
+                  <td className="px-3 py-2.5 text-text-secondary font-mono">{formatDate(bc.billingDate)}</td>
+                  <td className="px-3 py-2.5 text-right font-bold text-navy font-mono tabular-nums">{formatCurrency(bc.amount)}</td>
+                  <td className="px-3 py-2.5"><StatusBadge status={bc.status} /></td>
+                  <td className="px-3 py-2.5 font-mono text-action">
                     {bc.invoiceId ? (
                       <Link to={`/admin/invoices/${bc.invoiceId}`} className="hover:underline">
                         {bc.invoiceId}

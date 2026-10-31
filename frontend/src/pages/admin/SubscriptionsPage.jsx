@@ -123,8 +123,8 @@ export default function SubscriptionsPage() {
       sortable: true,
       render: (_, row) => (
         <div className="text-xs">
-          <p className="font-medium text-text-primary">{formatDate(row.startDate)}</p>
-          <p className="text-[11px] text-text-secondary">
+          <p className="font-medium text-text-primary font-mono">{formatDate(row.startDate)}</p>
+          <p className="text-[11px] text-text-secondary font-mono">
             Exp: {row.expiryDate ? formatDate(row.expiryDate) : 'Auto-renewing'}
           </p>
         </div>
@@ -135,7 +135,7 @@ export default function SubscriptionsPage() {
       label: 'Next Billing',
       sortable: true,
       render: (val) => (
-        <span className="text-xs font-medium text-text-primary">
+        <span className="text-xs font-medium text-text-primary font-mono">
           {val ? formatDate(val) : '—'}
         </span>
       ),
@@ -146,7 +146,7 @@ export default function SubscriptionsPage() {
       align: 'right',
       sortable: true,
       render: (val) => (
-        <span className="font-bold text-navy">{formatCurrency(val)}</span>
+        <span className="font-bold text-navy font-mono tabular-nums">{formatCurrency(val)}</span>
       ),
     },
     {
@@ -211,12 +211,12 @@ export default function SubscriptionsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1 border-b border-border">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-navy">
+          <h1 className="text-xl font-bold tracking-tight text-navy">
             Subscription Contracts
           </h1>
-          <p className="text-sm text-text-secondary mt-0.5">
+          <p className="text-xs text-text-secondary mt-0.5">
             Oversee active recurring contracts, lifecycle transitions, pause locks, and automated renewals.
           </p>
         </div>
@@ -226,7 +226,7 @@ export default function SubscriptionsPage() {
           className="btn btn-primary btn-sm flex items-center gap-2"
         >
           <Plus className="w-4 h-4" />
-          <span>New Subscription</span>
+          <span>New Contract</span>
         </Link>
       </div>
 

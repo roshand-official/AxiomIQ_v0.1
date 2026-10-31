@@ -165,7 +165,7 @@ export default function CustomersPage() {
       width: '120px',
       sortable: true,
       render: (val) => (
-        <span className="font-mono text-xs font-semibold text-navy bg-gray-100 px-2 py-0.5 rounded">
+        <span className="font-mono text-[11px] font-medium text-text-secondary bg-surface-subtle border border-border px-1.5 py-0.5 rounded">
           {val}
         </span>
       ),
@@ -178,12 +178,12 @@ export default function CustomersPage() {
         <div>
           <Link
             to={`/admin/customers/${row.id}`}
-            className="font-medium text-navy hover:text-action hover:underline"
+            className="font-medium text-navy hover:text-action hover:underline text-xs"
           >
             {row.name}
           </Link>
-          <div className="flex items-center gap-1.5 text-xs text-text-secondary mt-0.5">
-            <Building className="w-3 h-3 text-gray-400" />
+          <div className="flex items-center gap-1.5 text-[11px] text-text-secondary mt-0.5">
+            <Building className="w-3 h-3 text-text-muted" />
             <span>{row.company || 'Individual'}</span>
           </div>
         </div>
@@ -195,12 +195,12 @@ export default function CustomersPage() {
       render: (_, row) => (
         <div className="space-y-0.5 text-xs">
           <div className="flex items-center gap-1.5 text-text-primary">
-            <Mail className="w-3 h-3 text-gray-400" />
-            <span>{row.email}</span>
+            <Mail className="w-3 h-3 text-text-muted" />
+            <span className="font-mono text-[11px]">{row.email}</span>
           </div>
           <div className="flex items-center gap-1.5 text-text-secondary">
-            <Phone className="w-3 h-3 text-gray-400" />
-            <span>{row.phone}</span>
+            <Phone className="w-3 h-3 text-text-muted" />
+            <span className="font-mono text-[11px]">{row.phone}</span>
           </div>
         </div>
       ),
@@ -211,7 +211,7 @@ export default function CustomersPage() {
       align: 'center',
       sortable: true,
       render: (val) => (
-        <span className="font-semibold px-2 py-0.5 rounded-full text-xs bg-blue-50 text-action">
+        <span className="font-semibold font-mono tabular-nums px-2 py-0.5 rounded text-[11px] bg-action-light text-action border border-action/20">
           {val} active
         </span>
       ),
@@ -221,7 +221,7 @@ export default function CustomersPage() {
       label: 'Total Invoiced',
       align: 'right',
       sortable: true,
-      render: (val) => <span className="font-medium text-navy">{formatCurrency(val)}</span>,
+      render: (val) => <span className="font-semibold font-mono tabular-nums text-navy">{formatCurrency(val)}</span>,
     },
     {
       key: 'outstandingAmount',
@@ -230,7 +230,7 @@ export default function CustomersPage() {
       sortable: true,
       render: (val) => (
         <span
-          className={`font-semibold ${val > 0 ? 'text-danger' : 'text-text-muted'
+          className={`font-semibold font-mono tabular-nums ${val > 0 ? 'text-danger' : 'text-text-muted'
             }`}
         >
           {formatCurrency(val)}

@@ -1,5 +1,4 @@
-// src/pages/admin/RevenueRiskPage.jsx
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   AlertTriangle,
@@ -14,6 +13,9 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useApp } from '../../contexts/AppContext';
+import { formatCurrency, formatDate } from '../../utils/formatters';
+import { Modal } from '../../components/common';
+
 export default function RevenueRiskPage() {
   const { customers, subscriptions, invoices } = useApp();
 
@@ -30,15 +32,18 @@ export default function RevenueRiskPage() {
         const days = Math.floor((now - new Date(inv.dueDate)) / 86400000);
         list.push({
           id: `risk-inv-${inv.id}`,
-          customerName: cust?.name || 'Customer',
+          customerId: inv.customerId,
+          subscriptionId: inv.subscriptionId || null,
+          invoiceId: inv.invoiceNumber || inv.id,
+          customerName: cust?.company || cust?.name || 'Customer',
           company: cust?.company || 'Organization',
           reference: inv.invoiceNumber || inv.id,
           category: 'overdue_invoice',
           amountAtRisk: inv.outstandingAmount || inv.totalAmount || 0,
           severity: days > 30 ? 'high' : days > 15 ? 'medium' : 'low',
           daysOverdue: days,
-          recommendedAction: days > 30 ? 'Escalate to legal / collections' : 'Send dunning reminder notice',
-          date: inv.dueDate,
+          action: days > 30 ? 'Escalate to commercial / legal collections' : 'Issue automated dunning notice',
+          riskDate: inv.dueDate,
           reviewed: false,
         });
       }
@@ -53,15 +58,18 @@ export default function RevenueRiskPage() {
           const cust = customers.find((c) => c.id === sub.customerId);
           list.push({
             id: `risk-sub-${sub.id}`,
-            customerName: cust?.name || 'Customer',
+            customerId: sub.customerId,
+            subscriptionId: sub.id,
+            invoiceId: null,
+            customerName: cust?.company || cust?.name || 'Customer',
             company: cust?.company || 'Organization',
             reference: sub.subscriptionNumber || sub.id,
             category: 'expiring_subscription',
             amountAtRisk: sub.recurringAmount || 0,
             severity: daysUntil <= 7 ? 'high' : 'medium',
             daysOverdue: 0,
-            recommendedAction: 'Engage client for contract renewal',
-            date: sub.expiryDate,
+            action: 'Initiate contract renewal & account review',
+            riskDate: sub.expiryDate,
             reviewed: false,
           });
         }
@@ -120,44 +128,44 @@ export default function RevenueRiskPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1 border-b border-border">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-navy">
+          <h1 className="text-xl font-bold tracking-tight text-navy">
             Revenue Risk & Churn Monitor
           </h1>
-          <p className="text-sm text-text-secondary mt-0.5">
+          <p className="text-xs text-text-secondary mt-0.5">
             Proactively detect expiring subscriptions, dunning failures, unpaid balances, and churn threats.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           <div className="bg-rose-50 border border-rose-200 px-3 py-1.5 rounded-lg flex items-center gap-2 text-xs">
-            <ShieldAlert className="w-4 h-4 text-danger" />
-            <span className="text-text-secondary">Unreviewed Capital at Risk:</span>
-            <span className="font-bold text-danger">{formatCurrency(totalAtRisk)}</span>
+            <ShieldAlert className="w-3.5 h-3.5 text-danger" />
+            <span className="text-text-secondary font-medium">Unreviewed Capital at Risk:</span>
+            <span className="font-bold text-danger font-mono tabular-nums">{formatCurrency(totalAtRisk)}</span>
           </div>
         </div>
       </div>
 
-      {/* Risk Metrics Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="card p-4 border-l-4 border-l-danger">
-          <span className="text-xs text-text-secondary font-medium">Critical Risk Items</span>
-          <p className="text-2xl font-bold text-danger mt-1">{highSeverityCount}</p>
+      {/* Risk Metrics Ribbon */}
+      <div className="card overflow-hidden grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border">
+        <div className="p-4 bg-surface">
+          <span className="text-[11px] text-text-muted uppercase tracking-wider font-medium">Critical Risk Items</span>
+          <p className="text-xl font-bold text-danger mt-1 font-mono tabular-nums">{highSeverityCount}</p>
           <p className="text-[11px] text-text-muted mt-0.5">Requires immediate commercial contact</p>
         </div>
-        <div className="card p-4 border-l-4 border-l-warning">
-          <span className="text-xs text-text-secondary font-medium">Medium Risk Items</span>
-          <p className="text-2xl font-bold text-warning mt-1">
+        <div className="p-4 bg-surface">
+          <span className="text-[11px] text-text-muted uppercase tracking-wider font-medium">Medium Risk Items</span>
+          <p className="text-xl font-bold text-warning mt-1 font-mono tabular-nums">
             {filteredRisks.filter((r) => r.severity === 'medium' && !r.reviewed).length}
           </p>
           <p className="text-[11px] text-text-muted mt-0.5">Pending renewal or partial settlement</p>
         </div>
-        <div className="card p-4 border-l-4 border-l-success">
-          <span className="text-xs text-text-secondary font-medium">Reviewed & Mitigated</span>
-          <p className="text-2xl font-bold text-success mt-1">
+        <div className="p-4 bg-surface">
+          <span className="text-[11px] text-text-muted uppercase tracking-wider font-medium">Reviewed & Mitigated</span>
+          <p className="text-xl font-bold text-success mt-1 font-mono tabular-nums">
             {risks.filter((r) => r.reviewed).length}
           </p>
           <p className="text-[11px] text-text-muted mt-0.5">Logged action plans</p>
@@ -165,7 +173,7 @@ export default function RevenueRiskPage() {
       </div>
 
       {/* Filter Bar */}
-      <div className="card p-4 flex flex-wrap items-center justify-between gap-3 bg-white">
+      <div className="card p-3 flex flex-wrap items-center justify-between gap-3 bg-surface">
         <div className="flex flex-wrap items-center gap-3 text-xs">
           <div className="flex items-center gap-2 text-text-secondary">
             <Filter className="w-3.5 h-3.5" />
@@ -199,7 +207,7 @@ export default function RevenueRiskPage() {
           </select>
         </div>
 
-        <span className="text-xs text-text-secondary">
+        <span className="text-xs text-text-muted font-mono tabular-nums">
           Showing {filteredRisks.length} flagged risk items
         </span>
       </div>
@@ -209,15 +217,15 @@ export default function RevenueRiskPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-gray-50/75 border-b border-border text-text-secondary font-semibold uppercase">
-                <th className="px-4 py-3">Client Account</th>
-                <th className="px-4 py-3">Reference</th>
-                <th className="px-4 py-3">Risk Category</th>
-                <th className="px-4 py-3">Trigger Date</th>
-                <th className="px-4 py-3 text-right">Amount at Risk</th>
-                <th className="px-4 py-3 text-center">Severity</th>
-                <th className="px-4 py-3">Recommended Mitigation</th>
-                <th className="px-4 py-3 text-right">Actions</th>
+              <tr className="bg-surface-subtle border-b border-border text-text-secondary font-semibold text-[11px] uppercase tracking-wider">
+                <th className="px-4 py-2.5">Client Account</th>
+                <th className="px-4 py-2.5">Reference</th>
+                <th className="px-4 py-2.5">Risk Category</th>
+                <th className="px-4 py-2.5">Trigger Date</th>
+                <th className="px-4 py-2.5 text-right">Amount at Risk</th>
+                <th className="px-4 py-2.5 text-center">Severity</th>
+                <th className="px-4 py-2.5">Recommended Mitigation</th>
+                <th className="px-4 py-2.5 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
@@ -228,47 +236,47 @@ export default function RevenueRiskPage() {
                 return (
                   <tr
                     key={item.id}
-                    className={`hover:bg-gray-50/50 ${
-                      item.reviewed ? 'opacity-60 bg-gray-50/30' : ''
+                    className={`hover:bg-surface-subtle/50 transition-colors ${
+                      item.reviewed ? 'opacity-60 bg-surface-subtle/30' : ''
                     }`}
                   >
-                    <td className="px-4 py-3 font-medium text-navy">
+                    <td className="px-4 py-2.5 font-medium text-navy">
                       <Link to={`/admin/customers/${item.customerId}`} className="hover:text-action">
-                        {cust?.company || cust?.name}
+                        {cust?.company || cust?.name || item.customerName}
                       </Link>
                     </td>
-                    <td className="px-4 py-3 font-mono text-[11px] text-text-secondary">
-                      {sub?.subscriptionNumber || item.invoiceId || '—'}
+                    <td className="px-4 py-2.5 font-mono text-[11px] text-text-secondary">
+                      {sub?.subscriptionNumber || item.invoiceId || item.reference || '—'}
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-2.5">
                       <span className="capitalize font-semibold text-text-primary">
                         {item.category.replace(/_/g, ' ')}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-text-secondary">{formatDate(item.riskDate)}</td>
-                    <td className="px-4 py-3 text-right font-bold text-danger">
+                    <td className="px-4 py-2.5 text-text-secondary">{formatDate(item.riskDate)}</td>
+                    <td className="px-4 py-2.5 text-right font-bold text-danger font-mono tabular-nums">
                       {formatCurrency(item.amountAtRisk)}
                     </td>
-                    <td className="px-4 py-3 text-center">
+                    <td className="px-4 py-2.5 text-center">
                       <span
-                        className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${
+                        className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${
                           item.severity === 'high'
-                            ? 'bg-rose-50 text-danger'
+                            ? 'bg-rose-50 text-danger border-rose-200'
                             : item.severity === 'medium'
-                            ? 'bg-amber-50 text-warning'
-                            : 'bg-blue-50 text-action'
+                            ? 'bg-amber-50 text-warning border-amber-200'
+                            : 'bg-blue-50 text-action border-blue-200'
                         }`}
                       >
                         {item.severity}
                       </span>
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-2.5">
                       <p className="text-text-primary font-medium">{item.action}</p>
                       {item.notes && (
                         <p className="text-[11px] text-action italic mt-0.5">Note: {item.notes}</p>
                       )}
                     </td>
-                    <td className="px-4 py-3 text-right">
+                    <td className="px-4 py-2.5 text-right">
                       <div className="flex items-center justify-end gap-1.5">
                         <button
                           type="button"

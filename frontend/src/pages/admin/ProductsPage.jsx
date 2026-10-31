@@ -187,12 +187,12 @@ export default function ProductsPage() {
         <div>
           <Link
             to={`/admin/products/${row.id}`}
-            className="font-medium text-navy hover:text-action hover:underline"
+            className="font-medium text-navy hover:text-action hover:underline text-xs"
           >
             {row.name}
           </Link>
           <div className="flex items-center gap-2 mt-0.5">
-            <span className="font-mono text-[11px] text-text-secondary bg-gray-100 px-1.5 py-0.5 rounded">
+            <span className="font-mono text-[10px] text-text-secondary bg-surface-subtle border border-border px-1 py-0.2 rounded">
               {row.internalRef}
             </span>
             {row.description && (
@@ -210,13 +210,13 @@ export default function ProductsPage() {
       sortable: true,
       render: (val) => {
         const types = {
-          subscription: { label: 'Software Subscription', color: 'bg-blue-50 text-action' },
-          addon: { label: 'Add-on Module', color: 'bg-purple-50 text-purple-700' },
-          'one-time': { label: 'One-time Service', color: 'bg-amber-50 text-amber-700' },
+          subscription: { label: 'Software Subscription', color: 'bg-action-light text-action border border-action/20' },
+          addon: { label: 'Add-on Module', color: 'bg-purple-50 text-purple-700 border border-purple-200' },
+          'one-time': { label: 'One-time Service', color: 'bg-warning-light text-warning-dark border border-warning/20' },
         };
-        const t = types[val] || { label: val, color: 'bg-gray-100 text-text-secondary' };
+        const t = types[val] || { label: val, color: 'bg-surface-subtle text-text-secondary border border-border' };
         return (
-          <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${t.color}`}>
+          <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${t.color}`}>
             {t.label}
           </span>
         );
@@ -228,7 +228,7 @@ export default function ProductsPage() {
       align: 'right',
       sortable: true,
       render: (val) => (
-        <span className="font-bold text-navy">{formatCurrency(val)}</span>
+        <span className="font-bold text-navy font-mono tabular-nums">{formatCurrency(val)}</span>
       ),
     },
     {
@@ -237,7 +237,7 @@ export default function ProductsPage() {
       align: 'right',
       sortable: true,
       render: (val) => (
-        <span className="text-text-secondary">{formatCurrency(val)}</span>
+        <span className="text-text-secondary font-mono tabular-nums text-xs">{formatCurrency(val)}</span>
       ),
     },
     {
@@ -248,11 +248,11 @@ export default function ProductsPage() {
         <button
           type="button"
           onClick={() => handleOpenAddVariant(row)}
-          className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-gray-100 hover:bg-blue-50 hover:text-action font-medium transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] bg-surface-subtle border border-border hover:bg-action-light hover:text-action font-medium transition-colors cursor-pointer"
           title="Click to add/manage variants"
         >
-          <Layers className="w-3 h-3 text-text-secondary" />
-          <span>{val} variants</span>
+          <Layers className="w-3 h-3 text-text-muted" />
+          <span className="font-mono tabular-nums">{val} variants</span>
         </button>
       ),
     },

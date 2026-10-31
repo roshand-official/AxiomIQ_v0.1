@@ -130,7 +130,7 @@ export default function DiscountsPage() {
       sortable: true,
       render: (val, row) => (
         <div>
-          <span className="font-mono text-xs font-bold text-action bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+          <span className="font-mono text-xs font-semibold text-action bg-action-subtle px-2 py-0.5 rounded border border-action/20">
             {val}
           </span>
           <p className="font-semibold text-xs text-navy mt-1">{row.name}</p>
@@ -142,7 +142,7 @@ export default function DiscountsPage() {
       label: 'Benefit Value',
       sortable: true,
       render: (val, row) => (
-        <span className="font-bold text-sm text-success">
+        <span className="font-mono tabular-nums font-bold text-xs text-success">
           {row.type === 'percentage' ? `${val}% OFF` : `-${formatCurrency(val)}`}
         </span>
       ),
@@ -152,8 +152,8 @@ export default function DiscountsPage() {
       label: 'Eligibility Thresholds',
       render: (val, row) => (
         <div className="text-xs text-text-secondary space-y-0.5">
-          <p>Min Purchase: <span className="font-medium text-text-primary">{formatCurrency(val)}</span></p>
-          <p>Min Seats: <span className="font-medium text-text-primary">{row.minimumQuantity || 1}</span></p>
+          <p>Min Purchase: <span className="font-mono tabular-nums font-medium text-text-primary">{formatCurrency(val)}</span></p>
+          <p>Min Seats: <span className="font-mono tabular-nums font-medium text-text-primary">{row.minimumQuantity || 1}</span></p>
         </div>
       ),
     },
@@ -161,9 +161,9 @@ export default function DiscountsPage() {
       key: 'startDate',
       label: 'Validity Period',
       render: (_, row) => (
-        <div className="text-xs text-text-secondary">
+        <div className="text-xs text-text-secondary font-mono">
           <span>{formatDate(row.startDate)}</span>
-          <span className="mx-1">→</span>
+          <span className="mx-1 text-text-muted">→</span>
           <span>{formatDate(row.endDate)}</span>
         </div>
       ),
@@ -174,9 +174,9 @@ export default function DiscountsPage() {
       align: 'center',
       render: (val, row) => (
         <div className="text-xs text-center">
-          <span className="font-bold text-navy">{val}</span>
-          <span className="text-text-secondary"> / {row.maxUsage}</span>
-          <div className="w-16 bg-gray-200 h-1 rounded-full mx-auto mt-1 overflow-hidden">
+          <span className="font-mono tabular-nums font-bold text-navy">{val}</span>
+          <span className="text-text-muted font-mono"> / {row.maxUsage}</span>
+          <div className="w-16 bg-surface-subtle h-1 rounded-full mx-auto mt-1 overflow-hidden border border-border">
             <div
               className="bg-action h-full rounded-full"
               style={{ width: `${Math.min(100, (val / row.maxUsage) * 100)}%` }}
@@ -200,24 +200,24 @@ export default function DiscountsPage() {
         <button
           type="button"
           onClick={() => handleOpenEdit(row)}
-          className="p-1.5 rounded-lg text-text-secondary hover:text-warning hover:bg-amber-50 transition-colors cursor-pointer"
+          className="p-1 rounded text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-colors cursor-pointer"
           title="Edit Discount"
         >
-          <Edit2 className="w-4 h-4" />
+          <Edit2 className="w-3.5 h-3.5" />
         </button>
       ),
     },
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1 border-b border-border">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-navy">
+          <h1 className="text-xl font-bold tracking-tight text-navy">
             Discount & Promotional Coupons
           </h1>
-          <p className="text-sm text-text-secondary mt-0.5">
+          <p className="text-xs text-text-secondary mt-0.5">
             Create percentage discounts, fixed vouchers, redemption caps, and minimum purchase thresholds.
           </p>
         </div>

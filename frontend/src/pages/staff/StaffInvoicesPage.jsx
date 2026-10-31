@@ -46,20 +46,20 @@ export default function StaffInvoicesPage() {
     {
       key: 'dueDate',
       label: 'Due Date',
-      render: (val) => <span className="text-xs text-text-secondary">{formatDate(val)}</span>,
+      render: (val) => <span className="font-mono text-xs text-text-secondary">{formatDate(val)}</span>,
     },
     {
       key: 'totalAmount',
       label: 'Total Invoiced',
       align: 'right',
-      render: (val) => <span className="font-semibold text-navy text-xs">{formatCurrency(val)}</span>,
+      render: (val) => <span className="font-mono tabular-nums font-semibold text-navy text-xs">{formatCurrency(val)}</span>,
     },
     {
       key: 'outstandingAmount',
       label: 'Outstanding',
       align: 'right',
       render: (val) => (
-        <span className={`font-bold text-xs ${val > 0 ? 'text-danger' : 'text-text-muted'}`}>
+        <span className={`font-mono tabular-nums font-bold text-xs ${val > 0 ? 'text-danger' : 'text-text-muted'}`}>
           {formatCurrency(val)}
         </span>
       ),
@@ -77,21 +77,21 @@ export default function StaffInvoicesPage() {
       render: (_, row) => (
         <Link
           to={`/admin/invoices/${row.id}`}
-          className="p-1.5 rounded-lg text-text-secondary hover:text-action hover:bg-blue-50 transition-colors inline-block"
+          className="p-1 rounded text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-colors inline-block"
         >
-          <Eye className="w-4 h-4" />
+          <Eye className="w-3.5 h-3.5" />
         </Link>
       ),
     },
   ];
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-navy">
+    <div className="space-y-4">
+      <div className="pb-1 border-b border-border">
+        <h1 className="text-xl font-bold tracking-tight text-navy">
           Client Invoices & Receivables
         </h1>
-        <p className="text-sm text-text-secondary mt-0.5">
+        <p className="text-xs text-text-secondary mt-0.5">
           Billing statements and open balances for accounts in your portfolio.
         </p>
       </div>

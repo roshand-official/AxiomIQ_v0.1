@@ -27,12 +27,12 @@ export default function PortalPaymentsPage() {
     {
       key: 'paymentDate',
       label: 'Date',
-      render: (val) => <span className="text-xs text-text-secondary">{formatDate(val)}</span>,
+      render: (val) => <span className="font-mono text-xs text-text-secondary">{formatDate(val)}</span>,
     },
     {
       key: 'method',
       label: 'Channel',
-      render: (val) => <span className="uppercase text-xs font-medium text-navy">{val.replace('_', ' ')}</span>,
+      render: (val) => <span className="font-mono text-[11px] text-text-secondary uppercase">{val.replace('_', ' ')}</span>,
     },
     {
       key: 'referenceNumber',
@@ -43,7 +43,7 @@ export default function PortalPaymentsPage() {
       key: 'amount',
       label: 'Paid Amount',
       align: 'right',
-      render: (val) => <span className="font-bold text-success text-xs">{formatCurrency(val)}</span>,
+      render: (val) => <span className="font-mono tabular-nums font-bold text-success text-xs">{formatCurrency(val)}</span>,
     },
     {
       key: 'status',
@@ -54,12 +54,12 @@ export default function PortalPaymentsPage() {
   ];
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-navy">
+    <div className="space-y-4">
+      <div className="pb-1 border-b border-border">
+        <h1 className="text-xl font-bold tracking-tight text-navy">
           Payment History & Receipts
         </h1>
-        <p className="text-sm text-text-secondary mt-0.5">
+        <p className="text-xs text-text-secondary mt-0.5">
           Settled transactions and receipts for your account subscriptions.
         </p>
       </div>

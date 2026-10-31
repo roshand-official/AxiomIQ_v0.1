@@ -237,9 +237,9 @@ export default function QuotationsPage() {
       label: 'Date & Validity',
       sortable: true,
       render: (_, row) => (
-        <div className="text-xs">
+        <div className="text-xs font-mono">
           <p className="font-medium text-text-primary">{formatDate(row.quotationDate)}</p>
-          <p className="text-[11px] text-text-secondary">Exp: {formatDate(row.expiryDate)}</p>
+          <p className="text-[11px] text-text-muted">Exp: {formatDate(row.expiryDate)}</p>
         </div>
       ),
     },
@@ -249,7 +249,7 @@ export default function QuotationsPage() {
       align: 'right',
       sortable: true,
       render: (val) => (
-        <span className="font-bold text-navy">{formatCurrency(val)}</span>
+        <span className="font-mono tabular-nums font-bold text-navy text-xs">{formatCurrency(val)}</span>
       ),
     },
     {
@@ -267,20 +267,20 @@ export default function QuotationsPage() {
         <div className="flex items-center justify-end gap-1.5">
           <Link
             to={`/admin/quotations/${row.id}`}
-            className="p-1.5 rounded-lg text-text-secondary hover:text-action hover:bg-blue-50 transition-colors"
+            className="p-1 rounded text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-colors"
             title="View Details"
           >
-            <Eye className="w-4 h-4" />
+            <Eye className="w-3.5 h-3.5" />
           </Link>
 
           {row.status === 'draft' && (
             <button
               type="button"
               onClick={() => handleSendSimulation(row)}
-              className="p-1.5 rounded-lg text-text-secondary hover:text-action hover:bg-blue-50 transition-colors cursor-pointer"
+              className="p-1 rounded text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-colors cursor-pointer"
               title="Send to Customer"
             >
-              <Send className="w-4 h-4" />
+              <Send className="w-3.5 h-3.5" />
             </button>
           )}
 
@@ -304,14 +304,14 @@ export default function QuotationsPage() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1 border-b border-border">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-navy">
+          <h1 className="text-xl font-bold tracking-tight text-navy">
             Quotation Management
           </h1>
-          <p className="text-sm text-text-secondary mt-0.5">
+          <p className="text-xs text-text-secondary mt-0.5">
             Prepare, price, discount, and convert commercial proposals into recurring subscriptions.
           </p>
         </div>

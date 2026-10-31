@@ -15,7 +15,7 @@ import {
 import { toast } from 'sonner';
 import { useApp } from '../../contexts/AppContext';
 import { formatCurrency, formatDate } from '../../utils/formatters';
-import { StatusBadge, Modal } from '../../components/common';
+import { StatusBadge, Modal, AxiomLogo } from '../../components/common';
 
 export default function InvoiceDetailPage() {
   const { id } = useParams();
@@ -131,10 +131,8 @@ export default function InvoiceDetailPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between gap-6 pb-6 border-b border-border">
           <div>
-            <div className="flex items-center gap-2 text-action font-bold text-xl">
-              <span>AxiomIQ</span>
-            </div>
-            <p className="text-xs text-text-secondary mt-1">
+            <AxiomLogo variant="full" size="md" theme="light" />
+            <p className="text-xs text-text-secondary mt-2">
               AxiomIQ Technologies India Pvt. Ltd.
             </p>
             <p className="text-xs text-text-secondary">

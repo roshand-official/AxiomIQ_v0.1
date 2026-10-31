@@ -24,7 +24,7 @@ export default function StatusBadge({ status, showDot = true, className = '' }) 
   const dotClass = dotColorMap[color] || dotColorMap.neutral;
 
   return (
-    <span className={`${badgeClass} ${className}`}>
+    <span className={`badge ${badgeClass} ${className}`}>
       {showDot && (
         <span className={`inline-block w-1.5 h-1.5 rounded-full ${dotClass}`} />
       )}

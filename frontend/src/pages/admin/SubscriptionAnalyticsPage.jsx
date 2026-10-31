@@ -79,21 +79,21 @@ export default function SubscriptionAnalyticsPage() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1 border-b border-border">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-navy">
+          <h1 className="text-xl font-bold tracking-tight text-navy">
             Subscription Lifecycle Analytics
           </h1>
-          <p className="text-sm text-text-secondary mt-0.5">
+          <p className="text-xs text-text-secondary mt-0.5">
             Cohort retention, plan distribution ratios, recurring revenue velocity, and net seat expansion.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-border text-xs">
-          <Calendar className="w-3.5 h-3.5 text-text-secondary" />
-          <span className="text-text-secondary">Analysis Scope:</span>
+        <div className="flex items-center gap-2 bg-surface px-3 py-1 rounded-lg border border-border text-xs">
+          <Calendar className="w-3.5 h-3.5 text-text-muted" />
+          <span className="text-text-muted">Scope:</span>
           <select
             value={datePeriod}
             onChange={(e) => setDatePeriod(e.target.value)}
@@ -105,93 +105,94 @@ export default function SubscriptionAnalyticsPage() {
         </div>
       </div>
 
-      {/* KPI Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <KPICard
-          title="Retention Ratio"
-          value={`${retentionRate}%`}
-          change="Healthy Enterprise benchmark"
-          trend="up"
-          color="success"
-          icon={ShieldCheck}
-        />
-        <KPICard
-          title="Net Active Subscriptions"
-          value={formatNumber(activeSubs.length)}
-          change={`${churnedSubs.length} churned / closed`}
-          trend="up"
-          color="action"
-          icon={RefreshCw}
-        />
-        <KPICard
-          title="Active Customer Base"
-          value={formatNumber(customers.length)}
-          change="B2B accounts"
-          trend="up"
-          color="navy"
-          icon={Users}
-        />
-        <KPICard
-          title="Avg Contract Value"
-          value={formatCurrency(
-            activeSubs.length > 0
-              ? activeSubs.reduce((s, a) => s + a.recurringAmount, 0) / activeSubs.length
-              : 0
-          )}
-          change="Per active subscription"
-          trend="up"
-          color="success"
-          icon={TrendingUp}
-        />
+      {/* Integrated Analytics Ribbon */}
+      <div className="card overflow-hidden grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-border">
+        <div className="p-4 bg-surface">
+          <span className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
+            Retention Ratio
+          </span>
+          <p className="text-xl font-bold text-success mt-1 font-mono tabular-nums">{retentionRate}%</p>
+          <p className="text-[11px] text-text-muted mt-0.5">Healthy Enterprise benchmark</p>
+        </div>
+
+        <div className="p-4 bg-surface">
+          <span className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
+            Net Active Subscriptions
+          </span>
+          <p className="text-xl font-bold text-navy mt-1 font-mono tabular-nums">{formatNumber(activeSubs.length)}</p>
+          <p className="text-[11px] text-text-muted mt-0.5">{churnedSubs.length} churned / closed</p>
+        </div>
+
+        <div className="p-4 bg-surface">
+          <span className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
+            Active Accounts
+          </span>
+          <p className="text-xl font-bold text-navy mt-1 font-mono tabular-nums">{formatNumber(customers.length)}</p>
+          <p className="text-[11px] text-text-muted mt-0.5">Commercial subscriber orgs</p>
+        </div>
+
+        <div className="p-4 bg-surface">
+          <span className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
+            Avg Contract Value (ACV)
+          </span>
+          <p className="text-xl font-bold text-navy mt-1 font-mono tabular-nums">
+            {formatCurrency(
+              activeSubs.length > 0
+                ? activeSubs.reduce((s, a) => s + a.recurringAmount, 0) / activeSubs.length
+                : 0
+            )}
+          </p>
+          <p className="text-[11px] text-text-muted mt-0.5">Per active subscription</p>
+        </div>
       </div>
 
       {/* Charts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Subscription Growth Trajectory */}
-        <div className="card p-5">
-          <h3 className="font-semibold text-sm text-navy mb-1">
+        <div className="card p-4">
+          <h3 className="font-semibold text-xs text-navy uppercase tracking-wider mb-0.5">
             Subscription Lifecycle Growth by Month
           </h3>
-          <p className="text-xs text-text-secondary mb-4">
+          <p className="text-xs text-text-muted mb-3">
             Active, new activations, pauses, and expiration distribution
           </p>
-          <SubscriptionChart data={subscriptionChartData} height={300} />
+          <SubscriptionChart data={subscriptionChartData} height={280} />
         </div>
 
         {/* Revenue Expansion Trend */}
-        <div className="card p-5">
-          <h3 className="font-semibold text-sm text-navy mb-1">
+        <div className="card p-4">
+          <h3 className="font-semibold text-xs text-navy uppercase tracking-wider mb-0.5">
             Recurring Revenue Velocity
           </h3>
-          <p className="text-xs text-text-secondary mb-4">
+          <p className="text-xs text-text-muted mb-3">
             Monthly invoiced vs collected revenue expansion
           </p>
-          <RevenueChart data={revenueChartData} height={300} />
+          <RevenueChart data={revenueChartData} height={280} />
         </div>
       </div>
 
       {/* Donut Charts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Plan Distribution */}
-        <div className="card p-5">
-          <h3 className="font-semibold text-sm text-navy mb-1">
+        <div className="card p-4">
+          <h3 className="font-semibold text-xs text-navy uppercase tracking-wider mb-0.5">
             Contract Volume by Subscription Plan
           </h3>
-          <p className="text-xs text-text-secondary mb-4">
+          <p className="text-xs text-text-muted mb-3">
             Distribution of clients across monthly, annual, and quarterly tiers
           </p>
-          <PieChart data={planDistribution} height={260} />
+          <PieChart data={planDistribution} height={240} />
         </div>
 
         {/* Status Distribution */}
-        <div className="card p-5">
-          <h3 className="font-semibold text-sm text-navy mb-1">
+        <div className="card p-4">
+          <h3 className="font-semibold text-xs text-navy uppercase tracking-wider mb-0.5">
             Portfolio Health & Status Breakdown
           </h3>
-          <p className="text-xs text-text-secondary mb-4">
+          <p className="text-xs text-text-muted mb-3">
             Percentage split of active, confirmed, paused, and expired contracts
           </p>
-          <PieChart data={statusDistribution} height={260} />
+          <PieChart data={statusDistribution} height={240} />
         </div>
       </div>
     </div>

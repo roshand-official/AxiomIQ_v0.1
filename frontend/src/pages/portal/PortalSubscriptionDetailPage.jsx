@@ -123,40 +123,40 @@ export default function PortalSubscriptionDetailPage() {
       </div>
 
       {/* Overview Card */}
-      <div className="card p-6">
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-action/10 text-action flex items-center justify-center font-bold text-lg flex-shrink-0">
-              <RefreshCw className="w-6 h-6" />
+      <div className="card p-5">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-lg bg-action-subtle text-action border border-action/20 flex items-center justify-center font-bold text-base flex-shrink-0">
+              <RefreshCw className="w-5 h-5" />
             </div>
             <div>
-              <div className="flex items-center gap-3">
-                <h1 className="text-xl font-bold font-mono text-navy">
+              <div className="flex items-center gap-2.5">
+                <h1 className="text-lg font-bold font-mono text-navy">
                   {subscription.subscriptionNumber}
                 </h1>
                 <StatusBadge status={subscription.status} />
               </div>
-              <p className="text-xs text-text-secondary mt-1">
+              <p className="text-xs text-text-secondary mt-0.5">
                 Plan: <span className="font-semibold text-text-primary">{plan?.name}</span> • Terms: {subscription.paymentTerms}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-6 bg-gray-50 p-4 rounded-xl border border-border">
+          <div className="flex items-center gap-6 bg-surface-subtle p-3 rounded-lg border border-border">
             <div>
-              <p className="text-[11px] text-text-secondary font-medium uppercase tracking-wider">
+              <p className="text-[11px] text-text-muted font-medium uppercase tracking-wider">
                 Cycle Amount
               </p>
-              <p className="text-lg font-bold text-navy mt-0.5">
+              <p className="text-base font-bold text-navy mt-0.5 font-mono tabular-nums">
                 {formatCurrency(subscription.recurringAmount)}
               </p>
             </div>
-            <div className="w-px h-8 bg-border" />
+            <div className="w-px h-7 bg-border" />
             <div>
-              <p className="text-[11px] text-text-secondary font-medium uppercase tracking-wider">
+              <p className="text-[11px] text-text-muted font-medium uppercase tracking-wider">
                 Next Billing Date
               </p>
-              <p className="text-lg font-bold text-action mt-0.5">
+              <p className="text-base font-bold text-action mt-0.5 font-mono">
                 {subscription.nextBillingDate ? formatDate(subscription.nextBillingDate) : 'Ongoing'}
               </p>
             </div>
@@ -166,20 +166,20 @@ export default function PortalSubscriptionDetailPage() {
 
       {/* Contracted Lines */}
       <div className="card overflow-hidden">
-        <div className="p-4 border-b border-border bg-gray-50">
-          <h3 className="font-semibold text-sm text-navy">
+        <div className="p-3 border-b border-border bg-surface-subtle">
+          <h3 className="font-semibold text-xs text-navy uppercase tracking-wider">
             Subscribed Licences & Products ({subscription.lines.length})
           </h3>
         </div>
 
         <table className="w-full text-left border-collapse text-xs">
           <thead>
-            <tr className="bg-gray-50 border-b border-border text-text-secondary uppercase font-semibold">
-              <th className="py-2.5 px-4">Product Name</th>
-              <th className="py-2.5 px-4">Edition</th>
-              <th className="py-2.5 px-4 text-center">Seats / Qty</th>
-              <th className="py-2.5 px-4 text-right">Unit Price</th>
-              <th className="py-2.5 px-4 text-right">Subtotal</th>
+            <tr className="bg-surface-subtle border-b border-border text-text-secondary uppercase font-semibold text-[11px]">
+              <th className="py-2.5 px-3">Product Name</th>
+              <th className="py-2.5 px-3">Edition</th>
+              <th className="py-2.5 px-3 text-center">Seats / Qty</th>
+              <th className="py-2.5 px-3 text-right">Unit Price</th>
+              <th className="py-2.5 px-3 text-right">Subtotal</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
@@ -187,20 +187,20 @@ export default function PortalSubscriptionDetailPage() {
               const prod = products.find((p) => p.id === l.productId);
               const variant = productVariants.find((v) => v.id === l.variantId);
               return (
-                <tr key={idx}>
-                  <td className="py-3 px-4 font-medium text-navy">
+                <tr key={idx} className="hover:bg-surface-subtle/50 transition-colors">
+                  <td className="py-2.5 px-3 font-medium text-navy">
                     {prod?.name || l.productId}
                   </td>
-                  <td className="py-3 px-4 text-text-secondary">
+                  <td className="py-2.5 px-3 text-text-secondary">
                     {variant?.name || 'Standard'}
                   </td>
-                  <td className="py-3 px-4 text-center font-bold text-navy">
+                  <td className="py-2.5 px-3 text-center font-bold text-navy font-mono tabular-nums">
                     {l.quantity}
                   </td>
-                  <td className="py-3 px-4 text-right text-text-secondary">
+                  <td className="py-2.5 px-3 text-right text-text-secondary font-mono tabular-nums">
                     {formatCurrency(l.unitPrice)}
                   </td>
-                  <td className="py-3 px-4 text-right font-bold text-navy">
+                  <td className="py-2.5 px-3 text-right font-bold text-navy font-mono tabular-nums">
                     {formatCurrency(l.subtotal)}
                   </td>
                 </tr>
@@ -212,36 +212,36 @@ export default function PortalSubscriptionDetailPage() {
 
       {/* Related Invoices */}
       <div className="card overflow-hidden">
-        <div className="p-4 border-b border-border bg-gray-50">
-          <h3 className="font-semibold text-sm text-navy">
+        <div className="p-3 border-b border-border bg-surface-subtle">
+          <h3 className="font-semibold text-xs text-navy uppercase tracking-wider">
             Invoices for this Subscription ({subInvoices.length})
           </h3>
         </div>
 
         <table className="w-full text-left border-collapse text-xs">
           <thead>
-            <tr className="bg-gray-50 border-b border-border text-text-secondary uppercase font-semibold">
-              <th className="px-4 py-2.5">Invoice #</th>
-              <th className="px-4 py-2.5">Date</th>
-              <th className="px-4 py-2.5">Due Date</th>
-              <th className="px-4 py-2.5 text-right">Amount</th>
-              <th className="px-4 py-2.5">Status</th>
-              <th className="px-4 py-2.5 text-right">Action</th>
+            <tr className="bg-surface-subtle border-b border-border text-text-secondary uppercase font-semibold text-[11px]">
+              <th className="px-3 py-2.5">Invoice #</th>
+              <th className="px-3 py-2.5">Date</th>
+              <th className="px-3 py-2.5">Due Date</th>
+              <th className="px-3 py-2.5 text-right">Amount</th>
+              <th className="px-3 py-2.5">Status</th>
+              <th className="px-3 py-2.5 text-right">Action</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
             {subInvoices.map((inv) => (
-              <tr key={inv.id} className="hover:bg-gray-50/50">
-                <td className="px-4 py-3 font-mono font-medium text-navy">
+              <tr key={inv.id} className="hover:bg-surface-subtle/50 transition-colors">
+                <td className="px-3 py-2.5 font-mono font-medium text-navy">
                   <Link to={`/portal/invoices/${inv.id}`} className="hover:underline">
                     {inv.invoiceNumber}
                   </Link>
                 </td>
-                <td className="px-4 py-3 text-text-secondary">{formatDate(inv.invoiceDate)}</td>
-                <td className="px-4 py-3 text-text-secondary">{formatDate(inv.dueDate)}</td>
-                <td className="px-4 py-3 text-right font-bold text-navy">{formatCurrency(inv.totalAmount)}</td>
-                <td className="px-4 py-3"><StatusBadge status={inv.status} /></td>
-                <td className="px-4 py-3 text-right">
+                <td className="px-3 py-2.5 text-text-secondary font-mono">{formatDate(inv.invoiceDate)}</td>
+                <td className="px-3 py-2.5 text-text-secondary font-mono">{formatDate(inv.dueDate)}</td>
+                <td className="px-3 py-2.5 text-right font-bold text-navy font-mono tabular-nums">{formatCurrency(inv.totalAmount)}</td>
+                <td className="px-3 py-2.5"><StatusBadge status={inv.status} /></td>
+                <td className="px-3 py-2.5 text-right">
                   <Link
                     to={`/portal/invoices/${inv.id}`}
                     className="btn btn-secondary btn-sm py-1 px-2 text-[11px]"

@@ -142,36 +142,36 @@ export default function BillingCenterPage() {
         </div>
       </div>
 
-      {/* Financial Overview KPI Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-        <div className="card p-3.5">
-          <p className="text-[11px] font-medium text-text-secondary">Eligible to Bill</p>
-          <p className="text-lg font-bold text-navy mt-0.5">{eligibleSubs.length}</p>
+      {/* Financial Overview Integrated Ribbon */}
+      <div className="card grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-y sm:divide-y-0 sm:divide-x divide-border">
+        <div className="p-3.5 flex flex-col justify-between">
+          <p className="text-[11px] font-semibold text-text-secondary uppercase tracking-wider">Eligible to Bill</p>
+          <p className="text-xl font-bold text-navy font-mono tabular-nums mt-1">{eligibleSubs.length}</p>
           <p className="text-[10px] text-text-muted mt-0.5">Active contracts</p>
         </div>
-        <div className="card p-3.5">
-          <p className="text-[11px] font-medium text-text-secondary">Run Amount</p>
-          <p className="text-lg font-bold text-action mt-0.5">{formatCurrency(totalEligibleValue)}</p>
+        <div className="p-3.5 flex flex-col justify-between">
+          <p className="text-[11px] font-semibold text-text-secondary uppercase tracking-wider">Run Amount</p>
+          <p className="text-xl font-bold text-action font-mono tabular-nums mt-1">{formatCurrency(totalEligibleValue)}</p>
           <p className="text-[10px] text-text-muted mt-0.5">Ready to invoice</p>
         </div>
-        <div className="card p-3.5">
-          <p className="text-[11px] font-medium text-text-secondary">Excluded / Skip</p>
-          <p className="text-lg font-bold text-text-secondary mt-0.5">{ineligibleSubs.length}</p>
+        <div className="p-3.5 flex flex-col justify-between">
+          <p className="text-[11px] font-semibold text-text-secondary uppercase tracking-wider">Excluded / Skip</p>
+          <p className="text-xl font-bold text-text-secondary font-mono tabular-nums mt-1">{ineligibleSubs.length}</p>
           <p className="text-[10px] text-text-muted mt-0.5">Paused or billed</p>
         </div>
-        <div className="card p-3.5">
-          <p className="text-[11px] font-medium text-text-secondary">Billing Failures</p>
-          <p className="text-lg font-bold text-danger mt-0.5">{failedEvents.length}</p>
-          <p className="text-[10px] text-text-muted mt-0.5">Attention needed</p>
+        <div className="p-3.5 flex flex-col justify-between">
+          <p className="text-[11px] font-semibold text-text-secondary uppercase tracking-wider">Run Failures</p>
+          <p className="text-xl font-bold text-danger font-mono tabular-nums mt-1">{failedEvents.length}</p>
+          <p className="text-[10px] text-text-muted mt-0.5">Requires retry</p>
         </div>
-        <div className="card p-3.5">
-          <p className="text-[11px] font-medium text-text-secondary">Total Invoiced</p>
-          <p className="text-lg font-bold text-success mt-0.5">{formatCurrency(totalInvoicedValue)}</p>
+        <div className="p-3.5 flex flex-col justify-between">
+          <p className="text-[11px] font-semibold text-text-secondary uppercase tracking-wider">Total Invoiced</p>
+          <p className="text-xl font-bold text-success font-mono tabular-nums mt-1">{formatCurrency(totalInvoicedValue)}</p>
           <p className="text-[10px] text-text-muted mt-0.5">All time records</p>
         </div>
-        <div className="card p-3.5">
-          <p className="text-[11px] font-medium text-text-secondary">Pending Collection</p>
-          <p className="text-lg font-bold text-warning mt-0.5">{formatCurrency(pendingCollection)}</p>
+        <div className="p-3.5 flex flex-col justify-between">
+          <p className="text-[11px] font-semibold text-text-secondary uppercase tracking-wider">Pending AR</p>
+          <p className="text-xl font-bold text-warning font-mono tabular-nums mt-1">{formatCurrency(pendingCollection)}</p>
           <p className="text-[10px] text-text-muted mt-0.5">Unpaid invoices</p>
         </div>
       </div>

@@ -182,18 +182,18 @@ export default function PaymentsPage() {
       key: 'paymentDate',
       label: 'Receipt Date',
       sortable: true,
-      render: (val) => <span className="text-xs text-text-secondary">{formatDate(val)}</span>,
+      render: (val) => <span className="text-xs text-text-secondary font-mono">{formatDate(val)}</span>,
     },
     {
       key: 'method',
       label: 'Channel',
       render: (val, row) => (
         <div>
-          <span className="uppercase text-xs font-semibold text-text-primary">
+          <span className="uppercase text-[11px] font-semibold text-text-primary">
             {val.replace('_', ' ')}
           </span>
           {row.referenceNumber && (
-            <p className="font-mono text-[10px] text-text-secondary truncate max-w-[120px]">
+            <p className="font-mono text-[10px] text-text-muted truncate max-w-[120px]">
               {row.referenceNumber}
             </p>
           )}
@@ -207,8 +207,9 @@ export default function PaymentsPage() {
       sortable: true,
       render: (val, row) => (
         <span
-          className={`font-bold ${row.status === 'failed' ? 'text-danger line-through' : 'text-success'
-            }`}
+          className={`font-bold font-mono tabular-nums ${
+            row.status === 'failed' ? 'text-danger line-through' : 'text-success'
+          }`}
         >
           {formatCurrency(val)}
         </span>
@@ -232,7 +233,7 @@ export default function PaymentsPage() {
             setSelectedPayment(row);
             setDetailModalOpen(true);
           }}
-          className="p-1.5 rounded-lg text-text-secondary hover:text-action hover:bg-blue-50 transition-colors cursor-pointer"
+          className="p-1.5 rounded-lg text-text-secondary hover:text-action hover:bg-surface-subtle transition-colors cursor-pointer"
           title="View Receipt"
         >
           <Eye className="w-4 h-4" />
@@ -244,12 +245,12 @@ export default function PaymentsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1 border-b border-border">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-navy">
+          <h1 className="text-xl font-bold tracking-tight text-navy">
             Payment Receipts & Reconciliations
           </h1>
-          <p className="text-sm text-text-secondary mt-0.5">
+          <p className="text-xs text-text-secondary mt-0.5">
             Audit settled incoming bank transfers, UPI collections, card charges, and failed transactions.
           </p>
         </div>

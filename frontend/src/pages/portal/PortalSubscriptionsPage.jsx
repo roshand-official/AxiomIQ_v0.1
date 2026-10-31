@@ -47,18 +47,18 @@ export default function PortalSubscriptionsPage() {
     {
       key: 'startDate',
       label: 'Effective Start',
-      render: (val) => <span className="text-xs text-text-secondary">{formatDate(val)}</span>,
+      render: (val) => <span className="font-mono text-xs text-text-secondary">{formatDate(val)}</span>,
     },
     {
       key: 'nextBillingDate',
       label: 'Next Renewal / Billing',
-      render: (val) => <span className="text-xs font-medium text-navy">{val ? formatDate(val) : '—'}</span>,
+      render: (val) => <span className="font-mono text-xs font-medium text-navy">{val ? formatDate(val) : '—'}</span>,
     },
     {
       key: 'recurringAmount',
       label: 'Amount (GST Incl.)',
       align: 'right',
-      render: (val) => <span className="font-bold text-navy text-xs">{formatCurrency(val)}</span>,
+      render: (val) => <span className="font-mono tabular-nums font-bold text-navy text-xs">{formatCurrency(val)}</span>,
     },
     {
       key: 'status',
@@ -83,12 +83,12 @@ export default function PortalSubscriptionsPage() {
   ];
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-navy">
+    <div className="space-y-4">
+      <div className="pb-1 border-b border-border">
+        <h1 className="text-xl font-bold tracking-tight text-navy">
           My Subscriptions & Licences
         </h1>
-        <p className="text-sm text-text-secondary mt-0.5">
+        <p className="text-xs text-text-secondary mt-0.5">
           Active cloud packages, renewal schedules, and add-on module configurations.
         </p>
       </div>

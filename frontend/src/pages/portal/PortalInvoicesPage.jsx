@@ -35,7 +35,7 @@ export default function PortalInvoicesPage() {
     {
       key: 'invoiceDate',
       label: 'Invoice Date',
-      render: (val) => <span className="text-xs text-text-secondary">{formatDate(val)}</span>,
+      render: (val) => <span className="font-mono text-xs text-text-secondary">{formatDate(val)}</span>,
     },
     {
       key: 'dueDate',
@@ -43,7 +43,7 @@ export default function PortalInvoicesPage() {
       render: (val, row) => {
         const isOverdue = row.outstandingAmount > 0 && new Date(val) < new Date();
         return (
-          <span className={`text-xs font-medium ${isOverdue ? 'text-danger font-bold' : 'text-text-primary'}`}>
+          <span className={`font-mono text-xs font-medium ${isOverdue ? 'text-danger font-bold' : 'text-text-primary'}`}>
             {formatDate(val)}
           </span>
         );
@@ -53,14 +53,14 @@ export default function PortalInvoicesPage() {
       key: 'totalAmount',
       label: 'Total Bill (₹)',
       align: 'right',
-      render: (val) => <span className="font-bold text-navy text-xs">{formatCurrency(val)}</span>,
+      render: (val) => <span className="font-mono tabular-nums font-bold text-navy text-xs">{formatCurrency(val)}</span>,
     },
     {
       key: 'outstandingAmount',
       label: 'Balance Due',
       align: 'right',
       render: (val) => (
-        <span className={`font-bold text-xs ${val > 0 ? 'text-danger' : 'text-text-muted'}`}>
+        <span className={`font-mono tabular-nums font-bold text-xs ${val > 0 ? 'text-danger' : 'text-text-muted'}`}>
           {formatCurrency(val)}
         </span>
       ),
@@ -88,12 +88,12 @@ export default function PortalInvoicesPage() {
   ];
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-navy">
+    <div className="space-y-4">
+      <div className="pb-1 border-b border-border">
+        <h1 className="text-xl font-bold tracking-tight text-navy">
           Billing Statements & Invoices
         </h1>
-        <p className="text-sm text-text-secondary mt-0.5">
+        <p className="text-xs text-text-secondary mt-0.5">
           GST-compliant tax invoices, payment receipts, and balance settlement.
         </p>
       </div>

@@ -19,17 +19,17 @@ export default function StaffBillingActivityPage() {
   }, [activities, assignedCustomerIds]);
 
   return (
-    <div className="space-y-6 max-w-3xl">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-navy">
+    <div className="space-y-4 max-w-3xl">
+      <div className="pb-1 border-b border-border">
+        <h1 className="text-xl font-bold tracking-tight text-navy">
           Portfolio Billing Activity & Events
         </h1>
-        <p className="text-sm text-text-secondary mt-0.5">
+        <p className="text-xs text-text-secondary mt-0.5">
           Audit timeline of subscription and billing events across your managed clients.
         </p>
       </div>
 
-      <div className="card p-6">
+      <div className="card p-5">
         <ActivityTimeline activities={assignedActivities} maxItems={25} />
       </div>
     </div>

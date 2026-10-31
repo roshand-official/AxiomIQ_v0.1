@@ -58,51 +58,51 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="space-y-6 max-w-4xl">
+    <div className="space-y-4 max-w-4xl">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-navy">
+      <div className="pb-1 border-b border-border">
+        <h1 className="text-xl font-bold tracking-tight text-navy">
           System Configuration & Settings
         </h1>
-        <p className="text-sm text-text-secondary mt-0.5">
+        <p className="text-xs text-text-secondary mt-0.5">
           Manage corporate billing identities, GST compliance parameters, payment governance, and automated dunning.
         </p>
       </div>
 
       {/* Tabs */}
       <div className="border-b border-border">
-        <nav className="flex space-x-6 text-sm font-medium">
+        <nav className="flex space-x-6 text-xs font-medium">
           <button
             type="button"
             onClick={() => setActiveTab('general')}
-            className={`py-3 border-b-2 flex items-center gap-2 cursor-pointer ${activeTab === 'general'
+            className={`py-2.5 border-b-2 flex items-center gap-2 cursor-pointer transition-colors ${activeTab === 'general'
                 ? 'border-action text-action font-semibold'
-                : 'border-transparent text-text-secondary hover:text-text-primary'
+                : 'border-transparent text-text-muted hover:text-text-primary'
               }`}
           >
-            <Building className="w-4 h-4" />
+            <Building className="w-3.5 h-3.5" />
             <span>Corporate Identity & GST</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('billing')}
-            className={`py-3 border-b-2 flex items-center gap-2 cursor-pointer ${activeTab === 'billing'
+            className={`py-2.5 border-b-2 flex items-center gap-2 cursor-pointer transition-colors ${activeTab === 'billing'
                 ? 'border-action text-action font-semibold'
-                : 'border-transparent text-text-secondary hover:text-text-primary'
+                : 'border-transparent text-text-muted hover:text-text-primary'
               }`}
           >
-            <CreditCard className="w-4 h-4" />
+            <CreditCard className="w-3.5 h-3.5" />
             <span>Billing Governance & Dunning</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('notifications')}
-            className={`py-3 border-b-2 flex items-center gap-2 cursor-pointer ${activeTab === 'notifications'
+            className={`py-2.5 border-b-2 flex items-center gap-2 cursor-pointer transition-colors ${activeTab === 'notifications'
                 ? 'border-action text-action font-semibold'
-                : 'border-transparent text-text-secondary hover:text-text-primary'
+                : 'border-transparent text-text-muted hover:text-text-primary'
               }`}
           >
-            <Bell className="w-4 h-4" />
+            <Bell className="w-3.5 h-3.5" />
             <span>Communication & Alerts</span>
           </button>
         </nav>
@@ -110,8 +110,8 @@ export default function SettingsPage() {
 
       {/* General Settings */}
       {activeTab === 'general' && (
-        <form onSubmit={handleSaveCompany} className="card p-6 space-y-4 text-xs">
-          <h3 className="text-sm font-semibold text-navy pb-2 border-b border-border">
+        <form onSubmit={handleSaveCompany} className="card p-5 space-y-4 text-xs">
+          <h3 className="text-xs font-semibold text-navy uppercase tracking-wider pb-2 border-b border-border">
             Corporate Entity & Tax Credentials
           </h3>
 
@@ -199,8 +199,8 @@ export default function SettingsPage() {
 
       {/* Billing Governance */}
       {activeTab === 'billing' && (
-        <form onSubmit={handleSaveBilling} className="card p-6 space-y-4 text-xs">
-          <h3 className="text-sm font-semibold text-navy pb-2 border-b border-border">
+        <form onSubmit={handleSaveBilling} className="card p-5 space-y-4 text-xs">
+          <h3 className="text-xs font-semibold text-navy uppercase tracking-wider pb-2 border-b border-border">
             Recurring Billing & Invoicing Automation Rules
           </h3>
 
@@ -282,8 +282,8 @@ export default function SettingsPage() {
 
       {/* Notifications */}
       {activeTab === 'notifications' && (
-        <form onSubmit={handleSaveNotifications} className="card p-6 space-y-4 text-xs">
-          <h3 className="text-sm font-semibold text-navy pb-2 border-b border-border">
+        <form onSubmit={handleSaveNotifications} className="card p-5 space-y-4 text-xs">
+          <h3 className="text-xs font-semibold text-navy uppercase tracking-wider pb-2 border-b border-border">
             Customer Notification Triggers
           </h3>
 

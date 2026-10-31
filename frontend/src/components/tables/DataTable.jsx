@@ -74,14 +74,14 @@ export default function DataTable({
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-gray-50/75 border-b border-border text-[11px] font-semibold uppercase tracking-wider text-text-secondary select-none">
+            <tr className="bg-surface-subtle border-b border-border text-[11px] font-semibold uppercase tracking-wider text-text-secondary select-none">
               {selectable && (
-                <th className="w-10 px-4 py-3 text-center">
+                <th className="w-10 px-3.5 py-2.5 text-center">
                   <input
                     type="checkbox"
                     checked={isAllSelected}
                     onChange={() => onSelectAll && onSelectAll(allIds)}
-                    className="w-4 h-4 rounded border-border text-action focus:ring-action cursor-pointer"
+                    className="w-3.5 h-3.5 rounded border-border text-action focus:ring-action cursor-pointer"
                   />
                 </th>
               )}
@@ -131,7 +131,7 @@ export default function DataTable({
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-border text-sm">
+          <tbody className="divide-y divide-border text-xs">
             {loading ? (
               <tr>
                 <td
@@ -160,20 +160,20 @@ export default function DataTable({
                   <tr
                     key={rowId}
                     onClick={() => onRowClick && onRowClick(row)}
-                    className={`transition-colors hover:bg-gray-50/70 ${
-                      isSelected ? 'bg-blue-50/40' : ''
+                    className={`transition-colors hover:bg-surface-subtle ${
+                      isSelected ? 'bg-action-light/40' : ''
                     } ${onRowClick ? 'cursor-pointer' : ''} ${customClasses}`}
                   >
                     {selectable && (
                       <td
-                        className="w-10 px-4 py-3 text-center"
+                        className="w-10 px-3.5 py-2.5 text-center"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <input
                           type="checkbox"
                           checked={isSelected}
                           onChange={() => onSelectRow && onSelectRow(rowId)}
-                          className="w-4 h-4 rounded border-border text-action focus:ring-action cursor-pointer"
+                          className="w-3.5 h-3.5 rounded border-border text-action focus:ring-action cursor-pointer"
                         />
                       </td>
                     )}
@@ -185,7 +185,7 @@ export default function DataTable({
                       return (
                         <td
                           key={col.key}
-                          className={`px-4 py-3 text-text-primary ${
+                          className={`px-3.5 py-2.5 text-text-primary text-xs ${
                             col.align === 'right'
                               ? 'text-right'
                               : col.align === 'center'

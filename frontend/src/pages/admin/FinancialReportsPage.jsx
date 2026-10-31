@@ -127,14 +127,14 @@ export default function FinancialReportsPage() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1 border-b border-border">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-navy">
+          <h1 className="text-xl font-bold tracking-tight text-navy">
             Financial & Recurring Revenue Reports
           </h1>
-          <p className="text-sm text-text-secondary mt-0.5">
+          <p className="text-xs text-text-secondary mt-0.5">
             Audit contracted recurring commitments, invoiced tax billings, cash receipts, and aging balances.
           </p>
         </div>
@@ -160,13 +160,13 @@ export default function FinancialReportsPage() {
       </div>
 
       {/* Accounting Distinction Alert */}
-      <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl text-xs flex items-start gap-3 text-navy">
-        <div className="p-1 rounded bg-action text-white mt-0.5">
+      <div className="p-3 bg-action-subtle/40 border border-action/20 rounded-lg text-xs flex items-start gap-2.5 text-text-primary">
+        <div className="p-1 rounded bg-action text-white mt-0.5 shrink-0">
           <BarChart3 className="w-3.5 h-3.5" />
         </div>
         <div>
-          <span className="font-bold">Accounting Note on Revenue Segregation:</span>
-          <p className="text-text-secondary mt-0.5 leading-relaxed">
+          <span className="font-semibold text-navy">Accounting Note on Revenue Segregation:</span>
+          <p className="text-text-secondary mt-0.5 leading-relaxed text-[11px]">
             AxiomIQ strictly separates <span className="font-semibold text-text-primary">Contracted Recurring Value</span> (forward commitments),{' '}
             <span className="font-semibold text-text-primary">Invoiced Revenue</span> (tax invoices issued per GST rules), and{' '}
             <span className="font-semibold text-text-primary">Collected Cash</span> (realized bank receipts). These metrics are non-interchangeable.
@@ -174,38 +174,38 @@ export default function FinancialReportsPage() {
         </div>
       </div>
 
-      {/* 4 Foundation Financial Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="card p-5 border-l-4 border-l-action">
-          <span className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
+      {/* 4 Foundation Financial Cards Ribbon */}
+      <div className="card overflow-hidden grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-border">
+        <div className="p-4 bg-surface">
+          <span className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
             Contracted Run-Rate (ARR)
           </span>
-          <p className="text-2xl font-bold text-navy mt-1">{formatCurrency(contractedARR)}</p>
-          <p className="text-[11px] text-text-muted mt-1">Forward annualized commitment</p>
+          <p className="text-xl font-bold text-navy mt-1 font-mono tabular-nums">{formatCurrency(contractedARR)}</p>
+          <p className="text-[11px] text-text-muted mt-0.5">Forward annualized commitment</p>
         </div>
 
-        <div className="card p-5 border-l-4 border-l-navy">
-          <span className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
+        <div className="p-4 bg-surface">
+          <span className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
             Invoiced Revenue (Gross)
           </span>
-          <p className="text-2xl font-bold text-navy mt-1">{formatCurrency(totalInvoiced)}</p>
-          <p className="text-[11px] text-text-muted mt-1">Tax invoices generated</p>
+          <p className="text-xl font-bold text-navy mt-1 font-mono tabular-nums">{formatCurrency(totalInvoiced)}</p>
+          <p className="text-[11px] text-text-muted mt-0.5">Tax invoices generated</p>
         </div>
 
-        <div className="card p-5 border-l-4 border-l-success">
-          <span className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
+        <div className="p-4 bg-surface">
+          <span className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
             Collected Cash (Receipts)
           </span>
-          <p className="text-2xl font-bold text-success mt-1">{formatCurrency(totalCollected)}</p>
-          <p className="text-[11px] text-text-muted mt-1">Verified settled funds</p>
+          <p className="text-xl font-bold text-success mt-1 font-mono tabular-nums">{formatCurrency(totalCollected)}</p>
+          <p className="text-[11px] text-text-muted mt-0.5">Verified settled funds</p>
         </div>
 
-        <div className="card p-5 border-l-4 border-l-danger">
-          <span className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
+        <div className="p-4 bg-surface">
+          <span className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
             Outstanding Receivables
           </span>
-          <p className="text-2xl font-bold text-danger mt-1">{formatCurrency(totalOutstanding)}</p>
-          <p className="text-[11px] text-text-muted mt-1">Unpaid customer invoices</p>
+          <p className="text-xl font-bold text-danger mt-1 font-mono tabular-nums">{formatCurrency(totalOutstanding)}</p>
+          <p className="text-[11px] text-text-muted mt-0.5">Unpaid customer invoices</p>
         </div>
       </div>
 
@@ -240,40 +240,40 @@ export default function FinancialReportsPage() {
       {/* Tab 2: Product Performance Report */}
       {activeReportTab === 'products' && (
         <div className="card overflow-hidden">
-          <div className="p-4 border-b border-border bg-gray-50 flex items-center justify-between">
-            <h3 className="font-semibold text-sm text-navy">
+          <div className="p-3 border-b border-border bg-surface-subtle flex items-center justify-between">
+            <h3 className="font-semibold text-xs text-navy uppercase tracking-wider">
               Product Revenue Performance Breakdown
             </h3>
-            <span className="text-xs text-text-secondary">
+            <span className="text-xs text-text-muted">
               Aggregated from live catalog subscriptions
             </span>
           </div>
 
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-gray-50 border-b border-border text-text-secondary font-semibold uppercase">
-                <th className="px-4 py-3">Product Name</th>
-                <th className="px-4 py-3 text-center">Active Seats / Subscriptions</th>
-                <th className="px-4 py-3 text-right">Recognized Revenue</th>
-                <th className="px-4 py-3 text-center">Growth (YoY)</th>
+              <tr className="bg-surface-subtle border-b border-border text-text-secondary font-semibold text-[11px] uppercase tracking-wider">
+                <th className="px-4 py-2.5">Product Name</th>
+                <th className="px-4 py-2.5 text-center">Active Seats / Subscriptions</th>
+                <th className="px-4 py-2.5 text-right">Recognized Revenue</th>
+                <th className="px-4 py-2.5 text-center">Growth (YoY)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
               {productPerformanceData.map((item) => (
-                <tr key={item.productId} className="hover:bg-gray-50/50">
-                  <td className="px-4 py-3 font-medium text-navy">
+                <tr key={item.productId} className="hover:bg-surface-subtle/50 transition-colors">
+                  <td className="px-4 py-2.5 font-medium text-navy">
                     {item.name}
                     <span className="block text-[10px] text-text-muted font-mono">{item.productId}</span>
                   </td>
-                  <td className="px-4 py-3 text-center font-bold text-navy">
+                  <td className="px-4 py-2.5 text-center font-bold text-navy font-mono tabular-nums">
                     {item.subscriptions}
                   </td>
-                  <td className="px-4 py-3 text-right font-bold text-navy">
+                  <td className="px-4 py-2.5 text-right font-bold text-navy font-mono tabular-nums">
                     {formatCurrency(item.revenue)}
                   </td>
-                  <td className="px-4 py-3 text-center font-semibold">
+                  <td className="px-4 py-2.5 text-center font-semibold font-mono tabular-nums">
                     <span
-                      className={`px-2 py-0.5 rounded-full ${item.growth >= 0 ? 'bg-emerald-50 text-success' : 'bg-rose-50 text-danger'
+                      className={`px-2 py-0.5 rounded text-[11px] font-bold ${item.growth >= 0 ? 'bg-emerald-50 text-success border border-emerald-200' : 'bg-rose-50 text-danger border border-rose-200'
                         }`}
                     >
                       {item.growth >= 0 ? `+${item.growth}%` : `${item.growth}%`}
@@ -289,28 +289,28 @@ export default function FinancialReportsPage() {
       {/* Tab 3: Plans Performance */}
       {activeReportTab === 'plans' && (
         <div className="card overflow-hidden">
-          <div className="p-4 border-b border-border bg-gray-50">
-            <h3 className="font-semibold text-sm text-navy">
+          <div className="p-3 border-b border-border bg-surface-subtle">
+            <h3 className="font-semibold text-xs text-navy uppercase tracking-wider">
               Billing Frequency & Cadence Performance
             </h3>
           </div>
 
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-gray-50 border-b border-border text-text-secondary font-semibold uppercase">
-                <th className="px-4 py-3">Plan Name</th>
-                <th className="px-4 py-3">Recurrence Cadence</th>
-                <th className="px-4 py-3 text-center">Active Contracts</th>
-                <th className="px-4 py-3 text-right">Contracted Recurring Value</th>
+              <tr className="bg-surface-subtle border-b border-border text-text-secondary font-semibold text-[11px] uppercase tracking-wider">
+                <th className="px-4 py-2.5">Plan Name</th>
+                <th className="px-4 py-2.5">Recurrence Cadence</th>
+                <th className="px-4 py-2.5 text-center">Active Contracts</th>
+                <th className="px-4 py-2.5 text-right">Contracted Recurring Value</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
               {planBreakdown.map((p) => (
-                <tr key={p.id} className="hover:bg-gray-50/50">
-                  <td className="px-4 py-3 font-medium text-navy">{p.name}</td>
-                  <td className="px-4 py-3 uppercase text-text-secondary font-medium">{p.cadence}</td>
-                  <td className="px-4 py-3 text-center font-bold text-navy">{p.activeContracts}</td>
-                  <td className="px-4 py-3 text-right font-bold text-navy">
+                <tr key={p.id} className="hover:bg-surface-subtle/50 transition-colors">
+                  <td className="px-4 py-2.5 font-medium text-navy">{p.name}</td>
+                  <td className="px-4 py-2.5 uppercase text-text-secondary font-mono text-[11px]">{p.cadence}</td>
+                  <td className="px-4 py-2.5 text-center font-bold text-navy font-mono tabular-nums">{p.activeContracts}</td>
+                  <td className="px-4 py-2.5 text-right font-bold text-navy font-mono tabular-nums">
                     {formatCurrency(p.contractedValue)}
                   </td>
                 </tr>
@@ -323,24 +323,24 @@ export default function FinancialReportsPage() {
       {/* Tab 4: Aging Receivables */}
       {activeReportTab === 'aging' && (
         <div className="card overflow-hidden">
-          <div className="p-4 border-b border-border bg-gray-50 flex items-center justify-between">
-            <h3 className="font-semibold text-sm text-navy">
+          <div className="p-3 border-b border-border bg-surface-subtle flex items-center justify-between">
+            <h3 className="font-semibold text-xs text-navy uppercase tracking-wider">
               Aging Accounts Receivable Ledger
             </h3>
-            <span className="text-xs text-danger font-semibold">
+            <span className="text-xs text-danger font-semibold font-mono tabular-nums">
               Total Overdue: {formatCurrency(totalOutstanding)}
             </span>
           </div>
 
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-gray-50 border-b border-border text-text-secondary font-semibold uppercase">
-                <th className="px-4 py-3">Invoice #</th>
-                <th className="px-4 py-3">Client</th>
-                <th className="px-4 py-3">Due Date</th>
-                <th className="px-4 py-3 text-center">Days Overdue</th>
-                <th className="px-4 py-3">Aging Bucket</th>
-                <th className="px-4 py-3 text-right">Outstanding Amount</th>
+              <tr className="bg-surface-subtle border-b border-border text-text-secondary font-semibold text-[11px] uppercase tracking-wider">
+                <th className="px-4 py-2.5">Invoice #</th>
+                <th className="px-4 py-2.5">Client</th>
+                <th className="px-4 py-2.5">Due Date</th>
+                <th className="px-4 py-2.5 text-center">Days Overdue</th>
+                <th className="px-4 py-2.5">Aging Bucket</th>
+                <th className="px-4 py-2.5 text-right">Outstanding Amount</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
@@ -352,17 +352,17 @@ export default function FinancialReportsPage() {
                 </tr>
               ) : (
                 agingReceivables.map((inv) => (
-                  <tr key={inv.id} className="hover:bg-gray-50/50">
-                    <td className="px-4 py-3 font-mono font-medium text-navy">{inv.invoiceNumber}</td>
-                    <td className="px-4 py-3 font-medium text-text-primary">{inv.customerName}</td>
-                    <td className="px-4 py-3 text-text-secondary">{formatDate(inv.dueDate)}</td>
-                    <td className="px-4 py-3 text-center font-bold text-danger">{inv.daysOverdue}d</td>
-                    <td className="px-4 py-3">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-warning">
+                  <tr key={inv.id} className="hover:bg-surface-subtle/50 transition-colors">
+                    <td className="px-4 py-2.5 font-mono font-medium text-navy">{inv.invoiceNumber}</td>
+                    <td className="px-4 py-2.5 font-medium text-text-primary">{inv.customerName}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{formatDate(inv.dueDate)}</td>
+                    <td className="px-4 py-2.5 text-center font-bold text-danger font-mono tabular-nums">{inv.daysOverdue}d</td>
+                    <td className="px-4 py-2.5">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-warning border border-amber-200">
                         {inv.agingBucket}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-right font-bold text-danger">
+                    <td className="px-4 py-2.5 text-right font-bold text-danger font-mono tabular-nums">
                       {formatCurrency(inv.outstandingAmount)}
                     </td>
                   </tr>

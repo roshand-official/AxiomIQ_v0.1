@@ -1,12 +1,13 @@
 // src/pages/NotFoundPage.jsx
 import { Link } from 'react-router-dom';
-import { Zap, ArrowLeft, Home } from 'lucide-react';
+import { ArrowLeft, Home } from 'lucide-react';
+import { AxiomLogo } from '../components/common';
 
 export default function NotFoundPage() {
   return (
     <div className="min-h-screen bg-bg flex flex-col items-center justify-center p-6 text-center">
-      <div className="w-14 h-14 rounded-2xl bg-action flex items-center justify-center text-white mb-4 shadow-lg">
-        <Zap className="w-8 h-8 fill-white" />
+      <div className="mb-4">
+        <AxiomLogo size="xl" theme="light" />
       </div>
       <h1 className="text-4xl font-extrabold text-navy tracking-tight">404</h1>
       <h2 className="text-lg font-bold text-navy mt-1">Page Not Found</h2>

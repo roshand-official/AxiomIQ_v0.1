@@ -1,7 +1,6 @@
 // src/components/layout/Sidebar.jsx
 import { NavLink } from 'react-router-dom';
 import {
-  Zap,
   LayoutDashboard,
   Users,
   UserCog,
@@ -20,10 +19,10 @@ import {
   ChevronLeft,
   ChevronRight,
   Activity,
-  Bell,
   User,
 } from 'lucide-react';
 import Tooltip from '../common/Tooltip';
+import AxiomLogo from '../common/AxiomLogo';
 import { useApp } from '../../contexts/AppContext';
 
 export default function Sidebar({ role = 'admin', collapsed = false, onToggle }) {
@@ -31,7 +30,6 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
 
   const overdueInvoicesCount = invoices.filter((i) => i.status === 'overdue').length;
   const activeSubsCount = subscriptions.filter((s) => s.status === 'active').length;
-  const unreadNotifsCount = notifications.filter((n) => !n.read).length;
 
   const adminNavGroups = [
     {
@@ -41,10 +39,10 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
       ],
     },
     {
-      title: 'MANAGEMENT',
+      title: 'OPERATIONS',
       items: [
         { label: 'Customers', path: '/admin/customers', icon: Users },
-        { label: 'Staff Management', path: '/admin/staff', icon: UserCog },
+        { label: 'Staff Directory', path: '/admin/staff', icon: UserCog },
         { label: 'Products', path: '/admin/products', icon: Package },
         { label: 'Subscription Plans', path: '/admin/plans', icon: Layers },
         { label: 'Quotations', path: '/admin/quotations', icon: FileText },
@@ -58,7 +56,7 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
       ],
     },
     {
-      title: 'BILLING & FINANCE',
+      title: 'FINANCE & BILLING',
       items: [
         { label: 'Billing Center', path: '/admin/billing', icon: Receipt },
         {
@@ -72,7 +70,7 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
       ],
     },
     {
-      title: 'INSIGHTS & REPORTS',
+      title: 'INSIGHTS & AUDIT',
       items: [
         { label: 'Financial Reports', path: '/admin/reports', icon: BarChart3 },
         { label: 'Revenue Risk', path: '/admin/revenue-risk', icon: AlertTriangle },
@@ -80,7 +78,7 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
       ],
     },
     {
-      title: 'SYSTEM',
+      title: 'CONFIGURATION',
       items: [
         { label: 'Settings', path: '/admin/settings', icon: Settings },
       ],
@@ -95,7 +93,7 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
       ],
     },
     {
-      title: 'WORKSPACE',
+      title: 'PORTFOLIO',
       items: [
         { label: 'Assigned Customers', path: '/staff/customers', icon: Users },
         { label: 'Quotations', path: '/staff/quotations', icon: FileText },
@@ -103,7 +101,7 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
       ],
     },
     {
-      title: 'BILLING & ACTIVITY',
+      title: 'BILLING OPERATIONS',
       items: [
         { label: 'Invoices', path: '/staff/invoices', icon: FileStack },
         { label: 'Payments', path: '/staff/payments', icon: CreditCard },
@@ -117,11 +115,11 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
       title: 'PORTAL',
       items: [
         { label: 'My Dashboard', path: '/portal/dashboard', icon: LayoutDashboard },
-        { label: 'My Subscriptions', path: '/portal/subscriptions', icon: RefreshCw },
-        { label: 'My Invoices', path: '/portal/invoices', icon: FileStack },
-        { label: 'My Payments', path: '/portal/payments', icon: CreditCard },
+        { label: 'Active Subscriptions', path: '/portal/subscriptions', icon: RefreshCw },
+        { label: 'Invoices & Tax Slips', path: '/portal/invoices', icon: FileStack },
+        { label: 'Payment Receipts', path: '/portal/payments', icon: CreditCard },
         { label: 'Renewal Requests', path: '/portal/renewals', icon: RefreshCw },
-        { label: 'My Profile', path: '/portal/profile', icon: User },
+        { label: 'Account Profile', path: '/portal/profile', icon: User },
       ],
     },
   ];
@@ -130,39 +128,43 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
     role === 'staff'
       ? staffNavGroups
       : role === 'customer'
-        ? portalNavGroups
-        : adminNavGroups;
+      ? portalNavGroups
+      : adminNavGroups;
 
   return (
     <aside
-      className={`fixed top-0 left-0 z-40 h-screen transition-all duration-300 bg-navy text-white flex flex-col border-r border-navy-light ${collapsed ? 'w-18' : 'w-64'
-        }`}
+      className={`fixed top-0 left-0 z-40 h-screen transition-all duration-200 bg-[#121E33] text-white flex flex-col border-r border-[#1E2E4A] select-none ${
+        collapsed ? 'w-18' : 'w-64'
+      }`}
     >
       {/* Brand Header */}
-      <div className="h-16 flex items-center justify-between px-4 border-b border-navy-light flex-shrink-0">
-        <div className="flex items-center gap-3 overflow-hidden">
-          <div className="w-9 h-9 rounded-xl bg-action flex items-center justify-center flex-shrink-0 shadow-md">
-            <Zap className="w-5 h-5 text-white fill-white" />
-          </div>
-          {!collapsed && (
-            <div className="leading-tight">
-              <span className="font-bold text-base tracking-tight text-white">
-                AxiomIQ
-              </span>
-              <span className="block text-[10px] text-gray-300 tracking-wider uppercase font-semibold">
-                {role === 'customer' ? 'Customer Portal' : 'Subscription OS'}
-              </span>
-            </div>
+      <div className="h-16 flex items-center justify-between px-4 border-b border-[#1E2E4A] flex-shrink-0 bg-[#0F1A2D]">
+        <div className="flex items-center gap-2.5 overflow-hidden">
+          {collapsed ? (
+            <AxiomLogo variant="mark" size="sm" theme="dark" />
+          ) : (
+            <AxiomLogo
+              variant="full"
+              size="sm"
+              theme="dark"
+              subtitle={
+                role === 'customer'
+                  ? 'Subscriber Portal'
+                  : role === 'staff'
+                  ? 'Staff Operations'
+                  : 'Subscription OS'
+              }
+            />
           )}
         </div>
       </div>
 
       {/* Navigation Sections */}
-      <div className="flex-1 overflow-y-auto py-4 px-3 space-y-6 no-scrollbar">
+      <div className="flex-1 overflow-y-auto py-3.5 px-2.5 space-y-5 no-scrollbar">
         {groups.map((group, gIdx) => (
-          <div key={gIdx} className="space-y-1">
+          <div key={gIdx} className="space-y-0.5">
             {!collapsed && (
-              <p className="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">
+              <p className="px-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
                 {group.title}
               </p>
             )}
@@ -175,22 +177,24 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
                   to={item.path}
                   end={item.path.endsWith('/dashboard')}
                   className={({ isActive }) =>
-                    `flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium transition-colors ${isActive
-                      ? 'bg-action text-white shadow-sm font-semibold'
-                      : 'text-gray-300 hover:bg-navy-light hover:text-white'
+                    `flex items-center gap-2.5 px-2.5 py-2 rounded-md text-xs font-medium transition-colors ${
+                      isActive
+                        ? 'bg-action text-white font-semibold shadow-xs'
+                        : 'text-slate-300 hover:bg-[#1B2942] hover:text-white'
                     } ${collapsed ? 'justify-center' : ''}`
                   }
                 >
-                  <Icon className="w-4 h-4 flex-shrink-0" />
+                  <Icon className="w-4 h-4 flex-shrink-0 text-slate-400 group-hover:text-white" />
                   {!collapsed && (
                     <>
                       <span className="flex-1 truncate">{item.label}</span>
                       {item.badge != null && (
                         <span
-                          className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${item.badgeVariant === 'danger'
-                              ? 'bg-danger text-white'
-                              : 'bg-navy-dark text-white'
-                            }`}
+                          className={`px-1.5 py-0.2 rounded text-[10px] font-mono tabular-nums font-semibold ${
+                            item.badgeVariant === 'danger'
+                              ? 'bg-rose-500/25 text-rose-300 border border-rose-500/30'
+                              : 'bg-slate-700/60 text-slate-300'
+                          }`}
                         >
                           {item.badge}
                         </span>
@@ -213,16 +217,16 @@ export default function Sidebar({ role = 'admin', collapsed = false, onToggle })
       </div>
 
       {/* Collapse Toggle Footer */}
-      <div className="p-3 border-t border-navy-light flex items-center justify-between flex-shrink-0">
+      <div className="p-2.5 border-t border-[#1E2E4A] bg-[#0F1A2D] flex items-center justify-between flex-shrink-0">
         {!collapsed && (
-          <div className="text-[11px] text-gray-400">
-            <span>v1.0.0</span> • <span className="text-gray-400">AxiomIQ</span>
+          <div className="text-[10px] font-mono text-slate-400 px-1.5">
+            <span>v1.0.0</span> • <span>PROD</span>
           </div>
         )}
         <button
           type="button"
           onClick={onToggle}
-          className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-navy-light transition-colors ml-auto cursor-pointer"
+          className="p-1.5 rounded-md text-slate-400 hover:text-white hover:bg-[#1B2942] transition-colors ml-auto cursor-pointer"
           title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
           {collapsed ? (

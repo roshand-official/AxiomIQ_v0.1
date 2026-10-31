@@ -141,7 +141,7 @@ export default function InvoicesPage() {
       key: 'invoiceDate',
       label: 'Invoice Date',
       sortable: true,
-      render: (val) => <span className="text-xs text-text-secondary">{formatDate(val)}</span>,
+      render: (val) => <span className="text-xs text-text-secondary font-mono">{formatDate(val)}</span>,
     },
     {
       key: 'dueDate',
@@ -151,8 +151,9 @@ export default function InvoicesPage() {
         const isOverdue = row.outstandingAmount > 0 && new Date(val) < new Date();
         return (
           <span
-            className={`text-xs font-medium ${isOverdue ? 'text-danger font-bold' : 'text-text-primary'
-              }`}
+            className={`text-xs font-mono font-medium ${
+              isOverdue ? 'text-danger font-bold' : 'text-text-primary'
+            }`}
           >
             {formatDate(val)}
           </span>
@@ -164,7 +165,7 @@ export default function InvoicesPage() {
       label: 'Total Invoiced',
       align: 'right',
       sortable: true,
-      render: (val) => <span className="font-bold text-navy">{formatCurrency(val)}</span>,
+      render: (val) => <span className="font-bold text-navy font-mono tabular-nums">{formatCurrency(val)}</span>,
     },
     {
       key: 'amountPaid',
@@ -172,7 +173,7 @@ export default function InvoicesPage() {
       align: 'right',
       sortable: true,
       render: (val) => (
-        <span className={`text-xs ${val > 0 ? 'text-success font-medium' : 'text-text-muted'}`}>
+        <span className={`text-xs font-mono tabular-nums ${val > 0 ? 'text-success font-semibold' : 'text-text-muted'}`}>
           {formatCurrency(val)}
         </span>
       ),
@@ -184,8 +185,9 @@ export default function InvoicesPage() {
       sortable: true,
       render: (val) => (
         <span
-          className={`font-bold ${val > 0 ? 'text-danger' : 'text-text-muted'
-            }`}
+          className={`font-bold font-mono tabular-nums ${
+            val > 0 ? 'text-danger' : 'text-text-muted'
+          }`}
         >
           {formatCurrency(val)}
         </span>

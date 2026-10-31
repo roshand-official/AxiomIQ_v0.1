@@ -190,50 +190,50 @@ export default function ProductDetailPage() {
       </div>
 
       {/* Product Overview Card */}
-      <div className="card p-6">
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-xl flex-shrink-0">
-              <Package className="w-7 h-7" />
+      <div className="card p-5">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-lg bg-action-subtle text-action border border-action/20 flex items-center justify-center font-bold text-base flex-shrink-0">
+              <Package className="w-5 h-5" />
             </div>
             <div>
-              <div className="flex items-center gap-3">
-                <h1 className="text-xl font-bold text-navy">{product.name}</h1>
+              <div className="flex items-center gap-2.5">
+                <h1 className="text-lg font-bold text-navy">{product.name}</h1>
                 <StatusBadge status={product.status} />
               </div>
-              <p className="text-xs font-mono text-text-secondary mt-1">
+              <p className="text-xs font-mono text-text-secondary mt-0.5">
                 Ref: {product.internalRef} • Type: <span className="capitalize font-semibold text-text-primary">{product.type}</span>
               </p>
-              <p className="text-xs text-text-secondary mt-2 max-w-xl leading-relaxed">
+              <p className="text-xs text-text-secondary mt-1 max-w-xl leading-relaxed">
                 {product.description || 'No description provided.'}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-6 bg-gray-50 p-4 rounded-xl border border-border">
+          <div className="flex items-center gap-6 bg-surface-subtle p-3 rounded-lg border border-border">
             <div>
-              <p className="text-[11px] text-text-secondary font-medium uppercase tracking-wider">
+              <p className="text-[11px] text-text-muted font-medium uppercase tracking-wider">
                 Base Sales Price
               </p>
-              <p className="text-lg font-bold text-navy mt-0.5">
+              <p className="text-base font-bold text-navy mt-0.5 font-mono tabular-nums">
                 {formatCurrency(product.salesPrice)}
               </p>
             </div>
-            <div className="w-px h-8 bg-border" />
+            <div className="w-px h-7 bg-border" />
             <div>
-              <p className="text-[11px] text-text-secondary font-medium uppercase tracking-wider">
+              <p className="text-[11px] text-text-muted font-medium uppercase tracking-wider">
                 Cost Price
               </p>
-              <p className="text-lg font-semibold text-text-secondary mt-0.5">
+              <p className="text-base font-semibold text-text-secondary mt-0.5 font-mono tabular-nums">
                 {formatCurrency(product.costPrice)}
               </p>
             </div>
-            <div className="w-px h-8 bg-border" />
+            <div className="w-px h-7 bg-border" />
             <div>
-              <p className="text-[11px] text-text-secondary font-medium uppercase tracking-wider">
+              <p className="text-[11px] text-text-muted font-medium uppercase tracking-wider">
                 Active Contracts
               </p>
-              <p className="text-lg font-bold text-action mt-0.5">
+              <p className="text-base font-bold text-action mt-0.5 font-mono tabular-nums">
                 {associatedSubscriptions.length}
               </p>
             </div>
@@ -242,15 +242,15 @@ export default function ProductDetailPage() {
       </div>
 
       {/* Grid: Variants & Associated Subscriptions */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Variants Card */}
         <div className="card overflow-hidden">
-          <div className="p-4 border-b border-border flex items-center justify-between bg-gray-50/75">
+          <div className="p-3 border-b border-border flex items-center justify-between bg-surface-subtle">
             <div>
-              <h3 className="font-semibold text-sm text-navy">
+              <h3 className="font-semibold text-xs text-navy uppercase tracking-wider">
                 Product Variants & Pricing Additions ({variants.length})
               </h3>
-              <p className="text-xs text-text-secondary mt-0.5">
+              <p className="text-xs text-text-muted mt-0.5">
                 Configured editions, tiers, and user capacity tiers
               </p>
             </div>
@@ -281,28 +281,28 @@ export default function ProductDetailPage() {
               variants.map((v) => (
                 <div
                   key={v.id}
-                  className="p-4 flex items-center justify-between hover:bg-gray-50/50 transition-colors"
+                  className="p-3 flex items-center justify-between hover:bg-surface-subtle/50 transition-colors"
                 >
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="font-semibold text-xs text-navy">{v.name}</span>
-                      <span className="px-1.5 py-0.5 rounded text-[10px] bg-gray-100 text-text-secondary">
+                      <span className="px-1.5 py-0.5 rounded text-[10px] bg-surface-subtle text-text-secondary border border-border">
                         {v.attribute}
                       </span>
                       <StatusBadge status={v.status} />
                     </div>
                     <p className="text-xs text-text-secondary mt-1">
-                      Surcharge: <span className="font-medium text-text-primary">+{formatCurrency(v.additionalPrice)}</span>
+                      Surcharge: <span className="font-mono tabular-nums font-medium text-text-primary">+{formatCurrency(v.additionalPrice)}</span>
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="font-bold text-sm text-navy">
+                    <span className="font-mono tabular-nums font-bold text-xs text-navy">
                       {formatCurrency(v.salesPrice)}
                     </span>
                     <button
                       type="button"
                       onClick={() => handleOpenEditVariant(v)}
-                      className="p-1 rounded text-text-secondary hover:text-action cursor-pointer"
+                      className="p-1 rounded text-text-muted hover:text-text-primary hover:bg-surface-subtle cursor-pointer transition-colors"
                     >
                       <Edit2 className="w-3.5 h-3.5" />
                     </button>
@@ -315,11 +315,11 @@ export default function ProductDetailPage() {
 
         {/* Associated Subscriptions */}
         <div className="card overflow-hidden">
-          <div className="p-4 border-b border-border bg-gray-50/75">
-            <h3 className="font-semibold text-sm text-navy">
+          <div className="p-3 border-b border-border bg-surface-subtle">
+            <h3 className="font-semibold text-xs text-navy uppercase tracking-wider">
               Associated Active Subscriptions ({associatedSubscriptions.length})
             </h3>
-            <p className="text-xs text-text-secondary mt-0.5">
+            <p className="text-xs text-text-muted mt-0.5">
               Live customer contracts deploying this product
             </p>
           </div>
@@ -336,7 +336,7 @@ export default function ProductDetailPage() {
                 return (
                   <div
                     key={sub.id}
-                    className="p-3.5 flex items-center justify-between hover:bg-gray-50/50 text-xs"
+                    className="p-3 flex items-center justify-between hover:bg-surface-subtle/50 text-xs transition-colors"
                   >
                     <div>
                       <Link
@@ -346,11 +346,11 @@ export default function ProductDetailPage() {
                         {sub.subscriptionNumber}
                       </Link>
                       <p className="text-text-secondary text-[11px] mt-0.5">
-                        Plan: {plan?.name || sub.planId} • Renews: {formatDate(sub.nextBillingDate)}
+                        Plan: {plan?.name || sub.planId} • Renews: <span className="font-mono">{formatDate(sub.nextBillingDate)}</span>
                       </p>
                     </div>
                     <div className="text-right">
-                      <span className="font-bold text-navy block">
+                      <span className="font-mono tabular-nums font-bold text-navy block">
                         {formatCurrency(sub.recurringAmount)}
                       </span>
                       <StatusBadge status={sub.status} />

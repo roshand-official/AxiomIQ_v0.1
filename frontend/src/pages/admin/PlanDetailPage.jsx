@@ -51,41 +51,41 @@ export default function PlanDetailPage() {
       </div>
 
       {/* Plan Header Card */}
-      <div className="card p-6">
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-action/10 text-action flex items-center justify-center font-bold text-xl flex-shrink-0">
-              <Layers className="w-7 h-7" />
+      <div className="card p-5">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-lg bg-action-subtle text-action border border-action/20 flex items-center justify-center font-bold text-base flex-shrink-0">
+              <Layers className="w-5 h-5" />
             </div>
             <div>
-              <div className="flex items-center gap-3">
-                <h1 className="text-xl font-bold text-navy">{plan.name}</h1>
+              <div className="flex items-center gap-2.5">
+                <h1 className="text-lg font-bold text-navy">{plan.name}</h1>
                 <StatusBadge status={plan.status} />
               </div>
-              <p className="text-xs text-text-secondary mt-1">
-                Recurrence Cadence: <span className="font-semibold capitalize text-action">{plan.billingFrequency}</span> (Interval: Every {plan.billingInterval} units)
+              <p className="text-xs text-text-secondary mt-0.5">
+                Recurrence Cadence: <span className="font-semibold capitalize text-action font-mono">{plan.billingFrequency}</span> (Interval: Every {plan.billingInterval} units)
               </p>
-              <p className="text-xs text-text-secondary mt-2 max-w-xl leading-relaxed">
+              <p className="text-xs text-text-secondary mt-1 max-w-xl leading-relaxed">
                 {plan.description || 'No marketing description provided.'}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-6 bg-gray-50 p-4 rounded-xl border border-border">
+          <div className="flex items-center gap-6 bg-surface-subtle p-3 rounded-lg border border-border">
             <div>
-              <p className="text-[11px] text-text-secondary font-medium uppercase tracking-wider">
+              <p className="text-[11px] text-text-muted font-medium uppercase tracking-wider">
                 Min Quantity
               </p>
-              <p className="text-lg font-bold text-navy mt-0.5">
+              <p className="text-base font-bold text-navy mt-0.5 font-mono tabular-nums">
                 {plan.minimumQuantity} units
               </p>
             </div>
-            <div className="w-px h-8 bg-border" />
+            <div className="w-px h-7 bg-border" />
             <div>
-              <p className="text-[11px] text-text-secondary font-medium uppercase tracking-wider">
+              <p className="text-[11px] text-text-muted font-medium uppercase tracking-wider">
                 Active Contracts
               </p>
-              <p className="text-lg font-bold text-success mt-0.5">
+              <p className="text-base font-bold text-success mt-0.5 font-mono tabular-nums">
                 {associatedSubscriptions.filter((s) => s.status === 'active').length}
               </p>
             </div>
@@ -94,14 +94,14 @@ export default function PlanDetailPage() {
       </div>
 
       {/* Policy Governance & Associated Subscriptions */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Governance card */}
-        <div className="card p-5 space-y-4">
-          <h3 className="font-semibold text-sm text-navy pb-2 border-b border-border">
+        <div className="card p-4 space-y-3">
+          <h3 className="font-semibold text-xs text-navy uppercase tracking-wider pb-2 border-b border-border">
             Lifecycle Governance Policy
           </h3>
 
-          <div className="space-y-3 text-xs">
+          <div className="space-y-2.5 text-xs">
             <div className="flex items-center justify-between">
               <span className="text-text-secondary">Allow Early Cancellation</span>
               {plan.allowEarlyClose ? (
@@ -143,12 +143,12 @@ export default function PlanDetailPage() {
 
             <div className="pt-2 border-t border-border flex items-center justify-between">
               <span className="text-text-secondary">Available Since</span>
-              <span className="font-medium text-navy">{formatDate(plan.availableFrom)}</span>
+              <span className="font-mono text-xs font-medium text-navy">{formatDate(plan.availableFrom)}</span>
             </div>
 
             <div className="flex items-center justify-between">
               <span className="text-text-secondary">Expires On</span>
-              <span className="font-medium text-navy">
+              <span className="font-mono text-xs font-medium text-navy">
                 {plan.availableUntil ? formatDate(plan.availableUntil) : 'Ongoing indefinitely'}
               </span>
             </div>
@@ -156,18 +156,18 @@ export default function PlanDetailPage() {
         </div>
 
         {/* Subscriptions list */}
-        <div className="card p-5 lg:col-span-2 overflow-hidden">
-          <h3 className="font-semibold text-sm text-navy mb-1">
+        <div className="card p-4 lg:col-span-2 overflow-hidden">
+          <h3 className="font-semibold text-xs text-navy uppercase tracking-wider mb-0.5">
             Active Contracts on this Plan ({associatedSubscriptions.length})
           </h3>
-          <p className="text-xs text-text-secondary mb-4">
+          <p className="text-xs text-text-muted mb-3">
             Customers currently subscribed under this recurrence arrangement
           </p>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="bg-gray-50 border-b border-border text-text-secondary font-semibold uppercase">
+                <tr className="bg-surface-subtle border-b border-border text-text-secondary font-semibold uppercase text-[11px]">
                   <th className="px-3 py-2.5">Subscription #</th>
                   <th className="px-3 py-2.5">Customer</th>
                   <th className="px-3 py-2.5">Start Date</th>
@@ -186,7 +186,7 @@ export default function PlanDetailPage() {
                   associatedSubscriptions.map((sub) => {
                     const cust = customers.find((c) => c.id === sub.customerId);
                     return (
-                      <tr key={sub.id} className="hover:bg-gray-50/50">
+                      <tr key={sub.id} className="hover:bg-surface-subtle/50 transition-colors">
                         <td className="px-3 py-2.5 font-mono font-medium text-navy">
                           <Link to={`/admin/subscriptions/${sub.id}`} className="hover:underline">
                             {sub.subscriptionNumber}
@@ -197,10 +197,10 @@ export default function PlanDetailPage() {
                             {cust?.company || cust?.name}
                           </Link>
                         </td>
-                        <td className="px-3 py-2.5 text-text-secondary">
+                        <td className="px-3 py-2.5 text-text-secondary font-mono">
                           {formatDate(sub.startDate)}
                         </td>
-                        <td className="px-3 py-2.5 text-right font-semibold text-navy">
+                        <td className="px-3 py-2.5 text-right font-bold text-navy font-mono tabular-nums">
                           {formatCurrency(sub.recurringAmount)}
                         </td>
                         <td className="px-3 py-2.5">

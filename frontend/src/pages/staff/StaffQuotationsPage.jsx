@@ -53,13 +53,13 @@ export default function StaffQuotationsPage() {
     {
       key: 'expiryDate',
       label: 'Valid Until',
-      render: (val) => <span className="text-xs text-text-secondary">{formatDate(val)}</span>,
+      render: (val) => <span className="font-mono text-xs text-text-secondary">{formatDate(val)}</span>,
     },
     {
       key: 'totalAmount',
       label: 'Total Value',
       align: 'right',
-      render: (val) => <span className="font-bold text-navy text-xs">{formatCurrency(val)}</span>,
+      render: (val) => <span className="font-mono tabular-nums font-bold text-navy text-xs">{formatCurrency(val)}</span>,
     },
     {
       key: 'status',
@@ -74,21 +74,21 @@ export default function StaffQuotationsPage() {
       render: (_, row) => (
         <Link
           to={`/admin/quotations/${row.id}`}
-          className="p-1.5 rounded-lg text-text-secondary hover:text-action hover:bg-blue-50 transition-colors inline-block"
+          className="p-1 rounded text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-colors inline-block"
         >
-          <Eye className="w-4 h-4" />
+          <Eye className="w-3.5 h-3.5" />
         </Link>
       ),
     },
   ];
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-navy">
+    <div className="space-y-4">
+      <div className="pb-1 border-b border-border">
+        <h1 className="text-xl font-bold tracking-tight text-navy">
           Portfolio Quotations
         </h1>
-        <p className="text-sm text-text-secondary mt-0.5">
+        <p className="text-xs text-text-secondary mt-0.5">
           Quotations and pricing proposals generated for your assigned customer accounts.
         </p>
       </div>

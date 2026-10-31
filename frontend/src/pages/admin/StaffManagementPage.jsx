@@ -131,7 +131,7 @@ export default function StaffManagementPage() {
       label: 'Operational Role',
       sortable: true,
       render: (val) => (
-        <span className="font-medium text-xs text-text-primary px-2 py-0.5 rounded bg-gray-100">
+        <span className="font-medium text-xs text-text-primary px-2 py-0.5 rounded bg-surface-subtle border border-border">
           {val}
         </span>
       ),
@@ -141,7 +141,7 @@ export default function StaffManagementPage() {
       label: 'Assigned Accounts',
       align: 'center',
       render: (val = []) => (
-        <span className="font-semibold text-xs px-2 py-0.5 rounded-full bg-blue-50 text-action">
+        <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-action-subtle text-action border border-action/20">
           {val.length} accounts
         </span>
       ),
@@ -170,24 +170,24 @@ export default function StaffManagementPage() {
         <button
           type="button"
           onClick={() => handleOpenEdit(row)}
-          className="p-1.5 rounded-lg text-text-secondary hover:text-warning hover:bg-amber-50 transition-colors cursor-pointer"
+          className="p-1 rounded text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-colors cursor-pointer"
           title="Edit Staff Member"
         >
-          <Edit2 className="w-4 h-4" />
+          <Edit2 className="w-3.5 h-3.5" />
         </button>
       ),
     },
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1 border-b border-border">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-navy">
+          <h1 className="text-xl font-bold tracking-tight text-navy">
             Internal Staff & Account Owners
           </h1>
-          <p className="text-sm text-text-secondary mt-0.5">
+          <p className="text-xs text-text-secondary mt-0.5">
             Manage commercial team members, role authorizations, and customer portfolio allocations.
           </p>
         </div>

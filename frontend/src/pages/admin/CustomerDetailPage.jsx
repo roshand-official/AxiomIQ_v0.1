@@ -218,31 +218,31 @@ export default function CustomerDetailPage() {
           </div>
 
           {/* Quick Financial Snapshot */}
-          <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-xl border border-border">
+          <div className="flex items-center gap-4 bg-surface-subtle p-3 rounded-md border border-border">
             <div>
-              <p className="text-[11px] text-text-secondary font-medium uppercase tracking-wider">
+              <p className="text-[10px] text-text-secondary font-semibold uppercase tracking-wider">
                 Total Invoiced
               </p>
-              <p className="text-base font-bold text-navy mt-0.5">
+              <p className="text-sm font-bold text-navy font-mono tabular-nums mt-0.5">
                 {formatCurrency(totalInvoiced)}
               </p>
             </div>
-            <div className="w-px h-8 bg-border" />
+            <div className="w-px h-6 bg-border" />
             <div>
-              <p className="text-[11px] text-text-secondary font-medium uppercase tracking-wider">
+              <p className="text-[10px] text-text-secondary font-semibold uppercase tracking-wider">
                 Total Paid
               </p>
-              <p className="text-base font-bold text-success mt-0.5">
+              <p className="text-sm font-bold text-success font-mono tabular-nums mt-0.5">
                 {formatCurrency(totalPaid)}
               </p>
             </div>
-            <div className="w-px h-8 bg-border" />
+            <div className="w-px h-6 bg-border" />
             <div>
-              <p className="text-[11px] text-text-secondary font-medium uppercase tracking-wider">
+              <p className="text-[10px] text-text-secondary font-semibold uppercase tracking-wider">
                 Outstanding
               </p>
               <p
-                className={`text-base font-bold mt-0.5 ${
+                className={`text-sm font-bold font-mono tabular-nums mt-0.5 ${
                   totalOutstanding > 0 ? 'text-danger' : 'text-text-muted'
                 }`}
               >

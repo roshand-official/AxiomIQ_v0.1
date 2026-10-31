@@ -30,23 +30,23 @@ export default function PortalRenewalsPage() {
   };
 
   return (
-    <div className="space-y-6 max-w-4xl">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-navy">
+    <div className="space-y-4 max-w-4xl">
+      <div className="pb-1 border-b border-border">
+        <h1 className="text-xl font-bold tracking-tight text-navy">
           Renewal Requests & Status
         </h1>
-        <p className="text-sm text-text-secondary mt-0.5">
+        <p className="text-xs text-text-secondary mt-0.5">
           Track upcoming contract expiration schedules and submit renewal authorizations.
         </p>
       </div>
 
       {/* Active Subscriptions eligible for renewal */}
-      <div className="card p-5">
-        <h3 className="font-semibold text-sm text-navy mb-3">
+      <div className="card p-4">
+        <h3 className="font-semibold text-xs text-navy uppercase tracking-wider mb-2.5">
           Subscriptions Eligible for Forward Renewal
         </h3>
 
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           {mySubs.map((sub) => {
             const hasPendingRenewal = myRenewals.some(
               (r) => r.subscriptionId === sub.id && r.status === 'requested'
@@ -55,7 +55,7 @@ export default function PortalRenewalsPage() {
             return (
               <div
                 key={sub.id}
-                className="p-4 rounded-xl border border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gray-50/50"
+                className="p-3 rounded-lg border border-border flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-surface-subtle/50"
               >
                 <div>
                   <div className="flex items-center gap-2">
@@ -65,13 +65,13 @@ export default function PortalRenewalsPage() {
                     <StatusBadge status={sub.status} />
                   </div>
                   <p className="text-xs text-text-secondary mt-1">
-                    Renewal Target Date: <span className="font-semibold text-navy">{formatDate(sub.expiryDate || sub.nextBillingDate)}</span> • Value:{' '}
-                    <span className="font-bold text-navy">{formatCurrency(sub.recurringAmount)}</span>
+                    Renewal Target Date: <span className="font-mono font-semibold text-navy">{formatDate(sub.expiryDate || sub.nextBillingDate)}</span> • Value:{' '}
+                    <span className="font-mono tabular-nums font-bold text-navy">{formatCurrency(sub.recurringAmount)}</span>
                   </p>
                 </div>
 
                 {hasPendingRenewal ? (
-                  <span className="badge badge-warning text-xs py-1 px-3">
+                  <span className="badge badge-warning text-xs py-1 px-2.5">
                     Renewal Requested • Pending Approval
                   </span>
                 ) : (
@@ -92,19 +92,19 @@ export default function PortalRenewalsPage() {
 
       {/* Renewal History Log */}
       <div className="card overflow-hidden">
-        <div className="p-4 border-b border-border bg-gray-50">
-          <h3 className="font-semibold text-sm text-navy">
+        <div className="p-3 border-b border-border bg-surface-subtle">
+          <h3 className="font-semibold text-xs text-navy uppercase tracking-wider">
             Renewal Log & History ({myRenewals.length})
           </h3>
         </div>
 
         <table className="w-full text-left border-collapse text-xs">
           <thead>
-            <tr className="bg-gray-50 border-b border-border text-text-secondary uppercase font-semibold">
-              <th className="px-4 py-2.5">Request Ref #</th>
-              <th className="px-4 py-2.5">Target Date</th>
-              <th className="px-4 py-2.5 text-right">Estimated Amount</th>
-              <th className="px-4 py-2.5">Status</th>
+            <tr className="bg-surface-subtle border-b border-border text-text-secondary uppercase font-semibold text-[11px]">
+              <th className="px-3 py-2.5">Request Ref #</th>
+              <th className="px-3 py-2.5">Target Date</th>
+              <th className="px-3 py-2.5 text-right">Estimated Amount</th>
+              <th className="px-3 py-2.5">Status</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
@@ -116,11 +116,11 @@ export default function PortalRenewalsPage() {
               </tr>
             ) : (
               myRenewals.map((r) => (
-                <tr key={r.id}>
-                  <td className="px-4 py-3 font-mono font-medium text-navy">{r.id}</td>
-                  <td className="px-4 py-3 text-text-secondary">{formatDate(r.renewalDate)}</td>
-                  <td className="px-4 py-3 text-right font-bold text-navy">{formatCurrency(r.amount)}</td>
-                  <td className="px-4 py-3"><StatusBadge status={r.status} /></td>
+                <tr key={r.id} className="hover:bg-surface-subtle/50 transition-colors">
+                  <td className="px-3 py-2.5 font-mono font-medium text-navy">{r.id}</td>
+                  <td className="px-3 py-2.5 text-text-secondary font-mono">{formatDate(r.renewalDate)}</td>
+                  <td className="px-3 py-2.5 text-right font-bold text-navy font-mono tabular-nums">{formatCurrency(r.amount)}</td>
+                  <td className="px-3 py-2.5"><StatusBadge status={r.status} /></td>
                 </tr>
               ))
             )}
