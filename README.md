@@ -33,17 +33,17 @@
 
 </div>
 
-## 🌟 Executive Highlights
+##  Executive Highlights
 
-- **⚡ End-to-End Enterprise Architecture**: Modern React 19 SPA powered by an N-Tier Express.js backend and normalized PostgreSQL database with Prisma ORM.
-- **🔄 Subscription Lifecycle Engine**: Rigid state machine governance (`draft` → `confirmed` → `active` → `paused` → `closed` / `expired`) preventing illegal contract state transitions.
-- **📑 Batch Billing & Invoicing Engine**: Automated billing run orchestration, invoice calculation with dual-tax rules (CGST, SGST, IGST), and credit adjustments.
-- **🛡️ Revenue Risk & Churn Monitor**: Real-time risk detection analyzing overdue dunning invoices, expiring contracts, and failed billing events.
-- **👥 Role-Segregated Portals**: Purpose-built workspaces for **Administrators**, **Internal Account Managers (Staff)**, and **Customers (Self-Service)**.
+- ** End-to-End Enterprise Architecture**: Modern React 19 SPA powered by an N-Tier Express.js backend and normalized PostgreSQL database with Prisma ORM.
+- ** Subscription Lifecycle Engine**: Rigid state machine governance (`draft` → `confirmed` → `active` → `paused` → `closed` / `expired`) preventing illegal contract state transitions.
+- ** Batch Billing & Invoicing Engine**: Automated billing run orchestration, invoice calculation with dual-tax rules (CGST, SGST, IGST), and credit adjustments.
+- ** Revenue Risk & Churn Monitor**: Real-time risk detection analyzing overdue dunning invoices, expiring contracts, and failed billing events.
+- ** Role-Segregated Portals**: Purpose-built workspaces for **Administrators**, **Internal Account Managers (Staff)**, and **Customers (Self-Service)**.
 
 ---
 
-## 🏛️ System Architecture
+##  System Architecture
 
 ```mermaid
 flowchart TB
@@ -92,7 +92,7 @@ stateDiagram-v2
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - **Node.js**: `v18.x` or `v20.x` LTS
@@ -135,7 +135,7 @@ npm run dev
 
 ---
 
-## 🔑 Demo Access Accounts
+##  Demo Access Accounts
 
 Use instant one-click login on `/login` or enter credentials manually:
 
@@ -147,7 +147,7 @@ Use instant one-click login on `/login` or enter credentials manually:
 
 ---
 
-## 💻 Key Features
+##  Key Features
 
 ### 1. Executive Operations & Analytics
 - **Live KPI Dashboard**: Instant visibility into Monthly Recurring Revenue (MRR), Annual Recurring Revenue (ARR), Active Contract counts, and Accounts Receivable (AR) aging.
@@ -190,7 +190,7 @@ AxiomIQ exposes a standard RESTful API on port 5000:
 
 ---
 
-## 📁 Repository Directory Structure
+##  Repository Directory Structure
 
 ```text
 AxiomIQ_v0.1/
@@ -228,7 +228,7 @@ AxiomIQ_v0.1/
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 We welcome community contributions, bug reports, and suggestions! Please review our **[Contributing Guidelines](./CONTRIBUTING.md)** and **[Advanced Git Workflows](./CONTRIBUTING.md#advanced-git-workflows-for-contributors)** before submitting PRs.
 
@@ -241,7 +241,7 @@ We welcome community contributions, bug reports, and suggestions! Please review 
 
 ---
 
-## 📄 License
+## License
 
 Distributed under the **MIT License**. See [`LICENSE`](./LICENSE) for more details.
 
