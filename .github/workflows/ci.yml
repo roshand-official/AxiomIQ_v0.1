@@ -73,10 +73,6 @@ jobs:
         working-directory: ./frontend
         run: npm ci
 
-      - name: Install Platform Bindings for Oxlint
-        working-directory: ./frontend
-        run: npm install --no-save @oxlint/binding-linux-x64-gnu
-
       - name: Run Linter (oxlint)
         working-directory: ./frontend
         run: npm run lint
