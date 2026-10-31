@@ -26,6 +26,7 @@ export default function BillingCenterPage() {
     plans,
     invoices,
     billingEvents,
+    billingCycles,
     executeBillingRun,
   } = useApp();
 
@@ -99,9 +100,27 @@ export default function BillingCenterPage() {
     );
   };
 
+  // Derive billing execution history from live billingCycles
+  const billingHistory = useMemo(() => {
+    if (billingCycles && billingCycles.length > 0) {
+      return billingCycles.map((c, i) => ({
+        id: c.id || `BRUN-00${i + 1}`,
+        executionDate: c.billingDate || c.createdAt || new Date().toISOString(),
+        totalProcessed: 1,
+        successful: c.status === 'invoiced' ? 1 : 0,
+        failed: c.status === 'failed' ? 1 : 0,
+        skipped: 0,
+        totalInvoiceValue: c.amount || 0,
+        duration: '1.2s',
+        status: c.status === 'invoiced' ? 'completed' : c.status || 'completed',
+      }));
+    }
+    return [];
+  }, [billingCycles]);
+
   const tabs = [
     { key: 'queue', label: 'Subscription Billing Queue', badge: billingQueue.length, icon: Receipt },
-    { key: 'history', label: 'Billing Run History', badge: mockBillingExecutionHistory.length, icon: Clock },
+    { key: 'history', label: 'Billing Run History', badge: billingHistory.length, icon: Clock },
     { key: 'events', label: 'Live Billing Events', badge: billingEvents.length, icon: AlertCircle },
   ];
 
@@ -297,7 +316,14 @@ export default function BillingCenterPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {mockBillingExecutionHistory.map((run) => (
+              {billingHistory.length === 0 ? (
+                <tr>
+                  <td colSpan="8" className="px-4 py-8 text-center text-text-muted">
+                    No billing runs executed yet. Trigger a billing run to record execution history.
+                  </td>
+                </tr>
+              ) : (
+                billingHistory.map((run) => (
                 <tr key={run.id} className="hover:bg-gray-50/50">
                   <td className="px-4 py-3 font-mono font-medium text-navy">{run.id}</td>
                   <td className="px-4 py-3 text-text-secondary">{formatDateTime(run.executionDate)}</td>
@@ -310,7 +336,7 @@ export default function BillingCenterPage() {
                   <td className="px-4 py-3 text-text-secondary">{run.duration}</td>
                   <td className="px-4 py-3"><StatusBadge status={run.status} /></td>
                 </tr>
-              ))}
+              )))}
             </tbody>
           </table>
         </div>

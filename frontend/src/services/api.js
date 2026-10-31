@@ -25,6 +25,9 @@ async function request(endpoint, options = {}) {
   const data = await response.json().catch(() => null);
 
   if (!response.ok) {
+    if (response.status === 401) {
+      localStorage.removeItem('axiomiq_token');
+    }
     const errorMsg = data?.message || `HTTP ${response.status}: Request failed`;
     const error = new Error(errorMsg);
     error.status = response.status;

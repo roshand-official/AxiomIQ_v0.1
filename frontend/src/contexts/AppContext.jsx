@@ -28,6 +28,12 @@ export function AppProvider({ children }) {
 
   // ─── Fetch Live Data from PostgreSQL Backend ───────────────────────────
   const fetchLiveData = useCallback(async () => {
+    const token = localStorage.getItem('axiomiq_token');
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
       const results = await Promise.allSettled([
@@ -92,6 +98,9 @@ export function AppProvider({ children }) {
 
   useEffect(() => {
     fetchLiveData();
+    const handleAuthChange = () => fetchLiveData();
+    window.addEventListener('axiomiq_auth_change', handleAuthChange);
+    return () => window.removeEventListener('axiomiq_auth_change', handleAuthChange);
   }, [fetchLiveData]);
 
   // ─── Generic State Helpers ─────────────────────────────────────────────

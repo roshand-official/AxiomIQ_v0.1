@@ -55,6 +55,7 @@ export function AuthProvider({ children }) {
           role: res.data.user.role?.toLowerCase(),
         };
         setUser(profile);
+        window.dispatchEvent(new Event('axiomiq_auth_change'));
         return { success: true, user: profile };
       }
       return { success: false, error: 'Authentication failed' };
@@ -81,6 +82,7 @@ export function AuthProvider({ children }) {
   const logout = useCallback(() => {
     localStorage.removeItem('axiomiq_token');
     setUser(null);
+    window.dispatchEvent(new Event('axiomiq_auth_change'));
   }, []);
 
   const switchRole = useCallback(async (role) => {
