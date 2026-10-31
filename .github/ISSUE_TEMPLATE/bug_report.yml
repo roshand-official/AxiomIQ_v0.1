@@ -1,0 +1,83 @@
+name: "🐛 Bug Report"
+description: File a reproducible bug report to help improve AxiomIQ
+title: "[BUG]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report an issue with **AxiomIQ**!
+        Please fill out this form as completely as possible to help us triage quickly.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected Component
+      description: Which part of the AxiomIQ platform is experiencing the issue?
+      options:
+        - "Frontend UI / Dashboard"
+        - "Backend REST API / Controllers"
+        - "Database / Prisma Schema / Seed"
+        - "Billing Engine / Invoicing"
+        - "Customer Portal / Self-Service"
+        - "Staff Workspace"
+        - "Authentication / RBAC"
+        - "Documentation / CI/CD"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: "e.g., When navigating to the Billing Center and executing a billing run..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps To Reproduce
+      description: Provide step-by-step instructions to reproduce the behavior.
+      value: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or Error Logs
+      description: Drag and drop screenshots or paste browser console / server logs here.
+      placeholder: "Paste console trace, error logs, or network payloads here..."
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment Info
+      description: Node version, OS, Browser, PostgreSQL version.
+      placeholder: "Node.js v20.x, Windows 11 / Ubuntu 22.04, Chrome 122, PostgreSQL 16"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-Submission Checklist
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate.
+          required: true
+        - label: This issue does not contain private passwords, API keys, or secrets.
+          required: true

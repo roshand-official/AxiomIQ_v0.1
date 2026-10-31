@@ -1,0 +1,38 @@
+name: Automated Release & Changelog
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    name: Publish GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Build Frontend Artifacts
+        working-directory: ./frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Generate Release Notes & Publish
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release ${{ github.ref_name }}
+          generate_release_notes: true
+          draft: false
+          prerelease: false

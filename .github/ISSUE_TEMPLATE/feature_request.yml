@@ -1,0 +1,57 @@
+name: "💡 Feature Request"
+description: Propose a new feature, architecture enhancement, or UX improvement for AxiomIQ
+title: "[FEATURE]: "
+labels: ["enhancement", "feature-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We welcome proposals to make **AxiomIQ** an even more capable subscription management & recurring billing platform!
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      description: What domain does this feature proposal belong to?
+      options:
+        - "Billing & Invoicing Engine"
+        - "Subscription Lifecycle & State Machine"
+        - "Payment Gateways & Reconciliation (Razorpay, Stripe)"
+        - "Analytics, Forecasting & Reporting"
+        - "Customer Portal & Self-Service"
+        - "Staff & RBAC Governance"
+        - "Developer APIs & Webhooks"
+        - "UI/UX & Design System"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is your feature request related to a problem?
+      description: A clear and concise description of the limitation or workflow bottleneck.
+      placeholder: "e.g., I'm frustrated when trying to handle mid-cycle plan upgrades with prorated tax credits..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution or User Experience
+      description: Describe your proposed solution and how users/administrators will interact with it.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions Considered
+      description: Any alternative concepts, workarounds, or architectural approaches considered.
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution Intent
+      options:
+        - label: I am interested in submitting a Pull Request to implement this feature!
+          required: false

@@ -1,0 +1,51 @@
+name: Security & CodeQL Analysis
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '30 2 * * 1' # Every Monday at 02:30 UTC
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+jobs:
+  codeql-scan:
+    name: CodeQL Security Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+          queries: security-extended,security-and-quality
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  dependency-audit:
+    name: Dependency Vulnerability Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Audit Backend Dependencies
+        working-directory: ./backend
+        run: npm audit --audit-level=high || true
+
+      - name: Audit Frontend Dependencies
+        working-directory: ./frontend
+        run: npm audit --audit-level=high || true
