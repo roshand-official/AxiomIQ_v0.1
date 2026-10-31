@@ -209,9 +209,11 @@ export default function DataTable({
       {pagination && onPageChange && data.length > 0 && (
         <div className="border-t border-border px-5 py-3 bg-white">
           <Pagination
+            currentPage={page}
             page={page}
             pageSize={pageSize}
-            totalCount={totalCount}
+            totalItems={totalCount || data.length}
+            totalCount={totalCount || data.length}
             onPageChange={onPageChange}
             onPageSizeChange={onPageSizeChange}
           />

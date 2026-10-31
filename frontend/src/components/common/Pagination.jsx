@@ -27,31 +27,43 @@ function getPageNumbers(currentPage, totalPages) {
 
 export default function Pagination({
   currentPage,
+  page,
   totalItems,
+  totalCount,
+  total,
   pageSize,
+  limit,
   onPageChange,
   onPageSizeChange,
   pageSizeOptions = PAGE_SIZE_OPTIONS,
   className = '',
 }) {
-  const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
-  const startItem = Math.min((currentPage - 1) * pageSize + 1, totalItems);
-  const endItem = Math.min(currentPage * pageSize, totalItems);
-  const pages = getPageNumbers(currentPage, totalPages);
+  const activePage = Math.max(1, parseInt(currentPage ?? page, 10) || 1);
+  const activePageSize = Math.max(1, parseInt(pageSize ?? limit, 10) || 10);
+  const activeTotal = Math.max(0, parseInt(totalItems ?? totalCount ?? total, 10) || 0);
+
+  const totalPages = Math.max(1, Math.ceil(activeTotal / activePageSize));
+  const startItem = activeTotal === 0 ? 0 : Math.min((activePage - 1) * activePageSize + 1, activeTotal);
+  const endItem = Math.min(activePage * activePageSize, activeTotal);
+  const pages = getPageNumbers(activePage, totalPages);
 
   return (
     <div className={`flex flex-col sm:flex-row items-center justify-between gap-3 ${className}`}>
       {/* Left: items info + page size */}
       <div className="flex items-center gap-3 text-sm text-text-secondary">
         <span>
-          Showing <span className="font-medium text-text-primary">{startItem}–{endItem}</span> of{' '}
-          <span className="font-medium text-text-primary">{totalItems}</span>
+          Showing{' '}
+          <span className="font-medium text-text-primary">
+            {activeTotal === 0 ? '0' : `${startItem}–${endItem}`}
+          </span>{' '}
+          of{' '}
+          <span className="font-medium text-text-primary">{activeTotal}</span>
         </span>
         {onPageSizeChange && (
           <div className="flex items-center gap-1.5">
             <span className="text-text-muted">|</span>
             <select
-              value={pageSize}
+              value={activePageSize}
               onChange={(e) => onPageSizeChange(Number(e.target.value))}
               className="select-field py-1 px-2 text-xs w-auto min-w-0"
             >
@@ -68,38 +80,38 @@ export default function Pagination({
       {/* Right: page buttons */}
       <div className="flex items-center gap-1">
         <button
-          onClick={() => onPageChange(currentPage - 1)}
-          disabled={currentPage <= 1}
-          className="btn-ghost btn-sm p-1.5"
+          onClick={() => onPageChange && onPageChange(activePage - 1)}
+          disabled={activePage <= 1}
+          className="btn-ghost btn-sm p-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
           aria-label="Previous page"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
 
-        {pages.map((page, i) =>
-          page === '...' ? (
+        {pages.map((p, i) =>
+          p === '...' ? (
             <span key={`ellipsis-${i}`} className="px-2 text-sm text-text-muted select-none">
               …
             </span>
           ) : (
             <button
-              key={page}
-              onClick={() => onPageChange(page)}
+              key={p}
+              onClick={() => onPageChange && onPageChange(p)}
               className={`btn-sm min-w-[32px] h-8 flex items-center justify-center rounded-md text-sm font-medium transition-colors ${
-                page === currentPage
+                p === activePage
                   ? 'bg-action text-white shadow-sm'
                   : 'text-text-secondary hover:bg-gray-100 hover:text-text-primary'
               }`}
             >
-              {page}
+              {p}
             </button>
           )
         )}
 
         <button
-          onClick={() => onPageChange(currentPage + 1)}
-          disabled={currentPage >= totalPages}
-          className="btn-ghost btn-sm p-1.5"
+          onClick={() => onPageChange && onPageChange(activePage + 1)}
+          disabled={activePage >= totalPages}
+          className="btn-ghost btn-sm p-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
           aria-label="Next page"
         >
           <ChevronRight className="w-4 h-4" />

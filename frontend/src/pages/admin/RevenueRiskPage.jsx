@@ -208,7 +208,7 @@ export default function RevenueRiskPage() {
         </div>
 
         <span className="text-xs text-text-muted font-mono tabular-nums">
-          Showing {filteredRisks.length} flagged risk items
+          Showing {filteredRisks?.length || 0} flagged risk items
         </span>
       </div>
 

@@ -15,13 +15,15 @@ const currencyFormatterWithDecimals = new Intl.NumberFormat('en-IN', {
 });
 
 export function formatCurrency(amount, decimals = false) {
-  if (amount == null || isNaN(amount)) return '₹0';
-  return decimals ? currencyFormatterWithDecimals.format(amount) : currencyFormatter.format(amount);
+  const num = Number(amount);
+  if (amount == null || isNaN(num)) return '₹0';
+  return decimals ? currencyFormatterWithDecimals.format(num) : currencyFormatter.format(num);
 }
 
 export function formatNumber(num) {
-  if (num == null || isNaN(num)) return '0';
-  return new Intl.NumberFormat('en-IN').format(num);
+  const val = Number(num);
+  if (num == null || isNaN(val)) return '0';
+  return new Intl.NumberFormat('en-IN').format(val);
 }
 
 export function formatDate(dateStr) {
