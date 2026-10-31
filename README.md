@@ -8,28 +8,28 @@
 
 ### Prerequisites
 - Node.js (v18+ recommended)
-- `pnpm` (or `npm` / `yarn`)
+- `npm` (or `pnpm` / `yarn`)
 
 ### Installation & Running
 ```bash
 # Navigate to the frontend directory
 cd frontend
 
-# Install dependencies (already installed)
-pnpm install
+# Install dependencies
+npm install
 
 # Start development server
-pnpm dev
+npm run dev
 ```
 The application will launch at `http://localhost:5173/`.
 
 ### Production Build
 ```bash
 # Build production bundle
-pnpm build
+npm run build
 
 # Preview build
-pnpm preview
+npm run preview
 ```
 
 ---
