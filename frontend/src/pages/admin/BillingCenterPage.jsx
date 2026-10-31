@@ -91,12 +91,18 @@ export default function BillingCenterPage() {
     await new Promise((r) => setTimeout(r, 1200));
 
     const eligibleIds = eligibleSubs.map((s) => s.id);
-    const results = executeBillingRun(selectedBillingDate, eligibleIds);
+    const results = await executeBillingRun(selectedBillingDate, eligibleIds);
+
+    const safeResults = {
+      successful: results?.successful || [],
+      failed: results?.failed || [],
+      skipped: results?.skipped || [],
+    };
 
     setExecuting(false);
-    setExecutionResult(results);
+    setExecutionResult(safeResults);
     toast.success(
-      `Billing complete: ${results.successful.length} invoices generated, ${results.failed.length} failed.`
+      `Billing complete: ${safeResults.successful.length} invoices generated, ${safeResults.failed.length} failed.`
     );
   };
 
@@ -209,20 +215,22 @@ export default function BillingCenterPage() {
             <div>
               <span className="text-text-secondary">Processed:</span>{' '}
               <span className="font-semibold text-text-primary">
-                {executionResult.successful.length + executionResult.failed.length + executionResult.skipped.length}
+                {(executionResult?.successful?.length || 0) +
+                  (executionResult?.failed?.length || 0) +
+                  (executionResult?.skipped?.length || 0)}
               </span>
             </div>
             <div>
               <span className="text-success">Successful:</span>{' '}
-              <span className="font-bold text-success">{executionResult.successful.length}</span>
+              <span className="font-bold text-success">{executionResult?.successful?.length || 0}</span>
             </div>
             <div>
               <span className="text-danger">Failed:</span>{' '}
-              <span className="font-bold text-danger">{executionResult.failed.length}</span>
+              <span className="font-bold text-danger">{executionResult?.failed?.length || 0}</span>
             </div>
             <div>
               <span className="text-text-secondary">Skipped:</span>{' '}
-              <span className="font-semibold text-text-primary">{executionResult.skipped.length}</span>
+              <span className="font-semibold text-text-primary">{executionResult?.skipped?.length || 0}</span>
             </div>
           </div>
         </div>

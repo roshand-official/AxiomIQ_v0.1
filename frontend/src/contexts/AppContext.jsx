@@ -55,33 +55,117 @@ export function AppProvider({ children }) {
       ] = results;
 
       if (custRes.status === 'fulfilled' && custRes.value?.data) {
-        setCustomers(Array.isArray(custRes.value.data) ? custRes.value.data : []);
+        const raw = Array.isArray(custRes.value.data) ? custRes.value.data : [];
+        setCustomers(raw.map(c => ({
+          ...c,
+          status: c.status?.toLowerCase(),
+          totalInvoiced: Number(c.totalInvoiced || 0),
+          amountPaid: Number(c.amountPaid || 0),
+          outstandingBalance: Number(c.outstandingBalance || 0),
+        })));
       }
       if (prodRes.status === 'fulfilled' && prodRes.value?.data) {
         const prodData = Array.isArray(prodRes.value.data) ? prodRes.value.data : [];
-        setProducts(prodData);
+        const normalizedProds = prodData.map(p => ({
+          ...p,
+          status: p.isActive === false ? 'inactive' : 'active',
+          salesPrice: Number(p.salesPrice || 0),
+          costPrice: Number(p.costPrice || 0),
+        }));
+        setProducts(normalizedProds);
         const allVariants = prodData.flatMap(p =>
-          Array.isArray(p.variants) ? p.variants.map(v => ({ ...v, productId: p.id })) : []
+          Array.isArray(p.variants) ? p.variants.map(v => ({
+            ...v,
+            productId: p.id,
+            salesPrice: Number(v.salesPrice || 0),
+            additionalPrice: Number(v.additionalPrice || 0),
+          })) : []
         );
         if (allVariants.length > 0) setProductVariants(allVariants);
       }
       if (planRes.status === 'fulfilled' && planRes.value?.data) {
-        setPlans(Array.isArray(planRes.value.data) ? planRes.value.data : []);
+        const raw = Array.isArray(planRes.value.data) ? planRes.value.data : [];
+        setPlans(raw.map(p => ({
+          ...p,
+          status: p.isActive === false ? 'inactive' : 'active',
+          basePrice: Number(p.basePrice || 0),
+          frequency: p.frequency?.toLowerCase(),
+        })));
       }
       if (quoRes.status === 'fulfilled' && quoRes.value?.data) {
-        setQuotations(Array.isArray(quoRes.value.data) ? quoRes.value.data : []);
+        const raw = Array.isArray(quoRes.value.data) ? quoRes.value.data : [];
+        setQuotations(raw.map(q => ({
+          ...q,
+          status: q.status?.toLowerCase(),
+          subtotal: Number(q.subtotal || 0),
+          taxRate: Number(q.taxRate || 18),
+          taxAmount: Number(q.taxAmount || 0),
+          discountAmount: Number(q.discountAmount || 0),
+          totalAmount: Number(q.totalAmount || 0),
+          lines: q.items || q.lines || [],
+        })));
       }
       if (subRes.status === 'fulfilled' && subRes.value?.data) {
-        setSubscriptions(Array.isArray(subRes.value.data) ? subRes.value.data : []);
+        const raw = Array.isArray(subRes.value.data) ? subRes.value.data : [];
+        setSubscriptions(raw.map(s => ({
+          ...s,
+          status: s.status?.toLowerCase(),
+          recurringAmount: Number(s.recurringAmount || 0),
+          lines: (s.items || s.lines || []).map(item => ({
+            ...item,
+            unitPrice: Number(item.unitPrice || 0),
+            taxRate: Number(item.taxRate || 18),
+            taxAmount: Number(item.taxAmount || 0),
+            discountAmount: Number(item.discountAmount || 0),
+            subtotal: Number(item.subtotal || 0),
+          })),
+        })));
       }
       if (invRes.status === 'fulfilled' && invRes.value?.data) {
-        setInvoices(Array.isArray(invRes.value.data) ? invRes.value.data : []);
+        const raw = Array.isArray(invRes.value.data) ? invRes.value.data : [];
+        setInvoices(raw.map(i => {
+          const tot = Number(i.totalAmount || 0);
+          const paid = Number(i.amountPaid || 0);
+          const out = Number(i.amountOutstanding != null ? i.amountOutstanding : (i.outstandingAmount != null ? i.outstandingAmount : (tot - paid)));
+          return {
+            ...i,
+            status: i.status === 'PARTIALLY_PAID' ? 'partially_paid' : i.status?.toLowerCase(),
+            subtotal: Number(i.subtotal || 0),
+            taxRate: Number(i.taxRate || 18),
+            taxAmount: Number(i.taxAmount || 0),
+            discountAmount: Number(i.discountAmount || 0),
+            totalAmount: tot,
+            amountPaid: paid,
+            outstandingAmount: Math.max(0, out),
+            lines: (i.items || i.lines || []).map(item => ({
+              ...item,
+              unitPrice: Number(item.unitPrice || 0),
+              taxRate: Number(item.taxRate || 18),
+              taxAmount: Number(item.taxAmount || 0),
+              discountAmount: Number(item.discountAmount || 0),
+              subtotal: Number(item.subtotal || 0),
+            })),
+          };
+        }));
       }
       if (payRes.status === 'fulfilled' && payRes.value?.data) {
-        setPayments(Array.isArray(payRes.value.data) ? payRes.value.data : []);
+        const raw = Array.isArray(payRes.value.data) ? payRes.value.data : [];
+        setPayments(raw.map(p => ({
+          ...p,
+          status: p.status === 'SUCCESS' ? 'completed' : p.status?.toLowerCase(),
+          amount: Number(p.amount || 0),
+          method: p.paymentMethod || p.method || 'Bank Transfer',
+        })));
       }
       if (discRes.status === 'fulfilled' && discRes.value?.data) {
-        setDiscounts(Array.isArray(discRes.value.data) ? discRes.value.data : []);
+        const raw = Array.isArray(discRes.value.data) ? discRes.value.data : [];
+        setDiscounts(raw.map(d => ({
+          ...d,
+          value: Number(d.value || 0),
+          minPurchase: Number(d.minPurchase || 0),
+          status: d.isActive ? 'active' : 'inactive',
+          type: d.type === 'PERCENTAGE' ? 'percentage' : 'fixed',
+        })));
       }
       if (staffRes.status === 'fulfilled' && staffRes.value?.data) {
         setStaff(Array.isArray(staffRes.value.data) ? staffRes.value.data : []);
@@ -526,7 +610,15 @@ export function AppProvider({ children }) {
       const res = await api.billing.execute(billingDate);
       toast.success('Automated billing run completed successfully via AxiomIQ Engine');
       await fetchLiveData();
-      return res.data;
+      const runData = res?.data || {};
+      const successCount = runData.summary?.successCount || runData.createdInvoices?.length || 0;
+      const failedCount = runData.summary?.failedCount || 0;
+      const skippedCount = runData.summary?.skippedCount || 0;
+      return {
+        successful: runData.createdInvoices || Array(successCount).fill({}),
+        failed: Array(failedCount).fill({}),
+        skipped: Array(skippedCount).fill({}),
+      };
     } catch (err) {
       console.warn('API billing error, falling back to local run generation:', err.message);
       const results = { successful: [], failed: [], skipped: [] };

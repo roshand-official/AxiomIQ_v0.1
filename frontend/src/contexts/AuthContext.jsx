@@ -14,12 +14,28 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Check existing token on initial load
+  // Check existing token on initial load, or auto-authenticate admin on development startup
   useEffect(() => {
     const initAuth = async () => {
       const token = localStorage.getItem('axiomiq_token');
       if (!token) {
-        setIsLoading(false);
+        try {
+          const res = await api.auth.login(DEMO_CREDENTIALS.admin.email, DEMO_CREDENTIALS.admin.password);
+          if (res?.data?.token) {
+            localStorage.setItem('axiomiq_token', res.data.token);
+            const profile = {
+              ...res.data.user,
+              name: `${res.data.user.firstName || ''} ${res.data.user.lastName || ''}`.trim() || res.data.user.email,
+              role: res.data.user.role?.toLowerCase(),
+            };
+            setUser(profile);
+            window.dispatchEvent(new Event('axiomiq_auth_change'));
+          }
+        } catch (err) {
+          console.warn('Initial auto-auth notice:', err.message);
+        } finally {
+          setIsLoading(false);
+        }
         return;
       }
 
