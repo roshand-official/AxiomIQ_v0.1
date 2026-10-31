@@ -1,5 +1,5 @@
 {
-  "name": "AxiomIQqi-backend",
+  "name": "axiomiq-backend",
   "version": "1.0.0",
   "description": "AxiomIQ Subscription Management System - Production-Grade N-Layered Express.js & PostgreSQL Backend",
   "main": "src/server.js",
