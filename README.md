@@ -170,7 +170,7 @@ Use instant one-click login on `/login` or enter credentials manually:
 
 ---
 
-## 🔌 API Specification
+## API Specification
 
 AxiomIQ exposes a standard RESTful API on port 5000:
 
