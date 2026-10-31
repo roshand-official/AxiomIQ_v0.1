@@ -30,7 +30,7 @@ jobs:
           npm run build
 
       - name: Generate Release Notes & Publish
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: Release ${{ github.ref_name }}
           generate_release_notes: true
