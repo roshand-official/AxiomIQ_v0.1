@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useApp } from '../../contexts/AppContext';
-import { mockCustomerPortalData } from '../../data/mockData';
 import { formatCurrency, formatDate } from '../../utils/formatters';
 import { StatusBadge, KPICard } from '../../components/common';
 

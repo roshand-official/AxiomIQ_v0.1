@@ -16,7 +16,6 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useApp } from '../../contexts/AppContext';
-import { mockBillingExecutionHistory } from '../../data/mockData';
 import { formatCurrency, formatDate, formatDateTime } from '../../utils/formatters';
 import { StatusBadge, Modal, Tabs } from '../../components/common';
 

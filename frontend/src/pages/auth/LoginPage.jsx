@@ -4,11 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { Zap, Eye, EyeOff, Shield, Briefcase, Users, ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
 import { useAuth } from '../../contexts/AuthContext';
-import { mockUsers } from '../../data/mockData';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('admin@brightloop.in');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('admin@anoimqi.io');
+  const [password, setPassword] = useState('Password@123');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -53,7 +52,7 @@ export default function LoginPage() {
   };
 
   const handleForgotPassword = () => {
-    toast.info('Demo Mode: Password reset email has been simulated.');
+    toast.info('Password reset dispatch simulated.');
   };
 
   return (
@@ -64,7 +63,7 @@ export default function LoginPage() {
           <Zap className="w-7 h-7 text-white fill-white" />
         </div>
         <h2 className="text-2xl font-bold tracking-tight text-navy">
-          Brightloop
+          AnoimQI
         </h2>
         <p className="mt-1 text-sm text-text-secondary">
           Subscription Management & Recurring Revenue OS
@@ -226,7 +225,7 @@ export default function LoginPage() {
 
         {/* Demo credentials hint */}
         <p className="text-center text-[11px] text-text-secondary mt-6">
-          Pre-populated credentials from <span className="font-mono text-navy font-medium">mockData.js</span>. No server required.
+          Connected to <span className="font-mono text-navy font-medium">AnoimQI PostgreSQL & Prisma Engine</span>.
         </p>
       </div>
     </div>

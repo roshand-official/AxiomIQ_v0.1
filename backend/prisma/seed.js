@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Starting Brightloop Database Seeding...');
+  console.log('🌱 Starting AnoimQI Database Seeding...');
 
   // Clean existing records in reverse dependency order
   await prisma.notification.deleteMany();
@@ -33,7 +33,7 @@ async function main() {
   console.log('👤 Seeding Users & Staff Profiles...');
   const adminUser = await prisma.user.create({
     data: {
-      email: 'admin@brightloop.io',
+      email: 'admin@anoimqi.io',
       passwordHash,
       role: 'ADMIN',
       firstName: 'Vikram',
@@ -44,7 +44,7 @@ async function main() {
 
   const staffUser1 = await prisma.user.create({
     data: {
-      email: 'rahul.verma@brightloop.io',
+      email: 'rahul.verma@anoimqi.io',
       passwordHash,
       role: 'STAFF',
       firstName: 'Rahul',
@@ -55,7 +55,7 @@ async function main() {
 
   const staffUser2 = await prisma.user.create({
     data: {
-      email: 'priya.sharma@brightloop.io',
+      email: 'priya.sharma@anoimqi.io',
       passwordHash,
       role: 'STAFF',
       firstName: 'Priya',
@@ -185,7 +185,7 @@ async function main() {
   const prodBusinessSuite = await prisma.product.create({
     data: {
       internalRef: 'PROD-BS-01',
-      name: 'Brightloop Business Suite Pro',
+      name: 'AnoimQI Business Suite Pro',
       type: 'SOFTWARE_SUBSCRIPTION',
       salesPrice: 12000.00,
       costPrice: 4500.00,
@@ -248,7 +248,7 @@ async function main() {
       type: 'ONE_TIME',
       salesPrice: 25000.00,
       costPrice: 8000.00,
-      description: 'Full white-glove ETL ingestion from spreadsheets or legacy CRM into Brightloop.',
+      description: 'Full white-glove ETL ingestion from spreadsheets or legacy CRM into AnoimQI.',
       isSubscriptionAvailable: false,
     },
   });
@@ -460,7 +460,7 @@ async function main() {
         create: [
           {
             productId: prodBusinessSuite.id,
-            description: 'Brightloop Business Suite Pro (Odoo Brand Edition)',
+            description: 'AnoimQI Business Suite Pro (Odoo Brand Edition)',
             quantity: 1,
             unitPrice: 12560.00,
             taxRate: 18.00,
@@ -515,7 +515,7 @@ async function main() {
         create: [
           {
             productId: prodBusinessSuite.id,
-            description: 'Brightloop Business Suite Pro',
+            description: 'AnoimQI Business Suite Pro',
             quantity: 1,
             unitPrice: 12000.00,
             taxRate: 18.00,
@@ -570,7 +570,7 @@ async function main() {
         create: [
           {
             productId: prodBusinessSuite.id,
-            description: 'Brightloop Business Suite Pro',
+            description: 'AnoimQI Business Suite Pro',
             quantity: 1,
             unitPrice: 12000.00,
             taxRate: 18.00,
@@ -618,10 +618,10 @@ async function main() {
     },
   });
 
-  console.log('✅ Brightloop Database Seeding Finished Successfully!');
+  console.log('✅ AnoimQI Database Seeding Finished Successfully!');
   console.log('🔑 Credentials Seeded:');
-  console.log('   - Admin:    admin@brightloop.io       | Password@123');
-  console.log('   - Staff:    rahul.verma@brightloop.io | Password@123');
+  console.log('   - Admin:    admin@anoimqi.io       | Password@123');
+  console.log('   - Staff:    rahul.verma@anoimqi.io | Password@123');
   console.log('   - Customer: rajesh@apexsolutions.in   | Password@123');
 }
 

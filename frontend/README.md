@@ -1,4 +1,4 @@
-# Brightloop Frontend
+# AnoimQI Frontend
 
 Please refer to the root [README.md](../README.md) for complete architecture documentation, technology stack specifications, and module guide.
 

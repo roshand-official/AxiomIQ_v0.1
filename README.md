@@ -1,6 +1,6 @@
-# Brightloop Subscription Management System — Frontend Architecture
+# AnoimQI Subscription Management System — Frontend Architecture
 
-**Brightloop** is a professional B2B SaaS subscription management and recurring revenue operations platform designed with modern financial and operational principles (inspired by Stripe Dashboard, Linear, and Ramp).
+**AnoimQI** is a professional B2B SaaS subscription management and recurring revenue operations platform designed with modern financial and operational principles (inspired by Stripe Dashboard, Linear, and Ramp).
 
 ---
 
@@ -109,8 +109,8 @@ Use one-click instant sign-in on the login page (`/login`) or manual credentials
 
 | Role | Email | Password | Scope |
 |---|---|---|---|
-| **Administrator** | `admin@brightloop.in` | `admin123` | Full system access |
-| **Internal Staff** | `staff@brightloop.in` | `staff123` | Assigned accounts portfolio |
+| **Administrator** | `admin@anoimqi.io` | `Password@123` | Full system access |
+| **Internal Staff** | `staff@anoimqi.io` | `Password@123` | Assigned accounts portfolio |
 | **Customer** | `amit@techsolutions.in` | `customer123` | Isolated self-service portal |
 
 ---

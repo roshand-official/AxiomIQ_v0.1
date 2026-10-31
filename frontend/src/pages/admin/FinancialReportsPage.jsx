@@ -13,11 +13,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useApp } from '../../contexts/AppContext';
-import {
-  mockRevenueChartData,
-  mockPaymentChartData,
-  mockProductPerformanceData,
-} from '../../data/mockData';
+import { deriveChartMetrics } from '../../utils/analyticsDerivations';
 import { formatCurrency, formatDate, downloadCSV } from '../../utils/formatters';
 import { KPICard, Tabs } from '../../components/common';
 import { RevenueChart, PaymentChart } from '../../components/charts';
@@ -33,6 +29,10 @@ export default function FinancialReportsPage() {
   } = useApp();
 
   const [activeReportTab, setActiveReportTab] = useState('summary');
+
+  const { revenueChartData, paymentChartData, productPerformanceData } = useMemo(() => {
+    return deriveChartMetrics({ invoices, payments, subscriptions, products });
+  }, [invoices, payments, subscriptions, products]);
   const [dateRange, setDateRange] = useState('2026-FY');
 
   // Strict Accounting Aggregations
@@ -111,7 +111,7 @@ export default function FinancialReportsPage() {
       { Metric: 'Total Cash Collected', Value: totalCollected },
       { Metric: 'Outstanding Receivables', Value: totalOutstanding },
     ];
-    downloadCSV(data, 'Brightloop_Financial_Summary');
+    downloadCSV(data, 'AnoimQI_Financial_Summary');
     toast.success('Financial report exported to CSV');
   };
 
@@ -167,7 +167,7 @@ export default function FinancialReportsPage() {
         <div>
           <span className="font-bold">Accounting Note on Revenue Segregation:</span>
           <p className="text-text-secondary mt-0.5 leading-relaxed">
-            Brightloop strictly separates <span className="font-semibold text-text-primary">Contracted Recurring Value</span> (forward commitments),{' '}
+            AnoimQI strictly separates <span className="font-semibold text-text-primary">Contracted Recurring Value</span> (forward commitments),{' '}
             <span className="font-semibold text-text-primary">Invoiced Revenue</span> (tax invoices issued per GST rules), and{' '}
             <span className="font-semibold text-text-primary">Collected Cash</span> (realized bank receipts). These metrics are non-interchangeable.
           </p>
@@ -222,7 +222,7 @@ export default function FinancialReportsPage() {
             <p className="text-xs text-text-secondary mb-4">
               Comparing monthly tax billings against cash receipts across 2026
             </p>
-            <RevenueChart data={mockRevenueChartData} height={320} />
+            <RevenueChart data={revenueChartData} height={320} />
           </div>
 
           <div className="card p-6">
@@ -232,7 +232,7 @@ export default function FinancialReportsPage() {
             <p className="text-xs text-text-secondary mb-4">
               Monthly breakdown of realized collections versus outstanding unpaid balances
             </p>
-            <PaymentChart data={mockPaymentChartData} height={300} />
+            <PaymentChart data={paymentChartData} height={300} />
           </div>
         </div>
       )}
@@ -245,7 +245,7 @@ export default function FinancialReportsPage() {
               Product Revenue Performance Breakdown
             </h3>
             <span className="text-xs text-text-secondary">
-              Aggregated from mockProductPerformanceData
+              Aggregated from live catalog subscriptions
             </span>
           </div>
 
@@ -259,7 +259,7 @@ export default function FinancialReportsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {mockProductPerformanceData.map((item) => (
+              {productPerformanceData.map((item) => (
                 <tr key={item.productId} className="hover:bg-gray-50/50">
                   <td className="px-4 py-3 font-medium text-navy">
                     {item.name}

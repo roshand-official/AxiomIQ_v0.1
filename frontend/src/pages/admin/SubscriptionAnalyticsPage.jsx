@@ -10,11 +10,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { useApp } from '../../contexts/AppContext';
-import {
-  mockSubscriptionChartData,
-  mockRevenueChartData,
-  mockProductPerformanceData,
-} from '../../data/mockData';
+import { deriveChartMetrics } from '../../utils/analyticsDerivations';
 import { formatCurrency, formatNumber } from '../../utils/formatters';
 import { KPICard } from '../../components/common';
 import {
@@ -24,9 +20,13 @@ import {
 } from '../../components/charts';
 
 export default function SubscriptionAnalyticsPage() {
-  const { subscriptions, customers, plans } = useApp();
+  const { subscriptions, customers, plans, invoices, payments, products } = useApp();
 
   const [datePeriod, setDatePeriod] = useState('2026');
+
+  const { subscriptionChartData, revenueChartData } = useMemo(() => {
+    return deriveChartMetrics({ invoices, payments, subscriptions, products });
+  }, [invoices, payments, subscriptions, products]);
 
   // Metrics
   const activeSubs = subscriptions.filter((s) => s.status === 'active');
@@ -155,7 +155,7 @@ export default function SubscriptionAnalyticsPage() {
           <p className="text-xs text-text-secondary mb-4">
             Active, new activations, pauses, and expiration distribution
           </p>
-          <SubscriptionChart data={mockSubscriptionChartData} height={300} />
+          <SubscriptionChart data={subscriptionChartData} height={300} />
         </div>
 
         {/* Revenue Expansion Trend */}
@@ -166,7 +166,7 @@ export default function SubscriptionAnalyticsPage() {
           <p className="text-xs text-text-secondary mb-4">
             Monthly invoiced vs collected revenue expansion
           </p>
-          <RevenueChart data={mockRevenueChartData} height={300} />
+          <RevenueChart data={revenueChartData} height={300} />
         </div>
       </div>
 

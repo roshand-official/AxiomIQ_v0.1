@@ -97,7 +97,7 @@ export default function InvoicesPage() {
       Outstanding: inv.outstandingAmount,
       Status: inv.status,
     }));
-    downloadCSV(data, 'Brightloop_Invoices');
+    downloadCSV(data, 'AnoimQI_Invoices');
     toast.success('Invoices exported to CSV');
   };
 

@@ -17,11 +17,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import { useApp } from '../../contexts/AppContext';
-import {
-  mockRevenueChartData,
-  mockSubscriptionChartData,
-  mockPaymentChartData,
-} from '../../data/mockData';
+import { deriveChartMetrics } from '../../utils/analyticsDerivations';
 import {
   formatCurrency,
   formatNumber,
@@ -43,10 +39,15 @@ import {
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
-  const { subscriptions, invoices, payments, customers, activities, renewals, billingEvents } = useApp();
+  const { subscriptions, invoices, payments, customers, activities, renewals, billingEvents, products } = useApp();
 
   const [timeRange, setTimeRange] = useState('30d');
   const [activeChartTab, setActiveChartTab] = useState('revenue');
+
+  // Derive dynamic chart data from live state
+  const { revenueChartData, subscriptionChartData, paymentChartData } = useMemo(() => {
+    return deriveChartMetrics({ invoices, payments, subscriptions, products });
+  }, [invoices, payments, subscriptions, products]);
 
   // ─── Calculate Live KPIs from Application State ─────────────────────────────
   const metrics = useMemo(() => {
@@ -57,7 +58,7 @@ export default function AdminDashboard() {
     // Monthly subscriptions = recurringAmount; Yearly subscriptions = recurringAmount / 12
     const mrr = activeSubs.reduce((acc, sub) => {
       // If plan is yearly or amount > 20000, normalize if needed or use recurringAmount based on plan
-      // For Brightloop: Monthly plans recurringAmount is monthly; Annual plans are annualized / 12
+      // For AnoimQI: Monthly plans recurringAmount is monthly; Annual plans are annualized / 12
       const isAnnual = sub.planId === 'PLAN-002' || sub.planId === 'PLAN-005';
       const monthlyVal = isAnnual ? sub.recurringAmount / 12 : sub.recurringAmount;
       return acc + monthlyVal;
@@ -338,13 +339,13 @@ export default function AdminDashboard() {
           </div>
 
           {activeChartTab === 'revenue' && (
-            <RevenueChart data={mockRevenueChartData} height={320} />
+            <RevenueChart data={revenueChartData} height={320} />
           )}
           {activeChartTab === 'subscriptions' && (
-            <SubscriptionChart data={mockSubscriptionChartData} height={320} />
+            <SubscriptionChart data={subscriptionChartData} height={320} />
           )}
           {activeChartTab === 'payments' && (
-            <PaymentChart data={mockPaymentChartData} height={320} />
+            <PaymentChart data={paymentChartData} height={320} />
           )}
         </div>
 

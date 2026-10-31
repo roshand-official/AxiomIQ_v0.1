@@ -1,5 +1,5 @@
 -- ==============================================================================
--- BRIGHTLOOP SUBSCRIPTION MANAGEMENT SYSTEM - DATABASE VERIFICATION SCRIPT
+-- ANOIMQI SUBSCRIPTION MANAGEMENT SYSTEM - DATABASE VERIFICATION SCRIPT
 -- ==============================================================================
 
 \echo '----------------------------------------------------------------------'

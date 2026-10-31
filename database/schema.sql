@@ -1,6 +1,6 @@
 -- ==============================================================================
--- BRIGHTLOOP SUBSCRIPTION MANAGEMENT SYSTEM - COMPLETE POSTGRESQL SCHEMA DDL
--- Database Name: brightloop_db
+-- ANOIMQI SUBSCRIPTION MANAGEMENT SYSTEM - COMPLETE POSTGRESQL SCHEMA DDL
+-- Database Name: anoimqi_db
 -- Target Engine: PostgreSQL 14+ / 16+
 -- ==============================================================================
 

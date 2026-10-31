@@ -107,7 +107,7 @@ export default function StaffManagementPage() {
       Status: s.status,
       LastActivity: s.lastActivity,
     }));
-    downloadCSV(data, 'Brightloop_Staff');
+    downloadCSV(data, 'AnoimIQ_Staff');
     toast.success('Staff list exported to CSV');
   };
 
@@ -274,7 +274,7 @@ export default function StaffManagementPage() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="input-field"
-                placeholder="priya@brightloop.in"
+                placeholder="priya@anoimqi.io"
               />
             </div>
           </div>
@@ -327,11 +327,10 @@ export default function StaffManagementPage() {
                 return (
                   <label
                     key={c.id}
-                    className={`flex items-center gap-2 p-2 rounded-lg border text-xs cursor-pointer transition-colors ${
-                      isChecked
+                    className={`flex items-center gap-2 p-2 rounded-lg border text-xs cursor-pointer transition-colors ${isChecked
                         ? 'bg-blue-50 border-action/40 text-navy font-semibold'
                         : 'bg-white border-border text-text-secondary hover:bg-gray-100/60'
-                    }`}
+                      }`}
                   >
                     <input
                       type="checkbox"

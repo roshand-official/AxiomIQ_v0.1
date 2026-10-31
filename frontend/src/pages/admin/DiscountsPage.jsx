@@ -119,7 +119,7 @@ export default function DiscountsPage() {
       MaxUsage: d.maxUsage,
       Status: d.status,
     }));
-    downloadCSV(data, 'Brightloop_Discounts');
+    downloadCSV(data, 'AnoimQI_Discounts');
     toast.success('Discounts exported to CSV');
   };
 

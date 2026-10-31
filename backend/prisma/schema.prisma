@@ -1,4 +1,4 @@
-// Brightloop Subscription Management System
+// AnoimQI Subscription Management System
 // Database Schema with Prisma ORM & PostgreSQL
 
 generator client {

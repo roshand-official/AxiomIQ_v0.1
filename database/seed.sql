@@ -1,6 +1,6 @@
 -- ==============================================================================
--- BRIGHTLOOP SUBSCRIPTION MANAGEMENT SYSTEM - REALISTIC SEED DATASET
--- Database Name: brightloop_db
+-- ANOIMQI SUBSCRIPTION MANAGEMENT SYSTEM - REALISTIC SEED DATASET
+-- Database Name: anoimqi_db
 -- ==============================================================================
 
 -- 1. Roles
@@ -43,9 +43,9 @@ ON CONFLICT DO NOTHING;
 
 -- 4. Users (Passwords: Admin@123, Staff@123, Customer@123)
 INSERT INTO users (id, email, password_hash, first_name, last_name, phone_number, is_active, is_email_verified) VALUES
-('33333333-3333-3333-3333-333333333301', 'admin@brightloop.io', '$2a$10$w3v6R49YqK7YyW8s7tQy..O/Fshg52pLpU3c1r0hR8jE397B5k1sS', 'Aditya', 'Verma', '+91 9876543210', TRUE, TRUE),
-('33333333-3333-3333-3333-333333333302', 'sarah.ops@brightloop.io', '$2a$10$w3v6R49YqK7YyW8s7tQy..O/Fshg52pLpU3c1r0hR8jE397B5k1sS', 'Sarah', 'Jenkins', '+91 9876543211', TRUE, TRUE),
-('33333333-3333-3333-3333-333333333303', 'david.finance@brightloop.io', '$2a$10$w3v6R49YqK7YyW8s7tQy..O/Fshg52pLpU3c1r0hR8jE397B5k1sS', 'David', 'Kumar', '+91 9876543212', TRUE, TRUE),
+('33333333-3333-3333-3333-333333333301', 'admin@anoimqi.io', '$2a$10$w3v6R49YqK7YyW8s7tQy..O/Fshg52pLpU3c1r0hR8jE397B5k1sS', 'Aditya', 'Verma', '+91 9876543210', TRUE, TRUE),
+('33333333-3333-3333-3333-333333333302', 'sarah.ops@anoimqi.io', '$2a$10$w3v6R49YqK7YyW8s7tQy..O/Fshg52pLpU3c1r0hR8jE397B5k1sS', 'Sarah', 'Jenkins', '+91 9876543211', TRUE, TRUE),
+('33333333-3333-3333-3333-333333333303', 'david.finance@anoimqi.io', '$2a$10$w3v6R49YqK7YyW8s7tQy..O/Fshg52pLpU3c1r0hR8jE397B5k1sS', 'David', 'Kumar', '+91 9876543212', TRUE, TRUE),
 ('33333333-3333-3333-3333-333333333304', 'tech@acmecorp.com', '$2a$10$w3v6R49YqK7YyW8s7tQy..O/Fshg52pLpU3c1r0hR8jE397B5k1sS', 'Rajesh', 'Sharma', '+91 9811122233', TRUE, TRUE),
 ('33333333-3333-3333-3333-333333333305', 'billing@globexinc.com', '$2a$10$w3v6R49YqK7YyW8s7tQy..O/Fshg52pLpU3c1r0hR8jE397B5k1sS', 'Priya', 'Nair', '+91 9822233344', TRUE, TRUE),
 ('33333333-3333-3333-3333-333333333306', 'founder@apexlogic.io', '$2a$10$w3v6R49YqK7YyW8s7tQy..O/Fshg52pLpU3c1r0hR8jE397B5k1sS', 'Karan', 'Mehta', '+91 9833344455', TRUE, TRUE)
@@ -91,9 +91,9 @@ ON CONFLICT DO NOTHING;
 
 -- 10. Products
 INSERT INTO products (id, product_code, name, description, category, product_type, unit_of_measure, is_taxable, is_active) VALUES
-('88888888-8888-8888-8888-888888888801', 'PROD-CLOUD-CORE', 'Brightloop Cloud Platform', 'Complete recurring SaaS platform for billing automation', 'Software', 'RECURRING', 'Seat', TRUE, TRUE),
+('88888888-8888-8888-8888-888888888801', 'PROD-CLOUD-CORE', 'AnoimQI Cloud Platform', 'Complete recurring SaaS platform for billing automation', 'Software', 'RECURRING', 'Seat', TRUE, TRUE),
 ('88888888-8888-8888-8888-888888888802', 'PROD-CSM-SUPPORT', 'Dedicated Success Management', '24/7 dedicated customer success architect with 1-hr SLA', 'Support', 'RECURRING', 'Account', TRUE, TRUE),
-('88888888-8888-8888-8888-888888888803', 'PROD-ONBOARD-MIGRATE', 'Enterprise Onboarding & Migration', 'Turnkey ERP & CRM data migration into Brightloop', 'Service', 'ONE_TIME', 'Project', TRUE, TRUE)
+('88888888-8888-8888-8888-888888888803', 'PROD-ONBOARD-MIGRATE', 'Enterprise Onboarding & Migration', 'Turnkey ERP & CRM data migration into AnoimQI', 'Service', 'ONE_TIME', 'Project', TRUE, TRUE)
 ON CONFLICT (product_code) DO NOTHING;
 
 -- 11. Product Variants
@@ -253,10 +253,10 @@ ON CONFLICT DO NOTHING;
 
 -- 25. System Settings
 INSERT INTO system_settings (id, setting_key, setting_value, setting_group, data_type, description, is_public) VALUES
-('b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b101', 'system.currency.default', 'INR', 'FINANCE', 'STRING', 'Default operating currency for Brightloop invoices and payments', TRUE),
+('b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b101', 'system.currency.default', 'INR', 'FINANCE', 'STRING', 'Default operating currency for AnoimQI invoices and payments', TRUE),
 ('b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b102', 'system.tax.default_code', 'GST_18', 'FINANCE', 'STRING', 'Default statutory tax rate applied to subscription products', TRUE),
 ('b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b103', 'billing.grace_period_days', '7', 'BILLING', 'NUMBER', 'Grace period before subscription enters overdue suspension', FALSE),
 ('b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b104', 'billing.retry.max_attempts', '3', 'BILLING', 'NUMBER', 'Maximum automated payment retry attempts for failed dunning', FALSE),
-('b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b105', 'company.legal_name', 'Brightloop Technologies India Pvt Ltd', 'GENERAL', 'STRING', 'Legal registered entity name for invoice headers', TRUE),
+('b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b105', 'company.legal_name', 'AnoimQI Technologies India Pvt Ltd', 'GENERAL', 'STRING', 'Legal registered entity name for invoice headers', TRUE),
 ('b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b106', 'company.tax_id', '29AAACB9999P1ZQ', 'GENERAL', 'STRING', 'Company GSTIN/Tax ID printed on customer tax invoices', TRUE)
 ON CONFLICT (setting_key) DO NOTHING;

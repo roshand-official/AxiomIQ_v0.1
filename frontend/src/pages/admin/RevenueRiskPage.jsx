@@ -14,14 +14,69 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useApp } from '../../contexts/AppContext';
-import { mockRevenueRiskData } from '../../data/mockData';
-import { formatCurrency, formatDate } from '../../utils/formatters';
-import { StatusBadge, Modal } from '../../components/common';
-
 export default function RevenueRiskPage() {
   const { customers, subscriptions, invoices } = useApp();
 
-  const [risks, setRisks] = useState(() => [...mockRevenueRiskData]);
+  // Dynamically derive risk records from live PostgreSQL data
+  const derivedRisks = useMemo(() => {
+    const list = [];
+    const now = new Date();
+
+    // 1. Overdue invoices
+    invoices.forEach((inv) => {
+      const isDue = inv.status !== 'paid' && new Date(inv.dueDate) < now;
+      if (isDue) {
+        const cust = customers.find((c) => c.id === inv.customerId);
+        const days = Math.floor((now - new Date(inv.dueDate)) / 86400000);
+        list.push({
+          id: `risk-inv-${inv.id}`,
+          customerName: cust?.name || 'Customer',
+          company: cust?.company || 'Organization',
+          reference: inv.invoiceNumber || inv.id,
+          category: 'overdue_invoice',
+          amountAtRisk: inv.outstandingAmount || inv.totalAmount || 0,
+          severity: days > 30 ? 'high' : days > 15 ? 'medium' : 'low',
+          daysOverdue: days,
+          recommendedAction: days > 30 ? 'Escalate to legal / collections' : 'Send dunning reminder notice',
+          date: inv.dueDate,
+          reviewed: false,
+        });
+      }
+    });
+
+    // 2. Expiring subscriptions (< 30 days)
+    subscriptions.forEach((sub) => {
+      if (sub.status === 'active' && sub.expiryDate) {
+        const exp = new Date(sub.expiryDate);
+        const daysUntil = Math.floor((exp - now) / 86400000);
+        if (daysUntil <= 30 && daysUntil >= 0) {
+          const cust = customers.find((c) => c.id === sub.customerId);
+          list.push({
+            id: `risk-sub-${sub.id}`,
+            customerName: cust?.name || 'Customer',
+            company: cust?.company || 'Organization',
+            reference: sub.subscriptionNumber || sub.id,
+            category: 'expiring_subscription',
+            amountAtRisk: sub.recurringAmount || 0,
+            severity: daysUntil <= 7 ? 'high' : 'medium',
+            daysOverdue: 0,
+            recommendedAction: 'Engage client for contract renewal',
+            date: sub.expiryDate,
+            reviewed: false,
+          });
+        }
+      }
+    });
+
+    return list;
+  }, [invoices, subscriptions, customers]);
+
+  const [risks, setRisks] = useState([]);
+
+  useEffect(() => {
+    setRisks(derivedRisks);
+  }, [derivedRisks]);
+
   const [filterSeverity, setFilterSeverity] = useState('all');
   const [filterCategory, setFilterCategory] = useState('all');
   const [noteModalOpen, setNoteModalOpen] = useState(false);

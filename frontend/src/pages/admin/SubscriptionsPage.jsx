@@ -80,7 +80,7 @@ export default function SubscriptionsPage() {
       Amount: s.recurringAmount,
       Status: s.status,
     }));
-    downloadCSV(data, 'Brightloop_Subscriptions');
+    downloadCSV(data, 'AnoimQI_Subscriptions');
     toast.success('Subscriptions exported to CSV');
   };
 

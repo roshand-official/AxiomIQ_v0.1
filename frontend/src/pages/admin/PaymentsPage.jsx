@@ -134,7 +134,7 @@ export default function PaymentsPage() {
       Status: p.status,
       TransactionNumber: p.referenceNumber,
     }));
-    downloadCSV(data, 'Brightloop_Payments');
+    downloadCSV(data, 'AnoimQI_Payments');
     toast.success('Payments exported to CSV');
   };
 

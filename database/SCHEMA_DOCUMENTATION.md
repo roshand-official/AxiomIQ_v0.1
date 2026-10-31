@@ -1,7 +1,7 @@
-# BRIGHTLOOP SUBSCRIPTION MANAGEMENT SYSTEM - DATABASE SCHEMA DOCUMENTATION
+# ANOIMQI SUBSCRIPTION MANAGEMENT SYSTEM - DATABASE SCHEMA DOCUMENTATION
 
 **Database Engine:** PostgreSQL 14+ / 16+  
-**Database Name:** `brightloop_db`  
+**Database Name:** `anoimqi_db`  
 **Total Tables:** 34  
 **Primary Key Standard:** UUID (`gen_random_uuid()`)  
 **Financial Values:** `NUMERIC(15, 2)`  
@@ -104,7 +104,7 @@ erDiagram
 
 ## 3. Financial Calculation Standards
 
-All monetary calculations in `brightloop_db` adhere to strict financial integrity rules:
+All monetary calculations in `anoimqi_db` adhere to strict financial integrity rules:
 
 1. **Line Subtotal:**  
    $$\text{Line Total} = \text{Quantity} \times \text{Unit Price} - \text{Line Discount} + \text{Line Tax}$$
@@ -125,7 +125,7 @@ All monetary calculations in `brightloop_db` adhere to strict financial integrit
 
 ### PostgreSQL CLI:
 ```bash
-psql -U postgres -d brightloop_db -f database/schema.sql
-psql -U postgres -d brightloop_db -f database/seed.sql
-psql -U postgres -d brightloop_db -f database/verify_db.sql
+psql -U postgres -d anoimqi_db -f database/schema.sql
+psql -U postgres -d anoimqi_db -f database/seed.sql
+psql -U postgres -d anoimqi_db -f database/verify_db.sql
 ```
